@@ -1,0 +1,63 @@
+[
+  {
+    "model": "remit.Country",
+    "pk": 1,
+    "fields": {
+      "code": "UG",
+      "name": "Uganda",
+      "user":1,
+      "currency":"UGX",
+      "dailing_code":"256",
+    }
+  },
+  {
+    "model": "remit.Country",
+    "pk": 2,
+    "fields": {
+      "code": "KE",
+      "name": "Kenya",
+      "user":1,
+      "currency":"KES",
+      "dailing_code":"254",
+    }
+  }
+,
+  {
+    "model": "remit.Country",
+    "pk": 3,
+    "fields": {
+      "code": "RW",
+      "name": "Rwanda",
+      "user":1,
+      "currency":"RWF",
+      "dailing_code":"250",
+    }
+  }
+,
+  {
+    "model": "remit.Charge",
+    "pk": 1,
+    "fields": {
+      "country": 1,
+      "user": 1,
+    }
+  },
+
+  {
+    "model": "remit.Charge",
+    "pk": 2,
+    "fields": {
+      "country": 2,
+      "user": 1,
+    }
+  },
+
+  {
+    "model": "remit.Charge",
+    "pk": 3,
+    "fields": {
+      "country": 3,
+      "user": 1,
+    }
+  }
+]

@@ -1,0 +1,21 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+
+<p>Dear User</p>
+<p>
+At <a href='{{BASE_URL}}'>{{APP_NAME}}</a> we take your security and privacy seriously. For this reason, we require you to verify your email address to ensure that only you will receive communication from us.
+</p>
+
+<p>
+To confirm your email address, please  <a href='{{verification_link}}'>click here</a> or copy and paste this link <span>{{verification_link}} </span> into your browser address bar .
+</p>
+
+{% if not update %}
+<p>
+After you confirm your email address, you will also be sent a four-digit sms code to verify the mobile phone number you  provided . 
+</p>
+{%endif%}
+
+
+{% endblock %}

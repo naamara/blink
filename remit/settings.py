@@ -1,0 +1,526 @@
+''' settings for Django '''
+import os
+import django.conf.global_settings as DEFAULT_SETTINGS
+LOCALHOST = False
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+DEBUG_PAYMENTS = DEBUG
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), os.pardir)) + '/'
+
+LIVE = 1
+
+ADMINS = (
+    ('Madra David', 'madra@redcore.co.ug'),
+)
+
+APP_EMAILS = {
+
+    'contact_us':'mandelashaban593@gmail.com',
+    'about_us':'mandelashaban593@gmail.com',
+    'info':'mandelashaban593@gmail.com',
+    'support':'mandelashaban593@gmail.com',
+
+    }
+
+DEBUG_EMAILS = {
+
+    'madra@redcore.co.ug' ,
+
+}
+
+
+APP_NAME = 'Useremit'
+DOMAIN_NAME = 'Remit'
+APP_TITLE = 'Remit | Send Money to Mobile Money in Uganda or Kenya | Pay utility bills online'
+
+
+MANAGERS = ADMINS
+
+USE_JUMIO = True
+
+BASE_URL = 'https://useremit.com/'
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), os.pardir)) + '/'
+DATABASES = {
+    'default': {
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # Or path to database file if using sqlite3.
+        'NAME': 'anenyuoe4',
+        # The following settings are not used with sqlite3:
+        'USER': 'dqebbquaa4iba',
+        'PASSWORD': 'WMm8mq1ZYAOn',
+        # Empty for localhost through domain sockets or '127.0.0.1' for
+        # localhost through TCP.
+        'HOST': 'LOCALHOST',
+        'PORT': '',                      # Set to empty string for default.
+        'OPTIONS': {'autocommit': True, },
+    }
+}
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['www.useremit.com', 'http://useremit.com',
+                 'https://useremit.com', 'https://useremit.com']
+
+
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# In a Windows environment this must be set to your system time zone.
+#TIME_ZONE = 'Africa/Nairobi'
+TIME_ZONE ='UTC'
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'en-us'
+
+SITE_ID = 1
+
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+USE_I18N = True
+
+# If you set this to False, Django will not format dates, numbers and
+# calendars according to the current locale.
+USE_L10N = True
+
+# If you set this to False, Django will not use timezone-aware datetimes.
+USE_TZ = True
+
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = BASE_DIR + 'static/uploads/'
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = BASE_URL + 'static/uploads/'
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/var/www/example.com/static/"
+
+#GEOIP_PATH = BASE_URL + 'geoip_data/'
+geo_dir = os.path.dirname(__file__)
+geo_rel_path = "geoip"
+
+GEOIP_PATH = os.path.join(geo_dir, geo_rel_path)
+
+
+
+
+EMAIL_TEMPLATE_DIR = BASE_DIR + 'templates/email/'
+AJAX_TEMPLATE_DIR = BASE_DIR + 'templates/ajax/'
+SMS_TEMPLATE_DIR = BASE_DIR + 'templates/sms/'
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'ksx8+lq!5pzx&)xuqp0sc-rdgtd14gmix-eglq(iz%3+7h)f52'
+
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    #     'django.template.loaders.eggs.Loader',
+)
+
+MIDDLEWARE_CLASSES = (
+    'sslify.middleware.SSLifyMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    #'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+     
+    'django.contrib.messages.middleware.MessageMiddleware',
+
+    #'session_security.middleware.SessionSecurityMiddleware',
+    # Uncomment the next line for simple clickjacking protection:
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+ROOT_URLCONF = 'remit.urls'
+
+# Python dotted path to the WSGI application used by Django's runserver.
+WSGI_APPLICATION = 'remit.wsgi.application'
+
+TEMPLATE_DIRS = (
+    BASE_DIR + 'templates',
+    BASE_DIR + 'remit_admin/templates/',
+    BASE_DIR + 'remit_admin/templates/admin/',
+)
+
+INSTALLED_APPS = (
+
+    #background tasks
+    #'huey.djhuey',
+
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'remit',
+    'social_widgets',
+    'accounts',
+    #'south'
+    'landingapp',
+    'coverage',
+    #'notification',
+    'nexmo',
+    'guardian',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+    #'django_admin_bootstrapped.bootstrap3',
+    #'django_admin_bootstrapped',
+    # Uncomment the next line to enable the admin:
+    'remit_admin',
+    'session_security',
+    'gravatar',
+    'django_cron',
+    'django.contrib.humanize',
+    'django_extensions',
+    #'django_bitcoin',
+    'btc',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api',
+    'seo',
+    'payments',
+    'background_task',
+    'django.contrib.admin',
+
+    'ipn',
+    'standard',
+    'crispy_forms',
+    'tinymce',
+    
+    #'django_twilio',
+
+
+)
+
+PAYPAL_RECEIVER_EMAIL = "mandelashaban593@gmail.com"
+
+
+
+
+# Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+      'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser'
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        #'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    # Use Django's standard `django.contrib.auth` permissions,
+    'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S'
+}
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
+# Custom template processors
+
+
+
+# YOpay
+YOPAY_USERNAME = '100224720137'
+YOPAY_PASSWORD = 'jLQF-r1oa-OyIq-0zoQ-544O-7U1F-oGj5-YoyU'
+YOPAY_ENDPOINT = 'https://paymentsapi1.yo.co.ug/ybs/task.php'
+
+
+# Ipay
+LIVE = 1
+IPAY_CALLBACK_URL = '%stransaction/confirm_payment/' % BASE_URL
+IPAY_USER = 'redcore'
+IPAY_MERCHANT = 'RedCore'
+IPAY_HASH_KEY = '0yiq0zoQ544O'
+
+
+# uba
+UBA_CALLBACK_URL = ''
+UBA_MERCHANT_ID = ''
+UBA_MERCHANT_KEY = ''
+
+#jumio
+JUMIO_URL="https://netverify.com/api/netverify/v2/initiateNetverify/"
+JUMIO_TOKEN="fcf1eec3-728d-4f8a-8811-5b8e0e534597"
+JUMIO_SECRET="9mnQyVj1ppiyVESYroDHZS23Z9OfQ9GS"
+JUMIO_USER_AGENT="MyCompany MyApp/1.0.0"
+USE_JUMIO = True
+"""
+JUMIO_SUCCESS_URL="https://simtransfer.com/jumiopass/"
+JUMIO_ERROR_URL="https://simtransfer.com/jumiofail/"
+"""
+
+
+
+JUMIO_SUCCESS_URL="https://simtransfer.com/idscanned/"
+JUMIO_ERROR_URL="https://simtransfer.com/idscanfailed/"
+JUMIO_CALLBACK="https://simtransfer.com/jumiodata/"
+
+
+
+
+
+# Mailgun
+ANONYMOUS_USER_ID = -1
+AUTH_PROFILE_MODULE = 'accounts.Profile'
+LOGIN_URL = BASE_URL + 'login/'
+SIGNUP_URL = BASE_URL + 'signup/'
+LOGOUT_URL = BASE_URL + 'signout/'
+
+AUTHENTICATION_BACKENDS = (
+    'accounts.backends.EmailVerificationBackend',
+    'remit.backends.EmailAuthBackend',
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+ACTIVATION_LINK = BASE_URL + 'activate/'
+
+
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+"""
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = ''
+DEFAULT_TO_EMAIL = ''
+"""
+#EMAIL_PORT = 587
+ADMIN_USER='admin_key_user'
+ADMIN_USER_KEY='user_004_admin'
+
+
+# Mailgun settings
+DEFAULT_FROM_EMAIL = 'Remit.ug <noreply@remit.ug>'
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.mailgun.org'
+#EMAIL_HOST_USER = 'postmaster@remit.ug'
+#EMAIL_HOST_PASSWORD = '25s0akinnuk8'
+#EMAIL_PORT = 25
+# Mailgun settings
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+#EMAIL_TEMPLATE_DIR = '%stemplates/email/' % (BASE_DIR)
+# using sandbox account here , change later
+
+"""
+MAILGUN_ACCESS_KEY = 'key-159a0akhdauw79rtshe1rw-itl6t-0i6'
+MAILGUN_SERVER_NAME = 'remit.ug'
+MAILGUN_ACCESS_LINK = 'https://api.mailgun.net/v2/remit.ug/messages'
+"""
+MAILGUN_ACCESS_KEY = 'key-159a0akhdauw79rtshe1rw-itl6t-0i6'
+MAILGUN_SERVER_NAME = 'useremit.com'
+MAILGUN_ACCESS_LINK = 'https://api.mailgun.net/v3/useremit.com/messages'
+CONTACT_NO = '+256783877133'
+
+# Nexmo
+NEXMO_USERNAME = '8cede62f'
+NEXMO_PASSWORD = 'd4d43a29'
+NEXMO_FROM = 'Remit'
+
+#Nexmo App
+NEXMO_API_KEY = '8cede62fSecret'
+NEXMO_API_SECRET = 'd4d43a29'
+NEXMO_DEFAULT_FROM = 'Remit'
+
+#if set to zero we use twilio
+USE_NEXMO = 0
+
+USE_TWILIO = True
+
+USE_SUKUMA = False
+
+USE_AFRICA_SMS = True
+
+
+TWILIO_ACCOUNT_SID='AC2a0de3ac9808d7bfa5c3d75853c073d6'
+TWILIO_AUTH_TOKEN='82b2ab8535255c8fd8d96bad96103ae7'
+TWILIO_DEFAULT_CALLERID = 'Remit'
+
+# Session security
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+# cron jobs
+CRON_CLASSES = [
+    "remit.cron.UpdateRates",
+    # ...
+]
+
+
+# Paganation
+PAGNATION_LIMIT = 10
+
+
+# Avatar
+GRAVATAR_URL = "https://www.gravatar.com/avatar.php?"
+
+
+# Bitcoin
+#BITCOIND_CONNECTION_STRING = "http://ubuntu:bitwa8bfede82llet@localhost:8332"
+BITCOIND_CONNECTION_STRING = "http://redcorebrpc:BKGyjwyNXzHumywcau3FubmyaJ8NypJtd1eSdTYCqSkJ@localhost:8332"
+# How many bitcoin network confirmations are required until we consider the transaction
+# as received
+BITCOIN_MINIMUM_CONFIRMATIONS = 3
+# Use Django signals to tell the system when new money has arrived to your
+# wallets
+BITCOIN_TRANSACTION_SIGNALING = True
+from decimal import Decimal
+MAIN_ADDRESS = '12oaMnJZZJRx59kWyAshzmogHERo8y54Et'
+BITCOIN_PAYMENT_BUFFER_SIZE = 1
+BITCOIN_ADDRESS_BUFFER_SIZE = 1
+PAYMENT_VALID_HOURS = 1
+BITCOIN_PRIVKEY_FEE = Decimal("0.0005")
+BITCOIN_TRANSACTION_CACHING = 1
+
+
+#admin who processed transactions
+PROCESSED_BY = 1
+
+
+
+
+#background tasks
+#HUEY_CONFIG = {
+#    'QUEUE': 'huey.backends.redis_backend.RedisBlockingQueue',
+#    'QUEUE_NAME': 'test-queue',
+#    'QUEUE_CONNECTION': {
+#        'host': 'localhost',
+#        'port': 6379,
+#    },
+#    'THREADS': 4,
+#}
+
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_FAILURE_VIEW = 'remit.views.csrf_failure_view'
+
+
+MTN_SDP = '172.25.48.43'
+MTN_TEST_BED = 0
+MTN_SDP_USERNAME = 'remitug.sp1'
+MTN_SDP_PASS = 'Huawei2014'
+MTN_SDP_SERVICEID = '2560110001380'
+MTN_SDP_URL = 'http://172.25.48.43:8310/'
+MTN_VENDOR_CODE = 'REMIT'
+REVENUE_SHARE = 2.16
+#disable email and sms sending
+DISABLE_COMMS = False
+
+
+
+#background tasks
+MAX_ATTEMPTS = 5
+
+
+#need this for generating reports from sqlite
+IS_SQLITE = False
+
+OTHER_FEES = True
+OTHER_FEES = True
+
+
+SEND_KYC_SMS = True
+
+
+
+# Pesapot
+PESAPOT_URL = 'http://pesapot.com/api/'
+
+PESAPOT_TOKEN = ''
+PESAPOT_KEY = ''
+
+
+
+#paybill
+PAYBILL = False
+
+DISABLE_MTN = True
+ENABLE_TRADELANCE = True
+ENABLE_YO = False
+
+DISABLE_AIRTEL_MONEY = False
+
+DISABLE_MTN_MOBILE_MONEY = False
+
+
+#force Transaction id
+FORCE_TRANSACTION_ID = True
+# Localhost settings
+
+# Crispy forms tags settings
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+STATIC_ROOT = BASE_DIR + 'static'
+
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
+STATIC_URL = BASE_URL + 'static/'
+

@@ -1,0 +1,170 @@
+   {% load social_widgets %}
+    <!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	{% include 'metadata.html' %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Made with WOW Slider - Create beautiful, responsive image sliders in a few clicks. Awesome skins and animations. Jquery slider" />
+	
+
+   
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}engine1/style.css" />
+      <!-- End WOWSlider.com HEAD section -->
+
+
+
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}bootstrap-3.3.6/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/style.css"/>
+  
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/navbar.css"/>
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/remit.css"/>
+
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/jquery.fatNav.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/flexslider.css" />
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/dropkick.css" />
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/responsive-tabs.css" />
+    <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/responsive.css" />
+    
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{{STATIC_URL}}js/underscore-min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/remit.js"></script>
+
+   
+  
+    <style>
+    
+    </style>
+
+
+{% block header%}
+{% endblock%}
+
+
+</head>
+
+<body class="loading">
+	<div id="wrapper" class="{% block wrapperid %}{%endblock%}"><!--start wrapper-->
+        <div id="blink">
+    <div id="logo"><meta property="og:image" content="{{STATIC_URL}}/images/remit_ug.png"/>
+    </div>
+    <div id="learn">BASIC LEARNING AND INFORMATION NETWORK</div>
+</div>
+    	
+
+        <div class="header_container"><!--start header_container-->
+        	<div class="center_content">
+                <div id = "navigation">
+<nav class="cf">
+    <ul class="topmenu">
+        <!--<li><a href="#" title="Home Page" class="current">Home</a></li>
+        -->
+        <li><a href="{% url 'index' %}" >Home</a></li>
+        <li><a href="{% url 'about_us' %}" >About B-Link</a>
+        <ul class="submenu">
+                     <li><a href="{% url 'history' %}">History of B-Link</a></li>
+                    <li><a href="{% url 'about_us' %}">About B-Link</a></li>         
+                    </ul>
+        </li>
+        <li><a href="{% url 'careers' %}">Careers</a></li>
+        <li><a href="{% url 'about_us' %}">Press Room</a></li>
+        <li><a href="{% url 'contact_us' %}" class="topmenu2">Projects</a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'education' %}">Education</a></li>
+                                        <li><a href="{% url 'health' %}">Health</a></li>
+                                        <li><a href="{% url 'livelihood' %}">Livelihood</a></li>
+                                        <li><a href="{% url 'disaster' %}">Disaster Preparedness</a></li>
+                                        <li><a href="{% url 'civics' %}">Civics</a></li>
+                                    </ul>
+                                </li>
+        <li><a href="{% url 'contact_us'%}"  class="topmenu2">Research</a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'publications'%}">Publications</a></li>
+                                        <li><a href="{% url 'statistics'%}">Statistics</a></li>
+                                        <li><a href="{% url 'legislation'%}">Legislation and guidelines</a></li>
+                                        <li><a href="{% url 'funding'%}">Funding and health Research</a></li>
+                                        <li><a href="{% url 'e-consult'%}">e-Consultation</a></li>
+                                    </ul>
+                                </li>
+        <li><a href="{% url 'contact_us'%}">Forms</a></li>
+        <li><a href="{% url 'contact_us'%}">Contact Us</a></li>
+        <li><a href="{% url 'contact_us'%}">Partners</a></li>
+        <li><a href="{% url 'login'%}">Login</a></li>
+                            </ul>
+    </div>
+        
+        
+        
+   </div> <!--//end .center_content-->
+   </div><!--//end .header_container-->
+   <div class="healthcontent">
+
+
+        {% block content %}
+
+
+        {% endblock %}
+    
+
+</div>
+
+
+
+    <div id="bottom_content">
+                        <a href="#header" class="back_top skip1"><img src="{{STATIC_URL}}images/btn_backtop.png" alt="back top"></a>
+                        <div class="image_box">
+                            <a href= "{% url 'members' %}"> Members |</a>
+                            <a href ="{%url 'districts' %}">Districts |</a>
+                            <a href ="{%url 'forums' %}">Forums |</a>
+                            <a href ="{%url 'support' %}">Supporting Organisation |</a>
+                          
+                        </div> 
+                        <div class="lft_bottom_conte">
+                            
+                          
+
+                            <table style="width:500px;" class="stylelinks"><tr><td><a href="{% url 'about_us' %}">ABOUT US</a></td><td><a href="{% url 'tos' %}"></a></td><td><a href="{% url 'policy' %}">PRIVACY POLICY</a></td><td><a href="{% url 'rate' %}">Rate our site</a></td><td><a href="{% url 'faq' %}">F.A.Q</a></td></tr></table>
+
+
+                        </div>
+                        <div class="rgt_bottom_content">
+                        jhkdfjhkdfjjdfhdjfhjh
+                        {% social_widget_render "facebook/likebox.html" locale="en_US" app_id=12345678 href="https://www.facebook.com/Basic-Learning-and-Information-Network" height=300 colorscheme="light" force_wall=False header=True show_border=True show_faces=True stream=False width=300 %}
+                            
+                            </div>
+                        </div>
+                
+                    </div>
+    
+        <div class="container footer_container"><!--start container-->
+        
+        		<footer id="footer">
+                    <p><span>Copyright 2017 B-link</span><span>All Rights Reserved</span></p>
+                </footer> 
+             
+      	</div><!--//end .container
+  	</div><!--//end #wrapper-->
+    
+
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.fatNav.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/dropkick.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.responsiveTabs.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/custom.js"></script>
+
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,600,500,300' rel='stylesheet' type='text/css'>
+
+
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+      <script type="text/javascript" src="{{STATIC_URL}}engine1/jquery.js"></script>
+    <!-- End WOWSlider.com HEAD section -->
+
+</body>
+</html>

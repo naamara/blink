@@ -1,0 +1,30 @@
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+Legislation & Guidelines
+ 
+
+
+<P>Over 20 Acts come under the purview of the Ministry of Health. These Acts regulate public health and safety, including the healthcare profession, healthcare practices / establishments as well as statutory boards charged with these responsibilities. 
+</P>
+Find out more
+
+ <h2>Legal's Message</h2>
+<div>
+{% for law_info in law_info %}
+  <div class="panel panel-default" style="width:600px;">
+    <div class="panel-heading">{{law_info.sub}}
+</div>
+    <div class="panel-body">{{law_info.msg}}</div>
+  </div>
+
+
+{% endfor %}
+
+
+
+{% endblock %}

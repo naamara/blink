@@ -1,0 +1,28 @@
+{% extends "email/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+{% if mobile_money_sent %}
+
+<p>
+  Dear {{data.utility_account_name}}  <br />
+  Your
+  {% if data.billtype == 1 %}
+  Electricity
+  {% else %}
+  Water
+  {% endif %}
+  payment of {{data.display_amount_received }} for account {{data.referencenum}} was successfully completed.
+  {{% if data.billtype == "1" %}}
+  The token is {{data.transaction_id}}
+  {% endif %}
+
+Thank you for using useremit.com
+</p>
+<p> Login to <a href='{{BASE_URL}}'>{{APP_NAME}}</a> to see your transaction history. </p>
+
+{% endif %}
+
+{% endblock %}

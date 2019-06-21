@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<div class="home_container container">
+
+
+
+
+<div class="col-sm-7">
+<div>
+  <ul class="nav nav-tabs">
+  <li><a href="{% url 'home' %}" >Send Money</a></li>
+  <li  class="active"><a href="#" >Pay Bill</a></li>
+</ul>
+</div>
+
+{% if user_profile.id_verified %}
+
+{% include "paybillform.html" %}
+
+{% else %}
+
+{% include "disablesending.html" %}
+
+{% endif %}
+
+</div>
+
+
+
+ <div class="col-sm-4 sendmoney_sidebar">
+
+{% include "profile.html" %}
+
+{% include "paybillreceiptform.html" %}
+        
+</div>
+
+ </div>
+
+
+{% endblock %}

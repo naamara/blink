@@ -1,0 +1,111 @@
+   <div class="modal-backdrop fade in"></div>
+      <div id="secure_area_wrapper" class="modal hide fade in" style="display: block; ">
+           <form id="secureloginform_form" onsubmit="return false;">
+            <div class="modal-header">
+              <a href="#" class="close" OnClick=cancelsecureAreaAuth()>×</a>
+              <h3>Login To Continue</h3>
+            </div>
+            <div id="secure_area_message" class="secure_area_auth_message"></div>
+            <div class="modal-body">
+          
+          <!--
+          <div class="clearfix">
+            <label for="securearea_passwd">Password</label>
+            <div class="input">
+              <input class="xlarge" id="securearea_passwd" name="securearea_passwd" size="30" type="password">
+            </div>
+          </div>
+          -->
+          <div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Password</span>
+<input class="xlarge" id="securearea_passwd" name="securearea_passwd" size="30" type="password" placeholder="provide a password">
+</div>
+</div>
+
+            </div>
+            <div class="modal-footer">
+               <input type="submit" class="btn primary" value="Signin">
+              <a href="#" class="btn secondary" OnClick=cancelsecureAreaAuth()>Cancel</a>
+             
+            </div>
+          </form>
+          </div>
+          <script type="text/javascript">
+            function cancelsecureAreaAuth()
+            {
+              //history.go(-1);
+               window.location.href = BASE_PATH;
+            }
+$(document).ready(function(){
+    $("#secureloginform_form").validate({
+    rules:{
+        securearea_passwd:
+            {
+            required:true,
+            minlength:5,
+            }
+      },
+     messages: {
+      securearea_passwd: {
+      required: "Please Provide your password"
+      },
+    },
+
+    submitHandler: function(form) {
+    secureAreaLogin();
+    }
+    });
+});
+
+
+function  secureAreaLogin()
+{
+//alert($("#signupform_form").serialize());
+
+//do the search
+//start the ajax
+    $.ajax({
+      //this is the php file that processes the data and send mail
+      url: ""+SERVER_PATH+"form_server.php",
+
+      //GET method is used
+      type: "GET",
+
+      //pass the data
+      data: '&secureareasignup=true&'+$("#secureloginform_form").serialize(),
+
+      //Do not cache the page
+      cache: false,
+
+             beforeSend: function(){
+            $('#loading').show();
+            },
+             complete: function(){
+             $('#loading').hide();
+            },
+
+
+      //success
+      success: function (html) {
+
+            //$('#large_category').hide();
+            $('.secure_area_auth_message').html(html);
+               //$('#signup_form_response').html(html);
+
+             //   alert(html);
+      },
+
+            error : function ()
+            {
+            //add_error_msg('There was an error loading the shelf,please try again','#errordiv');
+            //$('html, body').animate({ scrollTop: 0 }, 'slow');
+            }
+
+
+    });
+
+}
+
+
+          </script>

@@ -1,0 +1,664 @@
+{% load custom_filters %}
+
+      <div class="modal-backdrop fade in"></div>
+      <div class="modal hide fade in last_signup_step_wrapper" style="display: block; ">
+      <div style="padding:5px;">
+
+      </div>
+           <form id="userdetailsform" method="POST" action="{% url 'userdetailsform' %}">
+            <div class="modal-header">
+            <h4>Fill out your personal details to start sending money.</h4>
+            For security purposes, please provide personal details as they appear on your Identification document.
+          </div>
+
+          <div class="modal-body">
+
+<div style="width:100%;display:block;overflow:hidden;" >
+{% include 'notifications.html'%}
+</div>
+
+
+<div style="width:100%;display:block;overflow:hidden;">
+<style type="text/css">
+  select.mini{
+    width: 70px;
+    margin-right: 1px;
+  }
+</style>
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">First Name</span>
+<input class="large" id="firstname" name="firstname" size="16" type="text" value="{{user_profile.firstname}}" placeholder="First Name">
+</div>
+</div>
+
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Last Name</span>
+<input class="large" id="lastname" name="lastname" size="16" type="text" value="{{user_profile.lastname}}"  placeholder="Last Name">
+</div>
+</div>
+
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on" style="margin-right:5px;">D.O.B. (D/M/Y)
+
+</span>
+<select  class="mini" name="dob_day">
+
+{% for i in "1,32"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+
+</select>
+<select  class="mini" name="dob_month">
+{% for i in "1,13"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+<select  class="mini" name="dob_year">
+{% for i in "1920,2000"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+</div>
+</div>
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">ID Number.</span>
+<input class="large" id="signup_passportno" value="{{user_profile.id_number}}" name="id_number" size="16" type="text" placeholder="ID Number">
+</div>
+</div>
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Address 1</span>
+<textarea class="large" name="address1" id="address1"  placeholder=" Address 1">
+</textarea>
+</div>
+</div>
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Address 2</span>
+<textarea class="large" name="address2" id="address2" placeholder=" Address 2">
+</textarea>
+</div>
+</div>
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">City / Town </span>
+<input class="large" id="city" name="city" value="" size="16" type="text" placeholder="City of residence">
+</div>
+</div>
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Country</span>
+
+
+
+<select class="large" id="country" name="country" placeholder="Country of residence">
+<option value="AFGHANISTAN">
+Afghanistan</option>
+<option value="ALBANIA">
+Albania</option>
+<option value="ALGERIA">
+Algeria</option>
+<option value="AMERICAN SAMOA">
+American samoa</option>
+<option value="ANDORRA">
+Andorra</option>
+<option value="ANGOLA">
+Angola</option>
+<option value="ANGUILLA">
+Anguilla</option>
+<option value="ANTARCTICA">
+Antarctica</option>
+<option value="ANTIGUA AND BARBUDA">
+Antigua and barbuda</option>
+<option value="ARGENTINA">
+Argentina</option>
+<option value="ARMENIA">
+Armenia</option>
+<option value="ARUBA">
+Aruba</option>
+<option value="AUSTRALIA">
+Australia</option>
+<option value="AUSTRIA">
+Austria</option>
+<option value="AZERBAIJAN">
+Azerbaijan</option>
+<option value="BAHAMAS">
+Bahamas</option>
+<option value="BAHRAIN">
+Bahrain</option>
+<option value="BANGLADESH">
+Bangladesh</option>
+<option value="BARBADOS">
+Barbados</option>
+<option value="BELARUS">
+Belarus</option>
+<option value="BELGIUM">
+Belgium</option>
+<option value="BELIZE">
+Belize</option>
+<option value="BENIN">
+Benin</option>
+<option value="BERMUDA">
+Bermuda</option>
+<option value="BHUTAN">
+Bhutan</option>
+<option value="BOLIVIA">
+Bolivia</option>
+<option value="BOSNIA AND HERZEGOVINA">
+Bosnia and herzegovina</option>
+<option value="BOTSWANA">
+Botswana</option>
+<option value="BRAZIL">
+Brazil</option>
+<option value="BRUNEI DARUSSALAM">
+Brunei darussalam</option>
+<option value="BULGARIA">
+Bulgaria</option>
+<option value="BURKINA FASO">
+Burkina faso</option>
+<option value="BURUNDI">
+Burundi</option>
+<option value="CAMBODIA">
+Cambodia</option>
+<option value="CAMEROON">
+Cameroon</option>
+<option value="CANADA">
+Canada</option>
+<option value="CAPE VERDE">
+Cape verde</option>
+<option value="CAYMAN ISLANDS">
+Cayman islands</option>
+<option value="CENTRAL AFRICAN REPUBLIC">
+Central african republic</option>
+<option value="CHAD">
+Chad</option>
+<option value="CHILE">
+Chile</option>
+<option value="CHINA">
+China</option>
+<option value="CHRISTMAS ISLAND">
+Christmas island</option>
+<option value="COCOS (KEELING) ISLANDS">
+Cocos (keeling) islands</option>
+<option value="COLOMBIA">
+Colombia</option>
+<option value="COMOROS">
+Comoros</option>
+<option value="CONGO">
+Congo</option>
+<option value="CONGO, THE DEMOCRATIC REPUBLIC OF THE">
+Congo, the democratic republic of the</option>
+<option value="COOK ISLANDS">
+Cook islands</option>
+<option value="COSTA RICA">
+Costa rica</option>
+<option value="COTE D IVOIRE">
+Cote d ivoire</option>
+<option value="CROATIA">
+Croatia</option>
+<option value="CUBA">
+Cuba</option>
+<option value="CYPRUS">
+Cyprus</option>
+<option value="CZECH REPUBLIC">
+Czech republic</option>
+<option value="DENMARK">
+Denmark</option>
+<option value="DJIBOUTI">
+Djibouti</option>
+<option value="DOMINICA">
+Dominica</option>
+<option value="DOMINICAN REPUBLIC">
+Dominican republic</option>
+<option value="ECUADOR">
+Ecuador</option>
+<option value="EGYPT">
+Egypt</option>
+<option value="EL SALVADOR">
+El salvador</option>
+<option value="EQUATORIAL GUINEA">
+Equatorial guinea</option>
+<option value="ERITREA">
+Eritrea</option>
+<option value="ESTONIA">
+Estonia</option>
+<option value="ETHIOPIA">
+Ethiopia</option>
+<option value="FALKLAND ISLANDS (MALVINAS)">
+Falkland islands (malvinas)</option>
+<option value="FAROE ISLANDS">
+Faroe islands</option>
+<option value="FIJI">
+Fiji</option>
+<option value="FINLAND">
+Finland</option>
+<option value="FRANCE">
+France</option>
+<option value="FRENCH POLYNESIA">
+French polynesia</option>
+<option value="GABON">
+Gabon</option>
+<option value="GAMBIA">
+Gambia</option>
+<option value="GEORGIA">
+Georgia</option>
+<option value="GERMANY">
+Germany</option>
+<option value="GHANA">
+Ghana</option>
+<option value="GIBRALTAR">
+Gibraltar</option>
+<option value="GREECE">
+Greece</option>
+<option value="GREENLAND">
+Greenland</option>
+<option value="GRENADA">
+Grenada</option>
+<option value="GUAM">
+Guam</option>
+<option value="GUATEMALA">
+Guatemala</option>
+<option value="GUINEA">
+Guinea</option>
+<option value="GUINEA-BISSAU">
+Guinea-bissau</option>
+<option value="GUYANA">
+Guyana</option>
+<option value="HAITI">
+Haiti</option>
+<option value="HOLY SEE (VATICAN CITY STATE)">
+Holy see (vatican city state)</option>
+<option value="HONDURAS">
+Honduras</option>
+<option value="HONG KONG">
+Hong kong</option>
+<option value="HUNGARY">
+Hungary</option>
+<option value="ICELAND">
+Iceland</option>
+<option value="INDIA">
+India</option>
+<option value="INDONESIA">
+Indonesia</option>
+<option value="IRAN, ISLAMIC REPUBLIC OF">
+Iran, islamic republic of</option>
+<option value="IRAQ">
+Iraq</option>
+<option value="IRELAND">
+Ireland</option>
+<option value="ISLE OF MAN">
+Isle of man</option>
+<option value="ISRAEL">
+Israel</option>
+<option value="ITALY">
+Italy</option>
+<option value="JAMAICA">
+Jamaica</option>
+<option value="JAPAN">
+Japan</option>
+<option value="JORDAN">
+Jordan</option>
+<option value="KAZAKSTAN">
+Kazakstan</option>
+<option value="KENYA">
+Kenya</option>
+<option value="KIRIBATI">
+Kiribati</option>
+<option value="KOREA DEMOCRATIC PEOPLES REPUBLIC OF">
+Korea democratic peoples republic of</option>
+<option value="KOREA REPUBLIC OF">
+Korea republic of</option>
+<option value="KOSOVO">
+Kosovo</option>
+<option value="KUWAIT">
+Kuwait</option>
+<option value="KYRGYZSTAN">
+Kyrgyzstan</option>
+<option value="LAO PEOPLES DEMOCRATIC REPUBLIC">
+Lao peoples democratic republic</option>
+<option value="LATVIA">
+Latvia</option>
+<option value="LEBANON">
+Lebanon</option>
+<option value="LESOTHO">
+Lesotho</option>
+<option value="LIBERIA">
+Liberia</option>
+<option value="LIBYAN ARAB JAMAHIRIYA">
+Libyan arab jamahiriya</option>
+<option value="LIECHTENSTEIN">
+Liechtenstein</option>
+<option value="LITHUANIA">
+Lithuania</option>
+<option value="LUXEMBOURG">
+Luxembourg</option>
+<option value="MACAU">
+Macau</option>
+<option value="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF">
+Macedonia, the former yugoslav republic of</option>
+<option value="MADAGASCAR">
+Madagascar</option>
+<option value="MALAWI">
+Malawi</option>
+<option value="MALAYSIA">
+Malaysia</option>
+<option value="MALDIVES">
+Maldives</option>
+<option value="MALI">
+Mali</option>
+<option value="MALTA">
+Malta</option>
+<option value="MARSHALL ISLANDS">
+Marshall islands</option>
+<option value="MAURITANIA">
+Mauritania</option>
+<option value="MAURITIUS">
+Mauritius</option>
+<option value="MAYOTTE">
+Mayotte</option>
+<option value="MEXICO">
+Mexico</option>
+<option value="MICRONESIA, FEDERATED STATES OF">
+Micronesia, federated states of</option>
+<option value="MOLDOVA, REPUBLIC OF">
+Moldova, republic of</option>
+<option value="MONACO">
+Monaco</option>
+<option value="MONGOLIA">
+Mongolia</option>
+<option value="MONTENEGRO">
+Montenegro</option>
+<option value="MONTSERRAT">
+Montserrat</option>
+<option value="MOROCCO">
+Morocco</option>
+<option value="MOZAMBIQUE">
+Mozambique</option>
+<option value="MYANMAR">
+Myanmar</option>
+<option value="NAMIBIA">
+Namibia</option>
+<option value="NAURU">
+Nauru</option>
+<option value="NEPAL">
+Nepal</option>
+<option value="NETHERLANDS">
+Netherlands</option>
+<option value="NETHERLANDS ANTILLES">
+Netherlands antilles</option>
+<option value="NEW CALEDONIA">
+New caledonia</option>
+<option value="NEW ZEALAND">
+New zealand</option>
+<option value="NICARAGUA">
+Nicaragua</option>
+<option value="NIGER">
+Niger</option>
+<option value="NIGERIA">
+Nigeria</option>
+<option value="NIUE">
+Niue</option>
+<option value="NORTHERN MARIANA ISLANDS">
+Northern mariana islands</option>
+<option value="NORWAY">
+Norway</option>
+<option value="OMAN">
+Oman</option>
+<option value="PAKISTAN">
+Pakistan</option>
+<option value="PALAU">
+Palau</option>
+<option value="PANAMA">
+Panama</option>
+<option value="PAPUA NEW GUINEA">
+Papua new guinea</option>
+<option value="PARAGUAY">
+Paraguay</option>
+<option value="PERU">
+Peru</option>
+<option value="PHILIPPINES">
+Philippines</option>
+<option value="PITCAIRN">
+Pitcairn</option>
+<option value="POLAND">
+Poland</option>
+<option value="PORTUGAL">
+Portugal</option>
+<option value="PUERTO RICO">
+Puerto rico</option>
+<option value="QATAR">
+Qatar</option>
+<option value="ROMANIA">
+Romania</option>
+<option value="RUSSIAN FEDERATION">
+Russian federation</option>
+<option value="RWANDA">
+Rwanda</option>
+<option value="SAINT BARTHELEMY">
+Saint barthelemy</option>
+<option value="SAINT HELENA">
+Saint helena</option>
+<option value="SAINT KITTS AND NEVIS">
+Saint kitts and nevis</option>
+<option value="SAINT LUCIA">
+Saint lucia</option>
+<option value="SAINT MARTIN">
+Saint martin</option>
+<option value="SAINT PIERRE AND MIQUELON">
+Saint pierre and miquelon</option>
+<option value="SAINT VINCENT AND THE GRENADINES">
+Saint vincent and the grenadines</option>
+<option value="SAMOA">
+Samoa</option>
+<option value="SAN MARINO">
+San marino</option>
+<option value="SAO TOME AND PRINCIPE">
+Sao tome and principe</option>
+<option value="SAUDI ARABIA">
+Saudi arabia</option>
+<option value="SENEGAL">
+Senegal</option>
+<option value="SERBIA">
+Serbia</option>
+<option value="SEYCHELLES">
+Seychelles</option>
+<option value="SIERRA LEONE">
+Sierra leone</option>
+<option value="SINGAPORE">
+Singapore</option>
+<option value="SLOVAKIA">
+Slovakia</option>
+<option value="SLOVENIA">
+Slovenia</option>
+<option value="SOLOMON ISLANDS">
+Solomon islands</option>
+<option value="SOMALIA">
+Somalia</option>
+<option value="SOUTH AFRICA">
+South africa</option>
+<option value="SPAIN">
+Spain</option>
+<option value="SRI LANKA">
+Sri lanka</option>
+<option value="SUDAN">
+Sudan</option>
+<option value="SURINAME">
+Suriname</option>
+<option value="SWAZILAND">
+Swaziland</option>
+<option value="SWEDEN">
+Sweden</option>
+<option value="SWITZERLAND">
+Switzerland</option>
+<option value="SYRIAN ARAB REPUBLIC">
+Syrian arab republic</option>
+<option value="TAIWAN, PROVINCE OF CHINA">
+Taiwan, province of china</option>
+<option value="TAJIKISTAN">
+Tajikistan</option>
+<option value="TANZANIA, UNITED REPUBLIC OF">
+Tanzania, united republic of</option>
+<option value="THAILAND">
+Thailand</option>
+<option value="TIMOR-LESTE">
+Timor-leste</option>
+<option value="TOGO">
+Togo</option>
+<option value="TOKELAU">
+Tokelau</option>
+<option value="TONGA">
+Tonga</option>
+<option value="TRINIDAD AND TOBAGO">
+Trinidad and tobago</option>
+<option value="TUNISIA">
+Tunisia</option>
+<option value="TURKEY">
+Turkey</option>
+<option value="TURKMENISTAN">
+Turkmenistan</option>
+<option value="TURKS AND CAICOS ISLANDS">
+Turks and caicos islands</option>
+<option value="TUVALU">
+Tuvalu</option>
+<option value="UGANDA">
+Uganda</option>
+<option value="UKRAINE">
+Ukraine</option>
+<option value="UNITED ARAB EMIRATES">
+United arab emirates</option>
+<option value="UNITED KINGDOM">
+United kingdom</option>
+<option value="UNITED STATES">
+United states</option>
+<option value="URUGUAY">
+Uruguay</option>
+<option value="UZBEKISTAN">
+Uzbekistan</option>
+<option value="VANUATU">
+Vanuatu</option>
+<option value="VENEZUELA">
+Venezuela</option>
+<option value="VIET NAM">
+Viet nam</option>
+<option value="VIRGIN ISLANDS, BRITISH">
+Virgin islands, british</option>
+<option value="VIRGIN ISLANDS, U.S.">
+Virgin islands, u.s.</option>
+<option value="WALLIS AND FUTUNA">
+Wallis and futuna</option>
+<option value="YEMEN">
+Yemen</option>
+<option value="ZAMBIA">
+Zambia</option>
+<option value="ZIMBABWE">
+Zimbabwe</option>
+
+</select>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+<div class="modal-footer">
+            <input type="submit" class="btn primary" value="Start Sending Money">
+          </div>
+ </div>
+
+
+ {% csrf_token %}
+</form>
+          </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#userdetailsform").validate({
+    rules:{
+            
+            firstname:
+            {
+            required:true,
+            minlength:2,
+            },
+            lastname:
+            {
+            required:true,
+            minlength:2,
+            },
+            id_number:
+            {
+            required:true,
+            minlength:2,
+            },
+            
+            address1:
+            {
+            required:true,
+            minlength:2,
+            },
+            city:
+            {
+            required:true,
+            minlength:2,
+            },
+            country:
+            {
+            required:true,
+            }
+            
+    },
+
+    messages: {
+      phonecode: {
+        required: "Please Provide the Phonecode we sent you"
+      },
+    },
+    });
+});
+</script>
+
+<!-- Google Code for Signups Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 974921886;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "lUNaCNiu41YQnsHw0AM";
+var google_conversion_value = 1.00;
+var google_conversion_currency = "USD";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/974921886/?value=1.00&amp;currency_code=USD&amp;label=lUNaCNiu41YQnsHw0AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

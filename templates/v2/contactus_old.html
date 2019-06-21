@@ -1,0 +1,137 @@
+{% extends "v2_base.html" %}
+
+{% load validation_tags %}
+
+
+{% block wrapperid %}login_form_wrapper{%endblock%}
+
+{% block content %}
+<style type="text/css">
+    
+    .login_form{
+        width: 500px !important;
+    }
+
+    .telnum_ext_select {
+
+    display: block;
+    height: 100%;
+    float: left;
+    width: 200px;
+    padding: 10px 2.4%;
+    border: 0;
+    font-size: 14px;
+    text-indent: 0.01px;
+    text-overflow: '';
+    text-shadow: none;
+    background: transparent;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 0;
+    box-shadow: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+#send_money .input_row2 .input_box input[type="text"] {
+    float: left;
+    width: 100%;
+    border: none;
+    height: 100%;
+}
+
+</style>
+
+
+<div class="container banner_container login_form_wrapper"><!--start container-->
+            <div class="banner">
+                <div class="center_content">
+                  
+
+                    <div id="send_money" class="login_form">
+                    <!--
+                        <h2>Send money to mobile in minutes</h2>
+                        -->
+                        <form action='{% url "contact_us" %}' id="send_money_form" method="POST">
+
+                        
+
+                        {% csrf_token %}
+                            <div class="input_row select_row">
+                            	<label><h2>Contact us</h2></label>
+                            </div>
+                            {% include "notifications.html" %}
+
+
+                             {%if request.user.is_authenticated %}
+
+                     <input type="hidden" id="email" name="email" value="{{request.user.email}}">
+                     <input type="hidden" id="phonenumber" name="phonenumber" value="{{user_profile.get_phonenumber}}">
+                     <input type="hidden" id="names" name="names" value="{{user_profile.get_names}}">
+
+              {%else%}
+
+                            <div class="input_row input_row2">
+                                <div class="input_box">
+                                    <input type="email" id="id_email" name="id_email" placeholder="Your email" required>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                              <div class="input_row input_row2">
+                                <div class="input_box">
+                                    <input type="text" id="id_name" name="names" placeholder="Your names" required>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                             <div class="input_row input_row3">
+                        <label>Phonenumber</label>
+                        <div class="input_box">
+                            {{ form.ctry_code}} 
+                            <input type="text" id="mobile_number" name="number" placeholder="Mobile Number">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                        {% endif%}
+
+                          <div class="input_row input_row2">
+                                <label>Message</label>
+                                <div class="input_box">
+                                   <textarea class="form-control" name="msg" rows="3" id="msg" placeholder="Enter message"></textarea>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="input_row">
+                                <input type="submit" name="submit" value="Contact us" >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+      	</div><!--//end .container-->
+       
+<script type='text/javascript' src='{{STATIC_URL}}js/jquery.form-validation.js'></script>
+
+    <script type='text/javascript'>
+//form validation
+  $(document).ready(function(){
+
+$("#send_money_form").validate({
+
+        rules: {% validation_rules form %}
+        ,
+        messages: {% validation_messages form %}
+        ,
+
+    });
+
+    });
+
+</script>
+
+
+{% endblock %}

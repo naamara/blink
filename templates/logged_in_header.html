@@ -1,0 +1,339 @@
+{% if provide_userdetails_form %}
+
+{% if USE_JUMIO|lower == 'true' %}
+
+{% include "userdetailsform_jumio.html" %}
+
+{% else %}
+
+{% include "userdetailsform.html" %}
+
+{% endif %}
+
+{% endif %}
+
+
+{% if upload_id_form and not activate_sms_form %}
+
+{% if USE_JUMIO|lower == 'true' %}
+
+{% include "uploadidform_jumio.html" %}
+{% else %}
+
+{% include "uploadidform.html" %}
+{% endif%}
+
+{%endif%}
+
+
+<style type="text/css">
+  
+.home_container{
+  padding: 1%;
+}
+
+</style>
+
+
+
+<div class="home_inner_wrapper" id="top">
+
+<div class="navbar header">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h1 id="branding" class="pull-left">
+            <a href="{{BASE_URL}}"><img src="{{STATIC_URL}}images/remit_out_ug.png" style="height: 40px;"></a>
+          </h1>
+          <div class="nav-collapse collapse pull-right">
+            
+
+            <ul class="nav"> 
+
+              {% if user_profile.send_country_code == '256' %}
+<li>
+<a href="{% url 'send_kenya' %}">
+Send Money To Kenya
+</a>
+</li>
+<li>
+<a href="{% url 'send_rwanda' %}">
+Send Money To Rwanda
+</a>
+</li>
+{% elif user_profile.send_country_code == '254' %}
+ <li >
+<a href="{% url 'send_uganda' %}">
+Send Money To Uganda
+</a>
+</li>
+ <li >
+<a href="{% url 'send_rwanda' %}">
+Send Money To Rwanda
+</a>
+</li>
+{% else %}
+<li>
+<a href="{% url 'send_uganda' %}" >
+Send Money To Uganda
+</a>
+  </li>
+<li>
+<a href="{% url 'send_kenya' %}">
+Send Money To Kenya
+</a>
+</li>
+
+{%endif%}
+
+
+{% if paybill_enabled %}
+
+ <li class="dropdown">
+<a href="{% url 'paybill' %}" class="highlight">
+Paybill
+</a>
+</li>
+
+{% endif %}
+
+            {% for o in logged_in_LINKS %}
+            <li class="{%if o == PAGE_NAME %} active {% endif %}">
+            <a href="{{BASE_URL}}{{ o }}">{{ o|capfirst }}</a>
+            </li>
+            {% endfor %}
+
+
+
+
+            </ul>
+
+
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>  
+      </div>
+
+<div class="outer_header">
+
+<div class="navbar navbar-inverse">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse pull-left">
+                        <ul class="nav uppercase">
+                            <li class=""><a href="{% url 'about_us' %}">About us</a></li>
+
+                            <li>
+                                <a href="{% url 'how_it_works' %}">How it works</a>
+                            </li>
+                <li>
+                <a href="{% url 'contact_us'%}">Contact us</a>
+              </li>
+
+              <li class="support_num"><a href="tel:{{CONTACT_NO}}">Call Support On {{CONTACT_NO}}</a></li>
+                                      </ul>
+                        </div>
+                        <div class="nav-collapse collapse pull-right">
+                        <ul class="nav">
+
+              <li >
+                <a href="{% url 'account' %}" >
+                    Account
+                  </a>
+              </li>
+
+
+              
+    
+              
+
+              <li >
+                <a href="{% url 'signout' %}">
+                    Log Out
+                  </a>
+              </li>
+
+                        <li class="social-icons"><a target="__blank" href="https://www.facebook.com/RemitUg"><img src="{{STATIC_URL}}images/facebook.png"></a></li>
+                        <li class="social-icons"><a target="__blank" href="https://twitter.com/RemitUg"><img src="{{STATIC_URL}}images/twitter.png"></a></li>
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+
+        <div class="navbar bottom">
+            <div class="navbar-inner inner_center">
+                    <h1 id="branding" class="pull-left">
+                    <a href="{{BASE_URL}}"><img src="{{STATIC_URL}}images/remit_ug.png" style="height: 40px;"></a>
+                    </h1>
+                    <div class="nav-collapse collapse pull-right notification-wrapper">
+                      {% include "notifications.html" %}
+                        </div>
+                            </div>
+                            </div>
+
+</div>
+
+<div class="inner_navbar inner_center">
+
+            <ul class="top-nav-bar nav pull-left">
+              
+              <li class="dropdown top-nav_first_child">
+                <a href="{% url 'index' %}">
+                    Home
+                  </a>
+              </li>
+
+              <li class="dropdown">
+                <a href="{% url 'transactions' %}">
+                    Transactions
+                  </a>
+              </li>
+
+              <li class="dropdown">
+                <a href="{% url 'phonebook' %}">
+                    Phone Book
+                  </a>
+              </li>
+
+
+              
+    
+              
+
+              <li class="dropdown">
+                <a href="{% url 'preferences' %}">
+                    preferences
+                  </a>
+              </li>
+
+
+{% if paybill_enabled %}
+<!--
+<li  class="dropdown" >
+<a href="{% url 'paybill' %}" class="highlight">
+Paybill
+</a>
+</li>
+-->
+{% endif %}
+
+
+{% if user_profile.send_country_code == '256' %}
+<li class="dropdown">
+<a href="{% url 'send_kenya' %}">
+Send Money To Kenya
+</a>
+  </li>
+
+<li class="dropdown">
+<a href="{% url 'send_rwanda' %}" >
+Send Money To Rwanda
+</a>
+  </li>
+{%elif user_profile.send_country_code == '250' %}
+
+
+
+<li class="dropdown">
+<a href="{% url 'send_uganda' %}">
+Send Money To Uganda
+</a>
+</li>
+<li class="dropdown">
+<a href="{% url 'send_kenya' %}" >
+Send Money To Kenya
+</a>
+  </li>
+
+
+
+{% else %}
+
+<li class="dropdown">
+<a href="{% url 'send_uganda' %}" >
+Send Money To Uganda
+</a>
+</li>
+<li class="dropdown">
+<a href="{% url 'send_rwanda' %}" >
+Send Money To Rwanda
+</a>
+  </li>
+{%endif%}
+
+
+
+<!--
+<li class="dropdown">
+<a href="{% url 'wallet' %}" >
+Wallet
+</a>
+  </li>
+
+
+  -->
+
+
+
+            
+
+            </ul>
+
+
+        
+
+
+</div>
+
+
+
+<div class="container inner_pages inner_center">
+
+
+{% if system_message %}
+
+{% include 'system_message.html' %}
+
+{% endif %}
+
+{% if email_not_verified %}
+{% include "email_not_verified.html" %}
+
+{% else%}
+
+
+
+
+{% if phone_not_verified or activate_sms_form %}
+
+{% include "phone_not_verified.html" %}
+
+{% endif %}
+
+
+{% endif %}
+
+
+
+<!-- Notifications-->
+<div class="mobile-notifications">
+{% include "notifications.html" %}
+</div>
+
+
+
+{% if pending_transactions %}
+
+{% include 'pending_transactions_header.html' %}
+
+
+{%endif %}

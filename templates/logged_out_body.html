@@ -1,0 +1,89 @@
+<link href='{{STATIC_URL}}css/landing.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/ui.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/bootstrap/bootstrap.min.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/bootstrap/bootstrap-responsive.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/remit.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/styler/style.css' rel='stylesheet' type='text/css' /> 
+<div class="web_header">
+             <div class="navbar navbar-inverse navbar-fixed-top header">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse pull-left">
+                        <ul class="nav uppercase">
+                            <li class=""><a href="{{BASE_URL}}#about">About us</a></li> 
+                            <li>
+                                <a href="{{BASE_URL}}#steps">How it works</a>
+                            </li>
+                                           <li>
+                <a href="{% url 'contact_us'%}" >Contact us</a>
+              </li>
+                                      </ul>
+                        </div>
+                        <div class="nav-collapse collapse pull-right">
+                        <ul class="nav">
+                        <li class="social-icons"><a target="__blank" href="https://www.facebook.com/RemitUg"><img src="{{STATIC_URL}}images/facebook.png"></a></li>
+                        <li class="social-icons"><a target="__blank" href="https://twitter.com/RemitUg"><img src="{{STATIC_URL}}images/twitter.png"></a></li>
+                        </ul>
+                        </div>
+                        </div>
+                            </div>
+                            </div>
+
+            <div class="navbar teddy_navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <h1 id="branding" class="pull-left">
+                    <a href="{{BASE_URL}}"><img src="{{STATIC_URL}}images/remit_ug.png" style="height: 40px;"></a>
+                    </h1>
+                    <div class="nav-collapse collapse pull-right">
+                        <ul class="buttons">
+                        <li>
+                                                        <a href="{{BASE_URL}}login" class="btn btn-flat btn-orange right_select">Login</a>
+                                                    </li>
+                        <li>
+                                                     <a href="{{BASE_URL}}signup" class="btn btn-flat btn-orange left_select">Signup</a>
+                                                </li>   
+                        <li class="ssl-badge">
+                               <a><img src="{{STATIC_URL}}images/godaddyssl.jpg" height="41px"></a> 
+                            </li>
+                        </ul>
+                        </div>
+                        </div>
+                            </div>
+                            </div> 
+
+                            </div>
+
+            <div class="navbar navbar-inverse navbar-fixed-top header mobile_header">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1 id="branding" class="pull-left">
+                    <a href="{{STATIC_URL}}"><img src="{{STATIC_URL}}images/remit_out_ug.png" style="height: 40px;"></a>
+                    </h1>
+                    <div class="nav-collapse collapse pull-right">
+                        <ul class="nav">
+                                    <li class=""><a href="{{BASE_URL}}login">Login </a></li>
+                         <li class=""><a href="{{BASE_URL}}signup">Signup</a></li>
+                                         
+                            <li>
+                                <a href="{{BASE_URL}}#steps">How Remit works</a>
+                            </li>
+                            <li class=""><a href="{{BASE_URL}}#about">About us</a></li> 
+                        <li>
+                <a href="{% url 'contact_us'%}">Contact us</a>
+              </li>
+                                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>

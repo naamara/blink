@@ -1,0 +1,11 @@
+{% load custom_filters %}
+<div class="our-rates" style="margin-top:5%;">
+<div class="oWidget normal"> 
+<header> 
+<h1 class="oH3">Our Rates</h1></header>
+<div class="oBd">
+<span>USD 1 = {{ rates.usd_to_ugx | currency }}</span> <br>
+<span>{{rates.our_percentage}}% On Any Transaction </span> <br>
+</div> 
+</div>
+</div>

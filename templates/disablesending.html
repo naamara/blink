@@ -1,0 +1,58 @@
+
+{% if account_verification_in_progress %}
+
+ {% if user_profile.account_blocked %}
+          <h4 style="color:red !important;"><br />
+</h4>
+
+
+<div class="alert alert-danger notification" style="margin-top: 28px;">
+Our agents failed to verify the details you provided . <br />
+You will need to check the details you provided and re-submit them. <br />
+If you believe this is an error please send an email to <b>{{APP_EMAILS.support}}</b> <br />
+<b> <a href="#" OnClick=$("#passport_upload_form_wrapper").toggle();>Click here to Update the details you provided</a> </b>
+</div>
+
+
+ {%else%}
+
+<div class="alert alert-warning notification" style="margin-top: 28px;">
+We have received your personal details and Identification Document. <br />
+Our agents are verifying the details you provided. <br />
+You will receive an email and sms once this has been done. <br />
+<b> <a href="#" OnClick=$("#passport_upload_form_wrapper").toggle();>You can also click here to update the details you provided</a> </b>
+</div>
+
+{%endif%}
+
+{% include 'uploadidform.html' %}
+
+{%endif%}
+
+{% if provide_userdetails_form or upload_id_form %}
+<div class="alert alert-warning notification" style="margin-top: 28px;">
+Thank you for signing up with Remit, your account is getting veififed.<br />
+You will be able to start sending money once verification is completed.
+ <br />
+<!--
+To fully verify your account , please provide your Personal details and a copy Identification Document <br />
+-->
+<!--
+You will be able to start sending money after your account has been fully verified.
+-->
+</div>
+{%endif %}
+
+
+
+
+
+{% if downtime %}
+<div class="alert alert alert-error notification" >
+Unfortunately we are not able to process any transactions at this time <br />
+We are having downtime with our mobile money service <br />
+Our engineers are working on it and we should be back up shortly <br />
+You can follow our progress on this issue on <a href="https://twitter.com/RemitUg" target="__blank">Twitter</a> and on <a href="https://www.facebook.com/RemitUg" target="__blank">Facebook</a>
+</div>
+
+{% endif %}

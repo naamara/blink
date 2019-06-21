@@ -1,0 +1,127 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static bootstrapped_goodies_tags %}
+{% load custom_filters %}
+{% load validation_tags %}
+{% load url from future %}
+
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+<li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+<span class="divider"><i class="icon-angle-right"></i></span>
+</li>
+<li>{{ page_title |capfirst }}</li>
+</ul>
+{% endblock %}
+
+
+{% block pretitle %}
+{{pretitle |capfirst  }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Tradelance</h2>
+  <p>This is an interface to the tradelance api</p>
+  <p>Select Method below</p>
+  <p>Input required values and proceed</p>
+  <form class="form-horizontal" method="POST" action="{% url 'admin:tradelance_response' %}">
+      {% csrf_token %}
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Tradelance Method
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" id="tlance_methods" name="tlance_methods">
+      <li id="tlance_deposit"><a>Deposit Funds</a></li>
+      <li id="tlance_request"><a>Request Payment</a></li>
+      <li id="tlance_balance"><a>Check Balance</a></li>
+      <li id="tlance_status"><a>Transaction Status</a></li>
+    </ul>
+  </div>
+
+
+  <div id="tradelance-values">
+      <p id="tradelance_method_title"></p>
+      <input type="hidden" name="selected_tmethod" id="selected_tmethod">
+  </div>
+
+  <div>
+
+      <div class="form-group" id="tradelance-input">
+          <!-- <input type="number" class="form-control" id="tlance_amount" name="tlance_amount" placeholder="Amount">
+          <input type="text" class="form-control" id="tlance_number" name="tlance_number" placeholder="Phone Number"> -->
+
+          <!-- <button type="submit" class="btn btn-primary" id="tlance_proceed">Proceed</button> -->
+
+
+      </div>
+  </div>
+  </form>
+</div>
+
+<script>
+(function($) {
+    $(document).ready(function() {
+        $('input[type="submit"]').addClass('btn');
+        $('[title]').tooltip();
+        tradelance();
+    });
+
+    function tradelance(){
+        var tr = $('#tradelance-values');
+        var method_title = $('#tradelance_method_title');
+        var method_id = $('#selected_tmethod');
+        var tlance_amount ='<input type="number" class="form-control" id="tlance_amount" name="tlance_amount" placeholder="Amount">';
+        var tlance_number ='<input type="text" class="form-control" id="tlance_number" name="tlance_number" placeholder="Phone Number">';
+        var tlance_status ='<input type="text" class="form-control" id="tlance_status" name="tlance_status" placeholder="Transaction ID">';
+        var tlance_proceed = '<button type="submit" class="btn btn-primary" id="tlance_proceed">Proceed</button>'
+
+
+        $("#tlance_methods li").click(function(){
+            var method_id = "";
+            method_title.text("");
+            method_id = $(this).attr('id');
+
+            method_title.append("<h3>"+$(this).text()+"</h3>");
+            $('#selected_tmethod').val($(this).attr('id'));
+            switch(method_id){
+                case "tlance_deposit":
+                    $("#tradelance-input").text("");
+                    //$("#selected_tmethod").text(method_id)
+                    //$("#tlance_amount").remove();
+                    //$("#tlance_number").remove();
+                    $("#tradelance-input").append(tlance_number);
+                    $("#tradelance-input").append(tlance_amount);
+                    $("#tradelance-input").append(tlance_proceed)
+                    break;
+                case "tlance_request":
+                    $("#tradelance-input").text("");
+                    //$("#tlance_amount").remove();
+                    //$("#tlance_number").remove();
+                    $("#tradelance-input").append(tlance_number);
+                    $("#tradelance-input").append(tlance_amount);
+                    $("#tradelance-input").append(tlance_proceed)
+                    break;
+                case "tlance_balance":
+                    $("#tradelance-input").text("");
+                    //$("#tlance_amount").remove();
+                    //$("#tlance_number").remove();
+                    $("#tradelance-input").append(tlance_proceed)
+                    break;
+
+                case "tlance_status":
+                    $("#tradelance-input").text("");
+                    $("#tradelance-input").append(tlance_status);
+                    $("#tradelance-input").append(tlance_proceed)
+                    break;
+
+            }
+
+
+        });
+        //tr.append("<h2>Demo Test</h2>");
+    }
+}(jQuery));
+</script>
+
+
+{% endblock %}

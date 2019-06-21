@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 2 (http://www.altova.com) by ARIJIT (WIPRO) -->
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://b2b.mobilemoney.mtn.zm_v1.0/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="UMMServiceService" targetNamespace="http://b2b.mobilemoney.mtn.zm_v1.0/">
+	<types>
+		<xs:schema xmlns:tns="http://b2b.mobilemoney.mtn.zm_v1.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://b2b.mobilemoney.mtn.zm_v1.0/" version="1.0">
+			<xs:element name="processRequest" type="tns:processRequest"/>
+			<xs:element name="processRequestResponse" type="tns:processRequestResponse"/>
+			<xs:complexType name="processRequest">
+				<xs:sequence>
+					<xs:element name="serviceId" type="xs:int"/>
+					<xs:element name="parameter" type="tns:parameter"  minOccurs="0" maxOccurs="20"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="parameter">
+				<xs:sequence>
+					<xs:element name="name" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="30"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="value" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="140"/>
+								<xs:pattern value="([A-Za-z0-9_+:, .{\-}])*"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="processRequestResponse">
+				<xs:sequence>
+					<xs:element name="return" type="tns:parameter" minOccurs="0" maxOccurs="20"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</types>
+	<message name="QueryThirdPartyAccountRequest">
+		<part name="parameters" element="tns:processRequest"/>
+	</message>
+	<message name="QueryThirdPartyAccountResponse">
+		<part name="parameters" element="tns:processRequestResponse"/>
+	</message>
+	<portType name="UMMService">
+		<operation name="QueryThirdPartyAccount">
+			<input message="tns:QueryThirdPartyAccountRequest" wsam:Action="http://b2b.mobilemoney.mtn.zm_v1.0/UMMService/QueryThirdPartyAccountRequest"/>
+			<output message="tns:QueryThirdPartyAccountResponse" wsam:Action="http://b2b.mobilemoney.mtn.zm_v1.0/UMMService/QueryThirdPartyAccountResponse"/>
+		</operation>
+	</portType>
+	<binding name="UMMServicePortBinding" type="tns:UMMService">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="QueryThirdPartyAccount">
+			<soap:operation soapAction="GET" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="UMMServiceService">
+		<port name="UMMServicePort" binding="tns:UMMServicePortBinding">
+			<soap:address location="http://10.0.152.65:8080/ThirdPartyServiceUMMImpl/UMMServiceService"/>
+		</port>
+	</service>
+</definitions>

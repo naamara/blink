@@ -1,0 +1,243 @@
+<div class="login_signup_wrapper newlogin_signup_wrapper col-sm-6">
+
+<div class="home_content_header"> 
+<div id="introhome">
+<span> Send Money </span> Directly From Your <span>Credit Card</span> To Uganda Via <span>Mobile Money</span> 
+</div>
+
+<script type="text/javascript">
+
+            $(function () {
+              $("span[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+</script>
+
+    </div>
+
+
+<div class="signupheader" style="margin-bottom: 10px;">
+<div id="login_error_section" style="float:left;width:100%;display:block;padding-bottom:5px;"></div>
+
+
+<div id='signup_form_response'>
+{% include "notifications.html" %}
+</div>
+
+
+Already Have An Account ? <a href="{{BASE_URL}}login" >Sign in Here</a></span>
+</div>
+
+
+
+
+
+<form id="plainloginform_form"  method="POST" role="form">
+
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">{{ form.email.label }}</span>
+{{ form.email }}
+</div>
+</div>
+
+
+<div class="clearfix">
+
+
+<div class="input-prepend">
+<span class="add-on">Mobile Tel</span>
+{{ form.ctry_code}}
+{{ form.number }}
+</div>
+
+<style type="text/css">
+  
+.telnum_ext_select{
+ width:25%;background-color: white;
+ font-size:11px !important; 
+}
+
+.telnum{
+ width:40%; 
+}
+
+@media (max-width: 767px) {
+.telnum{
+width: 36% !important;
+}
+}
+</style>
+
+</div>
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">
+{{ form.password1.label }}
+</span>
+<!--
+<input class="span4" id="signup_passwd" name="signup_passwd" size="16" type="password" placeholder="Password">
+-->
+{{ form.password1 }}
+</div>
+</div>
+
+
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">
+{{ form.password2.label }}
+</span>
+{{ form.password2 }}
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="clearfix" style="margin-bottom:0 !important;">
+  
+              <ul class="" style="list-style:none;margin-left:0 !important;">
+                <li>
+                  <label>
+                    <input type="checkbox" name="tos" value="tos" >
+                    <span>You Agree to our <a href="{{BASE_URL}}tos">Terms &amp; Conditions</a></span>
+                  </label>
+                </li>
+              </ul>
+  
+          </div>
+
+<div class="clearfix" id="call_to_action_wrapper">
+<input type="submit" id="new_call_to_action" class="btn btn-flat btn-orange" value="Start Today">
+</div>
+{% csrf_token %}
+
+</form>
+
+
+
+<script type='text/javascript'>
+//form validation
+  $(document).ready(function(){
+
+$.validator.addMethod('alphanumeric', function(value, element) {
+        return this.optional(element) || (value.match(/[a-zA-Z]/) && value.match(/[0-9]/));
+    },
+    'Password must contain at least one numeric and one alphabetic character.');
+
+/*
+    jQuery.validator.addMethod("alphanumeric", function(value, element) {
+        return this.optional(element) || /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{6})$/.test(value);
+});
+
+    */
+
+    $("#plainloginform_form").validate({
+    rules:{
+            ctry_code:{
+              required:true,
+              digits: true
+            },
+            tos:{
+              required:true
+            },
+            number:{
+            required:true,
+            digits: true,
+			      minlength:6,
+			      },
+            email:{
+            required:true,
+			      email:true
+			      },
+    		    password1:
+            {
+            required:true,
+            minlength:6,
+            alphanumeric:true
+            },
+            password2: {
+            required:true,
+      		  equalTo: '#id_password1',
+            alphanumeric:true
+    		}
+		  },
+          messages: {
+
+      tos: {
+              required: "You have to agree to our terms and conditions"
+      },      number: {
+              required: "Phonenumber is required",
+              digits: "Enter the valid phone number"
+      },      ctry_code: {
+              required: "Phonenumber is required",
+              digits: "Enter the valid phone number"
+      },      password1: {
+              required: "Repeat your password",
+              equalTo: "Enter the same password",
+              alphanumeric:'Your password should contain both alphabet and numeric characters'
+      },      password2: {
+              required: "Repeat your password",
+              equalTo: "Enter the same password",
+              alphanumeric:'Your password should contain both alphabet and numeric characters'
+      }
+		},
+    });
+});
+</script>
+
+
+<div class='clearfix'  id='start_btn'>
+<a href="{% url 'recoverpassword' %}" >Forgot your password?</a>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Facebook Conversion Code for Facebook Signups -->
+<script>(function() {
+var _fbq = window._fbq || (window._fbq = []);
+if (!_fbq.loaded) {
+var fbds = document.createElement('script');
+fbds.async = true;
+fbds.src = '//connect.facebook.net/en_US/fbds.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(fbds, s);
+_fbq.loaded = true;
+}
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6018168241871', {'value':'0.01','currency':'USD'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6018168241871&amp;cd[value]=0.01&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+
+<!-- Google Code for Google SignUps Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 962837901;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "1O8TCMT0sFcQjfuOywM";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/962837901/?label=1O8TCMT0sFcQjfuOywM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

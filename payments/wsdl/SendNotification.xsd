@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://xmlns.esf.mtn.com/xsd/SendNotification" targetNamespace="http://xmlns.esf.mtn.com/xsd/SendNotification">
+	<element name="process" type="ns1:processType"/>
+	<complexType name="processType">
+		<sequence>
+			<element name="SourceID" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Holds the number/id or the sender application which sends the notification.</documentation>
+				</annotation>
+			</element>
+			<element name="VendorCode" type="string">
+				<annotation>
+					<documentation>Holds the number/id or the application to which the notification needs to be sent.</documentation>
+				</annotation>
+			</element>
+			<element name="OpcoID" type="string">
+				<annotation>
+					<documentation>Holds the OpcoID, format is countrycode+01.e.g:23401</documentation>
+				</annotation>
+			</element>			
+			<element name="Code" type="string">
+				<annotation>
+					<documentation>Holds the response code that will be sent to the user as notification message.</documentation>
+				</annotation>
+			</element>
+			<element name="MessageBody" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Holds the text that will be sent to the user as notification message.</documentation>
+				</annotation>
+			</element>
+			<element name="Flag" type="string">
+				<annotation>
+					<documentation>Hold the identifier to denote the destination target type. This can be 
+•	SMS
+•	USSD
+•	COKE
+•	PAYWAY etc  </documentation>
+				</annotation>
+			</element>
+			<element name="TransactionID" type="string">
+				<annotation>
+					<documentation>Holds a unique transaction ID</documentation>
+				</annotation>
+			</element>
+			<element name="extensionInfo" type="ns1:NamedParameterList" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="NamedParameterList">
+		<sequence>
+			<element name="item" type="ns1:NamedParameter" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="NamedParameter">
+		<sequence>
+			<element name="key" type="string"/>
+			<element name="value" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="Result">
+		<sequence>
+			<element name="resultCode" type="string"/>
+			<element name="resultDescription" type="string" minOccurs="0"/>
+		</sequence>
+	</complexType>	
+</schema>

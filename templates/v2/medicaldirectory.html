@@ -1,0 +1,232 @@
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+
+
+
+
+    <div id="conte">
+    <div id="center">
+    <div class="report">HEALTH CARE DIRECTORY</div>
+    <div class="report-content">B-link Uganda provides a complete online medical directory. It has over 200,000 listings of Doctors, Hospitals, Chemists, Pharmaceuticals, Surgical Suppliers, Manufacturers, Emergency Medical Numbers, List of Eye Banks, Non-government Organizations (NGOs), Ugandan and International Medical Journals, Medical Associations, Medical Conferences, Medical Colleges, Dental Colleges, Paramedical Colleges, Alternative Medicine Colleges, Post-graduate Medical Courses. B-link Uganda is one stop resource center for any information related to health care field.</div>
+
+<div class="reporting">Health Care Establishment</div>
+
+    <div class="row"> 
+    <div class="columnone">
+    <div class="card cardblockone">
+    <a href="#"><img class="card-img-top" style="width:100%; height: 170px; display: block;"" alt="Clinics Directory" src="{{STATIC_URL}}images/clinic.jpeg"></img>
+    </a>
+    <h4 class="card-title">Clinics Directory</h4>
+    <ul class="list-group list-group-flu"   style="width:100%">
+    <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+
+    <div class="columnone">
+     <div class="card cardblockone">
+         <a href="#"><img class="card-img-top" style="width:100%; height: 170px; display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/lab.jpeg"></img>
+    </a>
+    <h4 class="card-title">Laboratories Directory</h4>
+    <ul class="list-group list-group-flush" style="width:100%">
+    <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="columnone">
+     <div class="card cardblockone">
+         <a href="#"><img class="card-img-top" style="width:100%; height: 170px;display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/nurse.jpeg"></img>
+    </a>
+    <h4 class="card-title">Nursing homes Directory</h4>
+    <ul class="list-group list-group-flush" style="width:100%">
+    <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+<!-- <div class="reporting">Health Care Establishment</div>
+    <div class="row"> 
+    <div class="columnone">
+    <div class="card cardblockone">
+    <a href="#"><img class="card-img-top" style="width:100%; height:  300px; display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/doc.jpeg""></img>
+    </a>
+    <h4 class="card-title">Doctors Directory</h4>
+    <ul class="list-group list-group-flush" style="width:75%">
+<li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+
+    </ul>
+    </div>
+    </div>
+    <div class="columnone">
+     <div class="card cardblockone">
+         <a href="#"><img class="card-img-top" style="width:100%; height:  300px;display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/dent.jpeg"></img>
+    </a>
+    <h4 class="card-title">Dentists Directory</h4>
+    <ul class="list-group list-group-flush" style="width:75%">
+   <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="columnone">
+     <div class="card cardblockone">
+         <a href="#"><img class="card-img-top" style="width:100%; height:  300px;display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/pharma.jpeg"></img>
+    </a>
+    <h4 class="card-title">Pharmacists</h4>
+    <ul class="list-group list-group-flush" style="width:75%">
+    <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+
+
+    
+    </div>
+
+
+<div class="reporting">Health Care Establishment</div>
+    <div class="row"> 
+    <div class="columnone">
+    <div class="card cardblockone">
+    <a href="#"><img class="card-img-top" style="width:100%; height:  300px; display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/doc.jpeg""></img>
+    </a>
+    <h4 class="card-title">Hospitals Directory</h4>
+    <ul class="list-group list-group-flush" style="width:75%">
+   <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="columnone">
+     <div class="card cardblockone">
+         <a href="#"><img class="card-img-top" style="width:100%; height:  300px;display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/dent.jpeg"></img>
+    </a>
+    <h4 class="card-title">Health Directory</h4>
+    <ul class="list-group list-group-flush" style="width:75%">
+    <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+
+    </ul>
+    </div>
+    </div>
+    <div class="columnone">
+     <div class="card cardblockone">
+         <a href="#"><img class="card-img-top" style="width:100%; height:  300px; display: block;"" alt="Doctors Directory" src="{{STATIC_URL}}images/pharma.jpeg"></img>
+    </a>
+    <h4 class="card-title">Pharmacists</h4>
+    <ul class="list-group list-group-flush" style="width:75%">
+   <li class="list-group-ite">
+        <a href="{% url 'clinics' %}" title="Search by Name"> Search by Name</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by District</a>
+    </li>
+     <li class="list-group-ite">
+        <a href="#">Search by Region</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+
+ -->
+    
+    </div>
+
+
+  
+        </div>
+
+         <div id="lef">
+         <div  id="list-group"  style="height:600px; overflow:auto">
+         <ul class="list-group list-group-flu">
+        <li class="special">Search by Specialist</li>        
+        <li class="list-group-ite"><a  href="#">Ancuputure</a><li>
+        <li class="list-group-ite"><a  href="#">Andrology</a><li>
+        <li class="list-group-ite"><a  href="#">BioChemistry</a><li>
+        <li class="list-group-ite"><a  href="#">Anethesiology</a><li>
+        <li class="list-group-ite"><a  href="#">Cardiac Surgery</a><li>
+        <li class="list-group-ite"><a  href="#">Oral Health Therapists</a><li>
+        <li class="list-group-ite"><a  href="#">TCM Practitioners</a><li>
+        <li class="list-group-ite"><a  href="#">ALlied Health Professionals</a><li>
+        </ul>
+
+        
+           </div>
+        </div>
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+     
+{% endblock %}

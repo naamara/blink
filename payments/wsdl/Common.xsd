@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 2 (http://www.altova.com) by ARIJIT (WIPRO) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.esf.mtn.com/xsd/Common" targetNamespace="http://xmlns.esf.mtn.com/xsd/Common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="CommonComponents" type="CommonComponentsType">
+		<xsd:annotation>
+			<xsd:documentation>Holds the Common field details</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="CommonComponentsType">
+		<xsd:sequence>
+			<xsd:element name="IMSINum" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Subscriber's current IMSI Number</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MSISDNNum" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Subscriber's current MSISDN Number</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProcessingNumber" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds unique identifier to track the transaction. For eg. Transaction Id.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrderDateTime" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the TimeStamp. Supported Format is “YYYY-MM-DDThh:mm:ss.SSSZ”.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OpCoID" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the code of the OperatingCountry. Valid value is "ZM" for Zambia, "UG" for Uganda, "RW" for Rwanda and "SZ" for Swaziland.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SenderID" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the sender Id of the application giving the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

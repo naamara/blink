@@ -1,0 +1,7 @@
+{% load custom_filters %} 
+{% if code == 'admin_user_verified' %}
+Dear {{user_names}}, your account on {{APP_NAME}} has been successfully verified. You have now been added to our verified users and you can do unlimited transactions.
+{% endif %}
+{% if data.code == 'success_receiver' %}
+You have received {{data.actual_amount_received | currency }} from {{data.sender_names}} {{data.sender_reason}} Sent through {{APP_NAME}}
+{% endif %}

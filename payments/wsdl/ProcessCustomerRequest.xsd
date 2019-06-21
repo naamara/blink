@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 2 (http://www.altova.com) by ARIJIT (WIPRO) -->
+<!-- Version 1.0: Initial Version -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cc="http://xmlns.esf.mtn.com/xsd/Common" xmlns="http://xmlns.esf.mtn.com/xsd/ProcessCustomerRequest" targetNamespace="http://xmlns.esf.mtn.com/xsd/ProcessCustomerRequest" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://xmlns.esf.mtn.com/xsd/Common" schemaLocation="Common.xsd"/>
+	<xsd:complexType name="CustomReferenceType">
+		<xsd:sequence>
+			<xsd:element name="RefType" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds reference type.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RefValue" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds reference value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ProcessCustomerRequest" type="ProcessCustomerRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Holds the details to process the customer request.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CommonComponents" type="cc:CommonComponentsType"/>
+	<xsd:complexType name="ProcessCustomerRequestType">
+		<xsd:sequence>
+			<xsd:element name="CommonComponents" type="cc:CommonComponentsType">
+				<xsd:annotation>
+					<xsd:documentation>Holds the common field details.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VendorCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the vendor Code related to customer request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OperationType" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the name of the operation to be performed by  the Third Party System. Valid values can be
+"ACTIVATION-DEACTIVATION","BALANCERETRIEVAL","PAYMENT","VALIDATION","REGISTRATION","CUSTOMER QUERY" etc</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TypeCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the type code related to the above operation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SubTypeCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the SubType code related to the above operation.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Narration" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the narration/remarks related to the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SpecificationGroup" type="SpecificationGroupType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Specification Group details to capture the input details.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CustomReference" type="CustomReferenceType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>This will be used for sending customized value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpecificationGroupType">
+		<xsd:sequence>
+			<xsd:element name="Narration" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the description to identify the Specification Group.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Specification" type="SpecificationType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds the specification details of the Group.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AdditionalInfoType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Value" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpecificationType">
+		<xsd:sequence>
+			<xsd:element name="Narration" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the description to identify the Specification.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Specification name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Value" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Specification value for the above Specification Name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SubSpecification" type="SubSpecificationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds the sub-specification details of the Group.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ProcessCustomerRequestResponse" type="ProcessCustomerRequestResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Holds the response details related to the customer request.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="StatusInfoType">
+		<xsd:sequence>
+			<xsd:element name="StatusCode" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the response status code."0" indicates success, Any non-zero value indicates failure.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatusDesc" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the response status description for the above status code.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AdditionalStatus" type="AdditionalStatusType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds additional response status information. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AdditionalStatusType">
+		<xsd:sequence>
+			<xsd:element name="RequestNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds request number.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatusCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds additional status code.This would be holding the error code value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatusDesc" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the additional response description in case of success/failure.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HostName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds additional host name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessCustomerRequestResponseType">
+		<xsd:sequence>
+			<xsd:element name="CommonComponents" type="cc:CommonComponentsType">
+				<xsd:annotation>
+					<xsd:documentation>Holds the common field details.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatusInfo" type="StatusInfoType">
+				<xsd:annotation>
+					<xsd:documentation>Holds response status information </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SpecificationGroup" type="SpecificationGroupType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Specification Group details to capture the response details.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CustomReference" type="CustomReferenceType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>This will be used for sending customized value.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SubSpecificationType">
+		<xsd:sequence>
+			<xsd:element name="Narration" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Holds the description to identify the Sub-Specification.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Sub-Specification name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Value" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Holds the Sub-Specification value for the above Sub-Specification Name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AdditionalInfo" type="AdditionalInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Holds the additional details related to the sub-specification.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

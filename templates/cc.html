@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<div class="home_container container">
+
+<div class="col-sm-11">
+
+
+{% if process_cc %}
+<iframe id="iframe_src" src="{{cc_link}}" style="width:100%; height:930px;" allowtransparency="true" frameborder="0" target="_top" scrollbars="no" overflow:hidden;>
+</iframe>
+
+
+<script type="text/javascript">
+	
+
+$(document).ready(function(){
+
+/*
+iframe = $('#iframe_src');
+
+iframe.find('form').submit(function( event ) {
+  alert( "Handler for .submit() called." );
+  event.preventDefault();
+});
+
+/*
+iframe.find('form').bind('submit', function () {
+   alert("hello");
+});
+*/
+
+});
+
+
+</script>
+
+
+{% endif %}
+
+</div>
+
+
+
+
+
+ </div>
+
+
+{% endblock %}

@@ -1,0 +1,209 @@
+
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static bootstrapped_goodies_tags %}
+{% load custom_filters %}
+
+
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+<li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+<span class="divider"><i class="icon-angle-right"></i></span>
+</li>
+<li>{{ page_title |capfirst }}</li>
+</ul>
+{% endblock %}
+
+
+{% block pretitle %}
+{{pretitle |capfirst  }}        
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<section class="row-fluid">
+      <div class="span12">
+        <div class="module no-head message">
+          <div class="module-body no-padding">
+            <div class="module-option">
+              <div class="row-fluid">
+                <div class="span8">
+                   <div id="" class="" style="margin-left: 400px;">
+                    <!--
+                        <h2>Send money to mobile in minutes</h2>
+                        -->
+                        <form action="{% url 'clinic_search' %}" id="send_money_form" method="POST">
+
+                        
+
+                        {% csrf_token %}
+                        <br/>
+                            <div class="input_row select_row">
+                                <label><h2></h2></label>
+                            </div>
+                            {% include "notifications.html" %}
+
+
+                            <div class="input_row input_row2">
+                                
+                                <div class="input_box">
+                                    <input type="text" name="name" value="" placeholder="Search clinics by name">
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="input_row">
+                                <input type="submit" name="submit" value="Search">
+                            </div>
+                        </form>
+                    </div>
+                
+                </div>
+                
+
+
+              </div>
+            </div>
+
+            <table class="table table-utilities vertical-top">
+              <tbody>
+
+
+
+
+      
+                <tr>
+                  <td class="cell-detail">
+                    
+                    
+
+                  <div class="span8">
+
+                    <div class="people-brief">
+                      
+                      <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th># <a href="#">{{u.user.username}}</a></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tr>
+            <th># <a href="#">{{data.username}}</a></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          
+          <tr>
+            <td>Date Added</td>
+            <td>{{ data.date_joined | date:'d-m-Y'}}</td>
+          </tr>
+
+          <tr>
+            <td>Email</td>
+            <td>{{ data.email}}</td>
+          </tr>
+          
+          <tr>
+            <td>Category</td>
+            <td> {{ data.category}}</td>
+          </tr>
+
+          <tr>
+            <td>Category Name</td>
+            <td>{{ data.cat_name}}</td>
+          </tr>
+
+          
+
+          
+
+          </tbody>
+        </table>
+
+
+                    </div>
+                    </div>
+
+
+               
+                 
+                  <div class="span4 action-buttons users ">
+                  
+                 
+
+               
+
+
+                  </td>
+                </tr>
+
+              
+
+               
+
+               
+              </tbody>
+            </table>
+
+    
+
+            <div class="module-option">
+              <div class="row-fluid">
+                <div class="span8 hidden-phone">
+                  <!--
+                  <div style="line-height: 30px">
+                    Displaying <b> {{ user.number }} </b> of {{admin_data.user_count}} users
+                  </div>
+                  -->
+
+       
+
+                </div>
+                <div class="span11 message-navigation align-right">
+                  <div class="btn-toolbar">
+                    <div class=" btn-group">
+                    <!--
+                      <button class="btn"><i class="icon-chevron-left"></i></button>
+                      <button class="btn"><i class="icon-chevron-right"></i></button>
+                    -->
+{% with data as pages %}   
+{% include 'pagination.html'%}
+{% endwith %}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+
+          </div><!--/.module-body-->
+        </div><!--/.module.message-->
+      </div><!--/.span12-->
+    </section>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

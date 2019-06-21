@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% include 'metadata.html' %}
+
+
+<link href='{{STATIC_URL}}css/ui.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/bootstrap/bootstrap.min.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/bootstrap/bootstrap-responsive.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/remit.css' rel='stylesheet' type='text/css' />
+<link href='{{STATIC_URL}}css/styler/style.css' rel='stylesheet' type='text/css' />
+
+
+<script type='text/javascript' src='{{STATIC_URL}}js/jquery_1.7.1.min.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/html5.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/ui.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/utils.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/history.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/jquery.placeholder.min.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/bootstrap-twipsy.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/jquery.form-validation.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/bootstrap-modal.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/jquery-ui.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/accounting.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/bootstrap-tooltip.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}js/bootstrap/bootstrap.min.js'></script>
+
+</head>
+<body>
+  {% block content %}
+
+  {% endblock %}
+</body>
+</html>

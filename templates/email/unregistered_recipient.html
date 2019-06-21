@@ -1,0 +1,10 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+
+<p>Dear {{transaction.sender_names}}</p>
+<p>
+Your transfer {{transaction.hashid}} to {{transaction.recipient_number}} is pending.
+Please ask the recipient to visit an MTN Service Centre with valid ID to complete SIM card validation or login to https://useremit.com to provide an alternative validated number .
+</p>
+{% endblock %}

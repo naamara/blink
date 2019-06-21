@@ -1,0 +1,23 @@
+{% load custom_filters %}
+
+{% if code == 'success_sender' %}
+Your {% if data.billtype == "1" %}Electricity{% else %}Water{% endif %} payment of USD {{data.amount_sent | exchange}} for account {{data.referencenumber}} was successfully completed.
+Transfer fee: {{data.our_charge | exchange}}
+Total Paid: {{data.total_charge | exchange}}
+Bill Amount: {{data.amount_received }}
+{% if data.billtype == "1" %}
+The token is {{data.yaka_token}}
+{% endif %}
+Receipt No: {{data.receipt_id}}
+Thank you for using useremit.com.
+Transaction ID: {{data.get_invoice}}.
+{% endif %}
+{% if code == 'success_receiver' %}
+You have received {% if data.billtype == "1" %}an Electricity{% else %}a Water{% endif %} payment of UGX {{data.amount_received }} from {{data.sender_names}} via useremit.com.
+{% if data.billtype == "1" %}
+The token is {{data.yaka_token}}
+{% endif %}
+Receipt No: {{data.receipt_id}}
+Thank you for using useremit.com.
+Transaction ID: {{data.get_invoice}}.
+{% endif %}

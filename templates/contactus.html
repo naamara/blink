@@ -1,0 +1,91 @@
+{% extends "faq_base.html" %}
+
+
+{% load validation_tags %}
+
+{% block content %}
+
+
+
+
+
+<div id="contact-us " class="body-green">
+
+
+
+  <div class="container">
+        <div class="row">
+          <div class="col-sm-7 contact-us-p">
+            <h2 class="headline first-child text-color">
+              <span class="border-color">Contact Us</span>
+            </h2>
+            <p>You can contact us with anything related to Blink-net. <br /> 
+                We'll get in touch with you as soon as possible.</p>
+            {% include 'form-error.html' %}
+                    <form role="form" id="contact-form" method="post" action="{% url 'contact_us'%}">
+                     {% csrf_token %}
+
+
+          {%if request.user.is_authenticated %}
+
+                     <input type="hidden" id="email" name="email" value="{{request.user.email}}">
+                     <input type="hidden" id="phonenumber" name="phonenumber" value="{{user_profile.get_phonenumber}}">
+                     <input type="hidden" id="names" name="names" value="{{user_profile.get_names}}">
+
+              {%else%} 
+
+              <div class="form-group">
+                <label for="email">Your email address</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="name">Your name</label>
+                <input type="text" class="form-control" id="names" name="names" placeholder="Enter name">
+              </div>
+
+               <div class="form-group">
+                <label for="name">Your number</label>
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber"  placeholder="Enter name">
+              </div>
+
+              {%endif%}
+
+              <div class="form-group">
+                <label for="message">Your message</label>
+                <textarea class="form-control" name="msg" rows="3" id="msg" placeholder="Enter message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-lg btn-color">Send Request</button>
+            </form>
+          </div>
+          <div class="col-sm-4">
+            <h2 class="headline first-child first-child-m text-color">
+              <span class="border-color">Our Address</span>
+            </h2>
+            <p>
+                Blink <br />
+                3rd Floor, Nsambya <br />
+                Nsambya Road <br />
+                Nsambya, Kampala <br />
+                Uganda <br />
+            </p>
+          </div>
+      </div>
+
+</div>
+
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.form-validation.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#contact-form").validate({
+
+    rules:{% validation_rules  form %} ,
+    messages: {% validation_messages form %} ,
+
+    });
+    });
+
+</script>
+
+{% endblock %}

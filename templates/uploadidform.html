@@ -1,0 +1,166 @@
+{% load custom_filters %}
+
+
+      {% if account_verification_in_progress %}
+      <div id="passport_upload_form_wrapper" style="display:none">
+      {%else%}
+      <div id="passport_upload_form_wrapper">
+      {%endif%}
+    
+
+      <div class="modal-backdrop fade in"></div>
+      <div id="passport_upload_form" class="passport_upload_form_wrapper modal hide fade in" style="display: block; ">
+           <form id="passport_form" action='{% url "uploadpassport" %}' method="POST" enctype="multipart/form-data">
+            <div class="modal-header">
+
+
+          
+          {% if user_profile.id_pic%}
+          <a href="#" class="close" onclick="$('#passport_upload_form_wrapper').toggle();">×</a>
+          {% endif %}
+
+        <h3 style="color:green !important;">
+        You are almost there, this is the final signup step :-) .
+        </h3>  
+        
+        </div>
+
+
+
+<div class="modal-body add_passport_form">
+<h5>Upload a Copy of your I.D showing the following details {{user_profile}}<br />
+ <small>You can also adjust the details below to reflect what is on your ID </small>  </h5>
+<div class='blocked_passport_details' >
+
+
+        <div class="clearfix"><label>Firstname : </label><input class="large" id="firstname" name="firstname" size="16" type="text" value="{{user_profile.firstname}}" placeholder="First Name"> </div>
+
+        <div class="clearfix"><label>Lastname : </label><input class="large" id="signup_lname" name="lastname" size="16" type="text" value="{{user_profile.lastname}}"  placeholder="Last Name"> </div>
+        <div class="clearfix"><label>DOB :</label>
+        
+
+<select  class="mini" name="dob_day">
+<option value="{{user_profile.dob | date:'j'}}">{{user_profile.dob| date:'j'}}</option>
+{% for i in "1,32"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+<select  class="mini" name="dob_month">
+<option value="{{user_profile.dob | date:'n'}}">{{user_profile.dob| date:'n'}}</option>
+{% for i in "1,13"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+<select  class="mini" name="dob_year">
+<option value="{{user_profile.dob | date:'Y'}}">{{user_profile.dob| date:'Y'}}</option>
+{% for i in "1920,2000"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+        </div>
+
+
+
+        <div class="clearfix"><label>I.D Number :</label><input class="large" id="signup_passportno" value="{{user_profile.id_number}}" name="id_number" size="16" type="text" placeholder="ID Number">
+</div>
+</div>
+
+
+{% if request.POST.passport_verification %}
+<h4>Your Account is being verified<br /></h4>We shall send you an email and / sms once this is done
+</div>
+{% else %}
+
+<div class="clearfix">
+<b>Your account will only be verified if you upload a copy of a government issued I.D. <br />(<small>we accept image and pdf files</small>)</b>
+</div>
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Identification Document </span>
+ <input class="passport_image_upload" id="passport" name="passport" size="8" type="file" multiple accept='image/*,application/pdf'>
+</div>
+</div>
+
+
+
+            
+            <div style="width:80%;margin-left:9%;">
+            
+
+            {% if user_profile.id_pic%}
+            {% if user_profile.passport_extension == '.pdf' %}
+            <h5>Your I.D File </h5>
+            <a href="{{user_profile.id_pic.url}}">{{user_profile.id_pic.name}}</a>
+            {% else %}
+            <h5>Your I.D Image </h5>
+             <img src="{{user_profile.id_pic.url}}" style="height:100px;">
+            {% endif %}
+            
+
+            {%else%}
+            <h5>I.D Image Sample</h5>
+             <img src="{{STATIC_URL}}images/id_example.png" style="height:100px;">  
+            {% endif %}
+
+           
+            </div>
+         
+
+</div>
+<div class="modal-footer">
+               <input type="submit" class="btn primary" name="check_passport" value="{% if user_profile.id_pic%}Update Your Details{%else%}Verify Your Identity{%endif%}">
+            </div>
+{% csrf_token %}
+
+{% endif %}
+
+    
+ 
+  
+          
+          </form>
+          
+          </div>
+          </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#passport_form").validate({
+    rules:{
+        	passport:
+            {
+            required:{% if user_profile.id_pic%}false{%else%}true{%endif%},
+            accept: "png|jpeg|jpg|pdf"
+            },
+          firstname:
+            {
+            required:true,
+            minlength:2,
+            },
+            lastname:
+            {
+            required:true,
+            minlength:2,
+            },
+            id_number:
+            {
+            required:true,
+            minlength:2,
+            },
+
+    		},
+    		messages: {
+    			passport: {
+    			required: "Please Provide the a valid image"
+      	},
+    },
+    });
+});
+
+
+</script>
+

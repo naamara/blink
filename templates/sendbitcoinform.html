@@ -1,0 +1,251 @@
+<div id="introhome_container">
+<h4>Send Bitcoin To Mobile Money</h4>
+</div>
+
+
+
+
+<div class="send_money_form_wrapper">
+<form id="send_money_form" class="form-stacked" action='{% url "home" %}' method="POST">   
+
+
+<div id="phonenumber_div" class="clearfix">
+  <label for="xlInput">The phone number receiving the funds <br> 
+<small style="
+    font-size: 80%;
+    font-weight: bold;
+">A phone number without the country code eg. <i>0782692215</i> becomes <i>2692215</i></small>
+</label>
+<input type="hidden" name="phonenumber_ctry_ext" value="256">
+<div class="input-group">
+            <div class="input-group-btn">
+{% if phonebook %}
+
+
+<select onchange="selectPhonenumber(this)" id="phonebook_number" name="phonebook_number" class="span2">
+<option value="0">Pick a contact from your phonebook</option>    
+
+
+{% for p in phonebook %}
+<option data-number="{{p.number}}" data-ext="{{p.ext}}" data-lname="{{p.lastname}}" data-fname="{{p.firstname}}" value="{{p.phonenumber}}">{{p.firstname}} {{p.lastname}}</option>
+{% endfor %}
+</select>
+
+{% endif %}
+
+</div>
+
+          </div>
+
+
+<div class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+  
+
+<input type="hidden" value="256" id="phonenumber_ctry" name="phonenumber_ctry">
+<select class="right_select" onchange="updatePhoneNumberExt(this)" id="phonenumber_ext" name="phonenumber_ext">
+{% if extradata.ext%}<option value="{{extradata.ext}}">0{{extradata.ext}}</option>{%endif%}
+<option value="77">077</option>
+<option value="78">078</option>
+<option value="75">075</option>
+<option value="70">070</option>
+</select>
+</div>
+<input {% if extradata.number%}value="{{extradata.number}}"{%endif%} type="text" placeholder="phonenumber" size="7" maxlength="7" name="receiver_number" id="receiver_number" value="" class="form-control">    
+
+          </div>
+</div>
+
+
+
+
+</div>
+
+
+<div id="verify_phonenumber_div" class="clearfix">
+<label for="xlInput">Please confirm that the phone number you are sending to is correct.<br>
+<small>*We are not responsible for funds remitted to a wrong number.</small></label>
+
+
+<div class="input-group">
+<div class="input-group-btn">
+<input type="hidden" value="256" id="phonenumber_ctry" name="phonenumber_ctry">
+<select class="right_select" onchange="updatePhoneNumberExt(this)" id="phonenumber_ext_verify" name="phonenumber_ext_verify">
+{% if extradata.ext%}<option value="{{extradata.ext}}">0{{extradata.ext}}</option>{%endif%}
+<option value="77">077</option>
+<option value="78">078</option>
+<option value="75">075</option>
+<option value="70">070</option>
+</select>
+</div>
+<input type="text" {% if extradata.number%}value="{{extradata.number}}"{%endif%} placeholder="phonenumber" size="7" maxlength="7" name="verify_receiver_number" id="verify_receiver_number" class="form-control">
+          </div>
+
+</div>
+
+
+<div class="name_fields"> 
+<label for="xlInput">The names of the person receiving the funds </label>
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">First Name</span>
+<input type="text" placeholder="First Name" size="16" name="receiver_fname" id="receiver_fname" class="span3">
+</div>
+</div>
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Last Name</span>
+<input type="text" placeholder="Last Name" size="16" name="receiver_lname" id="receiver_lname" class="span3">
+</div>
+</div>
+
+
+</div>
+
+
+<div style="display:none;float:left;width:100%;overflow:hidden;margin-top:5px;margin-bottom:20px;" id="sending_add_to_phonebook">
+<a onclick="#" class="btn primary">Save this recipient to my phonebook<input type="checkbox"  id="save_to_phonebook" name="save_to_phonebook"></a>
+</div>
+
+
+
+<div style="margin-top:30px;" class="clearfix">
+  <label for="xlInput">Amount you are sending</label>
+<div class="input-group">
+            <div class="input-group-btn">
+           <select id="sendmoney_currency" name="sendmoney_currency" class="right_select">
+                <option value="$">BTC</option>
+            </select><input type="hidden" size="16" name="total" id="total">     
+              
+</div>
+<input type="text" {% if extradata.usdamount%}value="{{extradata.usdamount}}"{%endif%} placeholder="Amount" size="16" max="500" min="1" name="amount_sent" id="amount_sent" class="form-control">
+          </div>
+</div>
+<div style="margin-bottom:15px;" class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+         <select id="recievemoney_currency" name="recievemoney_currency" class="right_select">
+                <option value="UGX">UGX</option>
+                
+              </select>
+</div>
+<input type="text" readonly="readonly" placeholder="Amount" size="16" name="amount_received" id="amount_received" class="form-control">
+          </div>
+</div>
+
+<div class="clearfix">
+<label for="xlInput">Reason (<small>optional</small>)</label>
+<div style="float:left;width: 79%;" class="input-prepend">
+<textarea placeholder="A short message to the person receiving the funds" id="mobile_reason" name="mobile_reason"></textarea>
+</div>
+</div>
+
+
+<div id="your_charge" class="alert-info block-message info">
+    </div>
+
+
+
+{% csrf_token %}
+</form>
+</div>
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/sendmoney.js"></script>
+
+<script type="text/javascript">
+
+
+//form validation
+$(document).ready(function(){
+
+
+
+//enable send form
+$('#receiver_number , #verify_receiver_number').bind('change keyup', function() {
+
+//check Number Phonebook
+verifyPhonenumber();
+checkPhonebook();
+//check second input
+//$("#verify_receiver_number").trigger("focus");
+$("#send_money_form").data('validator').element('#verify_receiver_number');
+
+});
+
+//enable send form
+$('#send_money_form').bind('change keyup', function() {
+
+
+
+      //Calculate Money in Shillins and Our Charge
+        var amount = $('#amount_sent').val();
+        var our_charge = {{rates.our_percentage}} / 100;
+        our_charge = our_charge * amount;
+      //  our_charge = Math.round(our_charge);  
+        var card_charge = parseFloat($('#amount_sent').val()) + parseFloat(our_charge);
+      //  $('#total').val(Math.round(card_charge));
+       $('#total').val(card_charge.toFixed(2));
+        //$('#total').val(card_charge);
+
+        var amount_received = amount * {{ rates.usd_to_ugx }};
+
+      
+         //Issues with phonenumebr thing
+        if(amount_received > 0)
+        {
+        $('#amount_received').val(Math.round(amount_received));
+        }else{
+        $('#amount_received').val('');
+        }
+
+
+        var transfer_amount = card_charge - our_charge;
+        $('#receipt_transferamount_usd').html(accounting.formatMoney(transfer_amount, "USD ")); 
+        $('#receipt_transfercharge_usd').html(accounting.formatMoney(our_charge, "USD "));
+        $('#receipt_transfertotal_usd').html(accounting.formatMoney(card_charge.toFixed(2), "USD "));
+        
+
+          if(amount_received > 0){
+          $('#receipt_transferamount_ugx').html(accounting.formatMoney(Math.round(amount_received), "UGX ",0));
+          $('#receipt_transfertotal_ugx').html(accounting.formatMoney(Math.round(amount_received), "UGX ",0));
+        }  
+
+
+       
+      if($(this).validate().checkForm()) {
+
+      $('#verify_phonenumber_div').show();
+      $('#stripe-button').attr('data-amount',amount);
+
+      $('#send_money_button').show();
+       // $('#your_charge').html(" &lt;b&gt; Our Charge  "+accounting.formatMoney(our_charge)+"  / UGX"+amount_received_charge+"&lt;/b&gt; ");
+
+        $('#your_charge').html(" <span> Your Credit card will be charged  <u> "+accounting.formatMoney(card_charge)+" </u> </span>  </span> <span> "+$('#phonenumber_select').val()+$('#phonenumber_ext').val()+$('#receiver_number').val()+"  Will receive  <u> "+accounting.formatMoney(Math.round(amount_received), "UGX ",0)+" </u> </span><span>  Our charge is  <u> "+accounting.formatMoney(our_charge)+" </u>");
+        $('#your_charge').show();
+
+    } else {
+    	 $('#your_charge').hide();
+        //$('#submitbutton').addClass('button_disabled').attr('disabled', true);
+        $('#send_money_button').hide();
+    }
+});
+
+  
+
+
+validation_rules({{rates.transfer_limit_usd}},{{rates.transfer_minimum_usd}});
+
+
+});
+
+
+
+
+
+
+
+
+</script>

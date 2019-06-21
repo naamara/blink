@@ -1,0 +1,272 @@
+{% load custom_filters %}
+{% load validation_tags%}
+
+<div id="introhome_container" class="send_money_header">
+
+
+<h4>Pay your bills in Uganda</h4>  <img src="{{STATIC_URL}}images/landing/uganda_small.png" alt="uganda bills">
+
+
+</div>
+<br />
+
+
+
+<div class="send_money_form_wrapper">
+
+{% include 'form-error.html' %}
+
+
+
+<form id="send_money_form" class="form-stacked" action='{% url "paybill" %}' method="POST">
+{% csrf_token %}
+
+{% if confirm %}
+
+<div style="margin-top:30px;" class="clearfix">
+
+
+<input type="hidden" name="confirm" value="1">
+<input type="hidden" name="response" value="{{response}}">
+<input type="hidden" name="numbilltype" value="{{numbilltype}}">
+
+
+
+
+<div style="margin-top:10px;" class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+           <select class="right_select">
+                <option>Account Number</option>
+            </select>
+</div>
+<input type="hidden" value="{{referencenumber}}" name="referencenumber" >
+<input type="text" value="{{referencenumber}}" size="16" max="500" disabled="disbled" class="form-control">
+          </div>
+</div>
+
+
+<div style="margin-top:10px;" class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+           <select class="right_select">
+                <option>Bill Type</option>
+            </select>
+</div>
+<input type="text" value="{{billtype}}" name="billtype"  size="16" max="500" disabled="disbaled" class="form-control">
+          </div>
+</div>
+<input type="hidden" value="{{location}}" name="location" >
+<div style="margin-top:10px;" class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+           <select class="right_select">
+                <option>Account Name</option>
+            </select>
+</div>
+<input type="text" value="{{customer_name}}" name="customer_name"  size="16" max="500" disabled="disbaled" class="form-control">
+          </div>
+</div>
+
+
+<div style="margin-top:10px;margin-bottom:10px;" class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+           <select class="right_select">
+                <option>Current Outstanding Balance</option>
+            </select>
+</div>
+<input type="text" value="{{accountbalance}}" name="accountbalance"  size="16" max="500" disabled="disbaled" class="form-control">
+          </div>
+</div>
+
+
+
+<div style="margin-top:30px;" class="clearfix">
+  <label for="xlInput">Amount you are paying</label>
+<div class="input-group">
+            <div class="input-group-btn">
+           <select id="sendmoney_currency" name="sendmoney_currency" class="right_select">
+
+                <option value="{{rate.country.currency}}">USD</option>
+            </select>
+            <input type="hidden"  name="amount_charged" id="amount_charged">
+
+</div>
+<input type="text" placeholder="Amount" size="16" max="500" min="1" name="amount_sent" id="amount" class="form-control">
+          </div>
+</div>
+<div  class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+         <select id="recievemoney_currency" name="recievemoney_currency" class="right_select">
+                <option value="$">{{ rate.country.currency }}</option>
+              </select>
+</div>
+<input type="text"  placeholder="Amount" size="16" name="amount_received" min="{{ rate.bill_minimum_ugx }}" id="amount_received" class="form-control">
+          </div>
+</div>
+<div style="margin-bottom:15px;" class="clearfix">
+  <label for="xlInput">Recipient Phonenumber</label>
+<div class="input-group">
+            <div class="input-group-btn">
+
+<div class="input-prepend">
+<span class="add-on">{{user_profile.send_country_code}}</span>
+<input type="hidden" value="{{user_profile.send_country_code}}" id="phonenumber_ctry" name="phonenumber_ctry">
+</div>
+
+<select class="right_select" id="phonenumber_ext" name="phonenumber_ext">
+{% if extradata.ext%}<option value="{{extradata.ext}}">0{{extradata.ext}}</option>{%endif%}
+
+{% for phonextension,charge in phonextensions.items %}
+
+<option value="{{phonextension}}">0{{phonextension}}</option>
+
+{%endfor%}
+
+</select>
+</div>
+<input required {% if extradata.number%}value="{{extradata.number}}"{%endif%} type="text" placeholder="phonenumber" size="7" maxlength="7" name="receiver_number" id="receiver_number" value="" class="form-control">
+
+          </div>
+</div>
+
+<div  class="clearfix" >
+      <div class="clearfix">
+      <input type="hidden" value="{{request.user.pk}}" name="uid">
+      <button type="submit" id="charge_my_account" class="stripe-button-el" style="visibility: visible; "><span style="display: block; min-height: 30px; ">Pay bill</span></button>
+      </div>
+</div>
+<!--
+<div style="float:left;width:100%;overflow:hidden;margin-top:5px;margin-bottom:20px;">
+<a onclick="#" class="btn primary">Save this recipient to my phonebook<input type="checkbox"  id="save_to_phonebook" name="save_to_phonebook"></a>
+</div>
+-->
+
+  </div>
+{% else %}
+
+<div style="margin-top:30px;" class="clearfix">
+  <label for="xlInput">Bill type and reference number</label>
+<div class="input-group">
+            <div class="input-group-btn">
+           <select id="billtype" name="billtype" class="right_select" onchange="$('#country_code').toggle()">
+                <option value="1">Electricity (UMEME)</option>
+                <option value="2">Water (NWSC)</option>
+            </select>
+
+            <input type="hidden" size="16" name="total" id="total">
+
+</div>
+<input type="text" placeholder="reference number" size="16" name="referencenumber" id="referencenumber" class="form-control">
+          </div>
+</div>
+
+
+
+<div style="" class="clearfix" id="country_code">
+<label for="xlInput">Area</label>
+<div class="input-group" style="width:70%;">
+
+          <div class="input-group-btn">
+            <select id="location" name="location" style="width:100%;">
+              <option>Kampala</option>
+              <option>Jinja</option>
+              <option>Entebbe</option>
+              <option>Lugazi</option>
+              <option>Iganga</option>
+              <option>Kawuku</option>
+              <option>Kajjansi</option>
+              <option>Mukono</option>
+            </select>
+          </div>
+
+</div>
+</div>
+
+
+<div style="display:none;float:left;width:100%;overflow:hidden;margin-top:5px;margin-bottom:20px;" id="sending_add_to_phonebook">
+<a onclick="#" class="btn primary">Save this recipient to my phonebook<input type="checkbox"  id="save_to_phonebook" name="save_to_phonebook"></a>
+</div>
+
+
+
+<div class="clearfix">
+<label for="xlInput">Reason (<small>optional</small>)</label>
+<div style="float:left;width: 79%;" class="input-prepend">
+<textarea placeholder="A short message to the person receiving the funds" id="mobile_reason" name="mobile_reason"></textarea>
+</div>
+</div>
+
+
+<div id="your_charge" class="alert-info block-message info">
+    </div>
+
+<div  class="clearfix">
+      <div class="clearfix">
+      <input type="hidden" value="{{request.user.pk}}" name="uid">
+      <button type="submit" class="stripe-button-el" style="visibility: visible; "><span style="display: block; min-height: 30px; ">Pay Bill</span></button><span>* We <i><b>don't</b></i> store your credit or debit card details</span>
+
+      </div>
+
+</div>
+{% endif %}
+<!--{% csrf_token %} -->
+</form>
+</div>
+
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/paybill.js"></script>
+<script type="text/javascript">
+
+//form validation
+$(document).ready(function(){
+var rate = new PayBill({{rate | serialize_rate | safe}}, '{% url "querypaybillaccount" %}');
+//handle amount sent
+rate.SendAmount();
+
+});
+</script>
+
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.form-validation.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#send_money_form").validate({
+
+    rules:{% validation_rules  form %} ,
+    messages: {% validation_messages form %} ,
+
+    });
+});
+</script>
+
+<div class="modal hide" id="loading_modal" data-keyboard="false">
+        <div class="modal-header">
+            <h3>Please wait while we verify the account details</h3>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+
+<style type="text/css">
+  .send_money_header h4{
+float: left;
+margin-right: 10px;
+  }
+
+.send_money_header img{
+width: 50px;
+margin-bottom: 10px;
+}
+
+
+</style>

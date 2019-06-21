@@ -1,0 +1,153 @@
+ <div id="add_to_phonebook_wrapper" style="display:none">
+ <div class="modal-backdrop fade in"></div>
+      <div  class="modal fade in" id="phonebook_area_wrapper">
+           <form onsubmit="return false;" id="phonebook_area_form">
+            <div class="modal-header">
+              <a onclick=toggleAddToPhoneBookForm() class="close" href="#">×</a>
+              <h3>Add Number To Phonebook</h3>
+            </div>
+            <div id="secure_area_message"></div>
+            <div class="modal-body">
+            
+            <div style="width:100%;display:block;overflow:hidden;">
+            
+            <div style="width:40%;float:left;" class="clearfix">
+            <div class="input-prepend">
+            <span class="add-on">First Name</span>
+            <input type="text" size="30" name="firstname" id="store_firstname" class="span2">
+            </div>
+            </div>
+            
+            <div style="width:40%;float:left;margin-left:50px;" class="clearfix">
+          
+             <div class="input-prepend">
+            <span class="add-on">Last Name</span> 
+             <input type="text" size="30" name="lastname" id="store_lastname" class="span2">
+            </div>
+            </div>
+            </div>
+
+
+           <div class="clearfix">
+            <label style="width:100% !important;text-align:left;" for="">Phonenumber</label>
+
+            <div class="input">
+
+              <div class="input-group">
+            <div class="input-group-btn">
+                  <select id="ext" name="ext" class="right_select">
+              <option value="77">077</option>
+<option value="78">078</option>
+<option value="75">075</option>
+<option value="70">070</option>
+              </select> 
+</div>
+ <input type="text" size="30" name="number" id="store_phonenumber" class="form-control">        
+ </div>
+
+ <input type="hidden" value="256" id="country_code" name="country_code" class="span2">
+            <!--
+            <select >
+                <option value="256">Uganda</option>
+              </select>  
+              -->
+          
+
+           
+            </div>
+            </div>
+
+            </div>
+
+            <div class="modal-footer">
+               <input type="submit" value="Save Number" class="btn primary">
+              <a onclick=toggleAddToPhoneBookForm() class="btn secondary" href="#">Cancel</a>
+             
+            </div>
+            {% csrf_token %}
+          </form>
+          </div>
+          </div>
+          <script type="text/javascript">
+
+          function addToPhonebook(reload)
+{
+//do the search
+//start the ajax
+var myform = $('#phonebook_area_form');
+var disabled = myform.find(':input:disabled').removeAttr('disabled');
+ // serialize the form
+var serialized = myform.serialize();
+
+ // re-disabled the set of inputs that you previously enabled
+disabled.attr('disabled','disabled')
+
+    $.ajax({
+      //this is the php file that processes the data and send mail
+      url: "{% url 'add_to_phonebook' %}",
+
+      //GET method is used
+      type: "POST",
+
+      //pass the data
+      data:serialized,
+
+      //Do not cache the page
+      cache: false,
+
+             beforeSend: function(){
+            $('#loading').show();
+            },
+             complete: function(){
+             $('#loading').hide();
+            },
+
+
+      //success
+        success: function (html) {
+        $('#secure_area_message').html(html)  
+        },
+            error : function ()
+            {
+
+            }
+
+
+    });
+}
+
+   
+
+  //form validation
+  $(document).ready(function(){
+    $("#phonebook_area_form").validate({
+    rules:{
+      number:{
+      required:true,
+      digits: true,
+      min:0000000,
+      minlength:7,
+      maxlength:7
+      },
+      firstname:{
+        required:true
+      },
+      lastname:{
+        required:true
+      },
+      },
+        messages: {
+        number: {
+        required: "Please provide a phonenumber",
+        digits:"Please provide a Valid phonenumber",
+        minlength: "Please provide a Valid phonenumber",
+      },
+    },submitHandler: function(form) {
+    addToPhonebook();
+    }
+    });
+});
+
+
+          </script>
+ 

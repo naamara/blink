@@ -1,0 +1,81 @@
+{% extends "v2_base.html" %}
+
+
+
+{% block content %}
+
+
+
+<section id="steps"  class="content bg-color steps">
+      <div class="container">
+        <div class="row">
+          <div class="hero-unit aligncenter">
+            <p class="lead"><span class="teddy_title">How it works</span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <div id="carousel2" class="carousel slide custom2">
+              <ul class="carousel-indicators aligncenter row-fluid">
+                <li data-target="#carousel2" data-slide-to="0" class="active span4">
+                  <div class="round bg-color blue"><span>1</span></div>
+                  <div class="desc">Register.</div>
+                </li>
+                <li data-target="#carousel2" data-slide-to="1" class="span4">
+                  <div class="round bg-color blue">2</div>
+                  <div class="desc">Enter transaction information.</div>
+                </li>
+                <li data-target="#carousel2" data-slide-to="2" class="span4">
+                  <div class="round bg-color blue">3</div>
+                  <div class="desc">Delivery.</div>
+                </li>
+              </ul>
+              <div class="carousel-inner clearfix">
+                <div class="active item clearfix">
+                  <div class="row-fluid clearfix">
+                    <div class="span7 aligncenter">
+                      <img src="{{STATIC_URL}}images/register.1.png" class="howtoimg">
+                    </div>
+                    <div class="span5">
+                      <h3 class="normal">1. Login or Register</h3>
+                      <p >
+                       Login to your remit account. If you are new, it only takes a few minutes to verify your email and cell phone number. As soon as that is done, you are ready to send your first transaction.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="row-fluid clearfix">
+                    <div class="span5">
+                      <h3 class="normal">2. Enter transaction information</h3>
+                      <p >Take a moment to create your transaction. Enter the recipient's registered mobile money phone number. Then, enter the amount you want to send and provide your payment information. Remit accepts most major cards including MasterCard and Visa</p>
+                    </div>
+                    <div class="span7 aligncenter">
+                      <img src="{{STATIC_URL}}images/transaction_details.png" class="howtoimg">
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="row-fluid clearfix">
+                    <div class="span7 aligncenter">
+                      <img src="{{STATIC_URL}}images/delivery.png" class="howtoimg">
+                    </div>
+                    <div class="span5">
+                      <h3 class="normal">3. Delivery</h3>
+                      <p >
+                        After your credit card is successfully charged, you will receive a delivery confirmation email. Your recipient will receive the money directly on their registered mobile money wallet within minutes. Congrats.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="hero-unit aligncenter">
+              <a href="{{BASE_URL}}signup" class="btn btn-flat btn-orange btn-large uppercase">Start sending now</a>
+            </div>
+      </div>
+    </section>
+{% endblock %}

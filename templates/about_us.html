@@ -1,0 +1,88 @@
+{% extends "faq_base.html" %}
+
+
+
+{% block content %}
+
+
+      <div class="body-green">
+      <div class="col-sm-10 about_us_wrapper">
+
+        <div class="row about_us">
+          <div class="col-sm-7">
+            <h2 class="headline first-child text-color">
+              <span class="border-color">About {{APP_NAME}}</span>
+            </h2>
+            <p>
+              {{DOMAIN_NAME}} is a remittance transfer service built by Redcore Interactive that offers real-time debit / credit card to mobile-money transfers from all over the world to registered mobile-money users in Uganda. Remit’s advantage is that it is the fastest, cheapest, and safest way for Uganda’s diaspora to send money home.
+              <br /><br />
+            Africans in the Diaspora send up to $60 billion annually to the continent. At an average cost per transaction of 11.89%, Africans are spending more than $7 billion in fees.
+We think we can do better. So we built {{DOMAIN_NAME}}, the fastest, cheapest, and secure way to send money home directly to a mobile wallet. We are currently in Uganda, and soon expanding to the rest of Africa. Remit is a product of Redcore Interactive.
+            </p>
+            <hr>
+          </div>
+          <div class="col-sm-4">
+            <div id="player" class="about_us_video" style="width:100%"> </div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '300',
+          width: '640',
+          videoId: 'yVwlyDqPo-w'
+        });
+      }
+    </script>
+          </div>
+        </div> <!-- / .row -->
+        <div class="row our-team-p">
+          <div class="col-sm-12 ">
+            <h2 class="headline text-color">
+              <span class="border-color">Our Team</span>
+            </h2>
+            <div class="col-sm-12 team-member-wrapper">
+              <div class="col-sm-3">
+                <div class="team-member text-center">
+                  <img class="img-responsive center-block" src="{{STATIC_URL}}images/about_us/stone.jpeg" alt="...">
+                  <a href="http://ug.linkedin.com/in/stoneatwine">Stone Atwine</a>
+                  <p class="text-muted">Finance</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="team-member text-center">
+                  <img class="img-responsive center-block" src="{{STATIC_URL}}images/about_us/tms.jpeg" alt="...">
+                  <a href="http://tmsruge.com/">TMS Ruge</a>
+                  <p class="text-muted">Design</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="team-member text-center">
+                  <img class="img-responsive center-block" src="{{STATIC_URL}}images/about_us/collins.jpg" alt="...">
+                  <a href="http://www.cmugume.com/">Collins Mugume</a>
+                  <p class="text-muted">Operations</p>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="team-member text-center">
+                  <img class="img-responsive center-block" src="{{STATIC_URL}}images/about_us/madra.jpeg" alt="...">
+                  <a href="http://madradavid.com/">Madra David</a>
+                  <p class="text-muted">Engineering</p>
+                </div>
+              </div>
+            </div> <!-- / .row -->
+          </div>
+        </div> <!-- / .row -->
+
+      </div> <!-- / .container -->
+      </div>
+{% endblock %}

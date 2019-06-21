@@ -1,0 +1,149 @@
+{% extends "v2_base.html" %}
+
+{% block wrapperid %}login_form_wrapper{%endblock%}
+
+{% block content %}
+
+
+<link type="text/css" rel="stylesheet" href="{{STATIC_URL}}css/faq.css"/>
+
+<section class="faq_wrapper">
+<div id="faq" class="faq_page">
+        <div class="body-green">
+            <!-- header -->
+            <h2 class="section_header">
+                <span>FAQ</span>
+                <hr class="right visible-desktop">
+            </h2>
+
+            <!-- list -->
+            <div class="row">
+                <div class="span12">
+                                    <div class="faq">
+                        <div class="number">1</div>
+                        <div class="question">
+                            How long does it take to send money?                        </div>
+                        <div class="answer">
+                           Our transactions are completed instantly. In a few instances, we might have delays due to unforeseen technical issues with our mobile money partners.                         </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">2</div>
+                        <div class="question">
+                            How do I know my recipient received their funds?                        </div>
+                        <div class="answer">
+                           We send you an email as soon as the recipient receives the funds.                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">3</div>
+                        <div class="question">
+                            What delivery options do you support?                        </div>
+                        <div class="answer">
+                           We deliver money direct to mobile wallets. We have also introduced bill payments for Uganda. You can pay your electricity and water bills in Uganda instantly. We will include more delivery options like Bank Deposit and Cash Pickup at a later stage.
+                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">4</div>
+                        <div class="question">
+                             What are your fees?                        </div>
+                        <div class="answer">
+                           We currently charge {{rates.our_percentage}}% of any transaction amount.                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">5</div>
+                        <div class="question">
+                            What is your current exchange rate?
+                        </div>
+                        <div class="answer">
+                           Our exchange rate is updated hourly and displayed prominently on the website.
+                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">6</div>
+                        <div class="question">
+                            What payment methods can I use to send money?
+                        </div>
+                        <div class="answer">
+                           You can use your debit or credit card.
+                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">7</div>
+                        <div class="question">
+                            What currency will my recipient receive?
+                        </div>
+                        <div class="answer">
+                           The recipient gets the local currency amount quoted when you’re sending.
+                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">8</div>
+                        <div class="question">
+                            How will my recipient know I am sending them money?
+                        </div>
+                        <div class="answer">
+                           In addition to communicating with the sender through email, the recipient receives an SMS when money is
+delivered.
+                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">9</div>
+                        <div class="question">
+                            What does my recipient need to pick up cash?
+                        </div>
+                        <div class="answer">
+                           Your recipient must be a registered mobile wallet user. No additional documentation is required beyond the usual mobile money requirements.                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">10</div>
+                        <div class="question">
+                             What happens if I provide the wrong recipient phone number?
+                        </div>
+                        <div class="answer">
+                           {{DOMAIN_NAME}} delivers money to the recipient mobile wallet instantly. If you provide wrong information, the transfer cannot be reversed or re-directed. Please check and confirm the number before making a transfer.                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">11</div>
+                        <div class="question">
+                            What countries can I send money to?                        </div>
+                        <div class="answer">
+                           We currently offer transfers to Uganda, Kenya and Rwanda. We will be adding more receiver countries soon.
+                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">12</div>
+                        <div class="question">
+                            How is my personal information protected?                        </div>
+                        <div class="answer">
+                           When we ask you for information that can be used to identify you (for example your name, date of birth, address and suchlike) we encrypt the data you give us using a secure connection, which prevents it from being intercepted by a third party. The simplest way to tell if you have a secure connection is to look at your browser address bar; if the page is secure the URL will change from ‘http:’ to ‘https:’ and, depending on the browser you’re using, you may also see a locked padlock symbol.                        </div>
+                    </div>
+                                        <div class="faq">
+                        <div class="number">13</div>
+                        <div class="question">
+                             Why does {{DOMAIN_NAME}} require me to provide a copy of my ID?                         </div>
+                        <div class="answer">
+                           We require an identification document for the security of our customers and to comply with regulatory rules.
+Upon signup, we will ask you to provide your home address, your mobile phone number, your Date of Birth, and your identification document number. You will only need to provide this information once and your information is secure.                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+      // FAQs
+ $(document).ready(function(){
+    var $faqs = $("#faq .faq");
+    $faqs.click(function () {
+        var $answer = $(this).find(".answer");
+        $answer.slideToggle('fast');
+    });
+
+    if (!$.support.leadingWhitespace) {
+        //IE7 and 8 stuff
+        $("body").addClass("old-ie");
+    }
+});
+</script>
+</section>
+
+{% endblock %}

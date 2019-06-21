@@ -1,0 +1,120 @@
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+
+
+
+	<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+	<div id="wowslider-container1">
+	<div class="ws_images"><ul>
+		<li><img src="{{STATIC_URL}}data1/images/23carsonhpmaster768.jpg" alt="" title="" id="wows1_0"/></li>
+		<li><img src="{{STATIC_URL}}data1/images/ourwork_wherewework_africa_tanzania_hero.jpg" alt="" title="" id="wows1_1"/></li>
+		<li><img src="{{STATIC_URL}}data1/images/xth105224_2017_124432_hd.jpg" alt="" title="" id="wows1_2"/></li>
+		<li><a href="http://wowslider.com"><img src="data1/images/image4.jpg" alt="wowslider.com" title="" id="wows1_3"/></a></li>
+		<li><img src="{{STATIC_URL}}data1/images/image5.jpg" alt="" title="" id="wows1_4"/></li>
+	</ul></div>
+
+
+
+	<div class="ws_bullets"><div>
+
+		<a href="#" title=""><span><img src="{{STATIC_URL}}data1/tooltips/23carsonhpmaster768.jpg" alt=""/>1</span></a>
+		<a href="#" title=""><span><img src="{{STATIC_URL}}data1/tooltips/ourwork_wherewework_africa_tanzania_hero.jpg" alt=""/>2</span></a>
+
+
+  <div class="center_content"   style="position: relative;
+  z-index: 1; margin-left:460px;">
+                    <div id="banner_text" style="position: relative;
+  z-index: 1; left:380px;top:10px;">
+                        <div id ="crossfade">
+                        </div>
+
+                        <h1><strong>Message from B-LINK Chairperson</strong><strong>
+                        <h2>I welcome you all to this B-Link Website. B-Link stands for Basic Learning and Information Network and its a platform for providing information to Ugandans concerning health, Entrepreneurial, Civics and Livelihood. </h2>
+                    </div>
+                    <div id="buttons">
+                        <a href="{% url 'join' %}"><input type="button" value="Join"></a>
+                         <a href="{% url 'support' %}"><input type="button" value="Support"> </a>
+                        
+
+                    </div>
+
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+    <!-- Identify your business so that you can collect the payments. -->
+    <input type="hidden" name="business"
+        value="donations@kcparkfriends.org">
+
+    <!-- Specify a Donate button. -->
+    <input type="hidden" name="cmd" value="_donations">
+
+    <!-- Specify details about the contribution -->
+    <input type="hidden" name="item_name" value="Friends of the Park">
+    <input type="hidden" name="item_number" value="Fall Cleanup Campaign">
+    <input type="hidden" name="currency_code" value="USD">
+
+    <!-- Display the payment button. -->
+    <input type="image" name="submit"
+    src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png"
+   value="Donate">
+    <img alt="" width="1" height="1"
+    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+</form>
+
+
+                    
+                    </div>
+                </div>
+            </div>
+      	</div><!--//end .container-->
+		<a href="#" title=""><span><img src="{{STATIC_URL}}data1/tooltips/xth105224_2017_124432_hd.jpg" alt=""/>3</span></a>
+		<a href="#" title=""><span><img src="{{STATIC_URL}}data1/tooltips/image4.jpg" alt=""/>4</span></a>
+		<a href="#" title=""><span><img src="{{STATIC_URL}}data1/tooltips/image5.jpg" alt=""/>5</span></a>
+	</div></div><div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.com">jquery slider</a> by WOWSlider.com v8.7</div>
+	
+	<div class="ws_shadow"></div>
+	</div>	
+	<script type="text/javascript" src="{{STATIC_URL}}engine1/wowslider.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}engine1/script.js"></script>
+	<!-- End WOWSlider.com BODY section -->
+
+
+</table>
+   
+              
+       <br/>
+       <br />
+       <br/>
+       <br />
+       <br/>
+       <br />
+
+
+
+
+<div class="vision"> B-LINK VISION</br> <h2>We envision a better connected well informed Ugandan citizenry so as to facilitate discovery, participation and co-creation between people, government and private sector.</h2></div>
+
+<div class="mission" align="center"> B-LINK MISSION</br> <h2>At BLINK we partner to reduce disparities in information accessibility and to build a resilient and active citizenry of people who are informed to fight poverty, diseases, hunger; promote civics education and democracy in the country.</br>The BLINK will partner with public, private, school, college and universities/institutions and Non-governmental organizations (NGOs) in the country and other international organizations of working in cooperation with the education, university, training, business and medical communities. This initiative seeks to serve Uganda citizens with the assistance of all levels of government. </br>The goal of the BLINK is to assist information users in seeking, navigating and using electronic information through the effective management and delivery of electronic resources to Ugandans. The services provided are geared towards assisting Ugandans at all ages to learn about, find and locate the information they need.
+</h2></div>
+
+<div class="Content">The most Ugandan task before us is to get medical and health knowledge to those most in need of the knowledge. James Grant, UNICEF 1993...</div>
+      
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/accounting.min.js"></script>
+<script type="text/javascript">
+    
+$(function(){
+
+
+var remit = new Remit({{landingformdata | safe}});
+remit.LandingForm();
+
+});
+
+</script>
+{% endblock %}

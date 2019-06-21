@@ -1,0 +1,55 @@
+   <div class="modal-backdrop fade in"></div>
+      <div id="secure_area_wrapper" class="modal hide fade in" style="display: block; ">
+           <form id="secureloginform_form"  action="{% url 'account' %}" method="POST">
+            <div class="modal-header">
+              <a href="#" class="close" OnClick=cancelsecureAreaAuth()>×</a>
+              <h3>Please provide your password to continue</h3>
+            </div>
+            <div id="secure_area_message" class="secure_area_auth_message">
+              {% include "notifications.html" %}
+            </div>
+            <div class="modal-body">
+          <div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Password</span>
+<input class="xlarge" id="password" name="password" size="30" type="password" placeholder="provide a password">
+</div>
+</div>
+
+            </div>
+            <div class="modal-footer">
+               <input type="submit" class="btn primary" value="Signin">
+              <a href="#" class="btn secondary" OnClick=cancelsecureAreaAuth()>Cancel</a>
+             
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{request.user.email}}">
+            <input type="hidden" name="access_restricted" value="1">
+          </form>
+          </div>
+          <script type="text/javascript">
+            function cancelsecureAreaAuth()
+            {
+              window.location = '{{BASE_URL}}'
+              //history.go(-1);
+              //window.history.back()
+            }
+
+$(document).ready(function(){
+    $("#secureloginform_form").validate({
+    rules:{
+        password:
+            {
+            required:true,
+            minlength:5,
+            }
+      },
+     messages: {
+      password: {
+      required: "Please Provide your password"
+      },
+    },
+    });
+});
+
+</script>

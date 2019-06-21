@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 1.0: Initial Version -->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xmlns.esf.mtn.com/wsdl/ProcessCustomerRequest" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://xmlns.esf.mtn.com/xsd/ProcessCustomerRequest" xmlns:ns1="http://xmlns.esf.mtn.com/xsd/Common" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="ProcessCustomerRequest" targetNamespace="http://xmlns.esf.mtn.com/wsdl/ProcessCustomerRequest">
+	<types>
+		<xsd:schema targetNamespace="http://xmlns.esf.mtn.com/wsdl/ProcessCustomerRequest">
+			<xsd:import namespace="http://xmlns.esf.mtn.com/xsd/ProcessCustomerRequest" schemaLocation="ProcessCustomerRequest.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="ProcessCustomerRequest">
+		<part name="ProcessCustomerRequest" element="ns:ProcessCustomerRequest"/>
+	</message>
+	<message name="ProcessCustomerRequestResponse">
+		<part name="ProcessCustomerRequestResponse" element="ns:ProcessCustomerRequestResponse"/>
+	</message>
+	<portType name="ProcessCustomerRequestPortType">
+		<operation name="ProcessCustomerRequest">
+			<input name="ProcessCustomerRequest" message="tns:ProcessCustomerRequest"/>
+			<output name="ProcessCustomerRequestResponse" message="tns:ProcessCustomerRequestResponse"/>
+		</operation>
+	</portType>
+	<binding name="ProcessCustomerRequestBinding" type="tns:ProcessCustomerRequestPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="ProcessCustomerRequest">
+			<soap:operation soapAction=""/>
+			<input name="ProcessCustomerRequest">
+				<soap:body use="literal"/>
+			</input>
+			<output name="ProcessCustomerRequestResponse">
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ProcessCustomerRequestService">
+		<port name="ProcessCustomerRequestPortType" binding="tns:ProcessCustomerRequestBinding">
+			<soap:address location="http://localhost:8080/ProcessCustomerRequest"/>
+		</port>
+	</service>
+</definitions>

@@ -1,0 +1,220 @@
+@media screen and (max-width: 1180px) { 
+.banner {
+	height: 800px;
+	padding: 150px 10px 0 10px;
+}
+#banner_text {
+	width: 58%;
+	padding-top: 100px;	
+}
+#banner_text h1 {
+	font-size: 28px;
+	line-height: 36px;
+	padding: 22px 33px 24px 26px;
+	background-size: 100% 100%;
+}
+#banner_text h2 {
+	font-size: 16px;
+	line-height: 20px;
+	padding: 6px 80px 6px 26px;
+	background-size: 100% 100%;
+	letter-spacing: 4px;
+}
+}
+
+@media screen and (max-width: 1100px) { 
+.rgt_tab {
+	width: 466px;
+	padding-right: 0px;
+}
+#horizontalTab {padding-top: 36px; } 
+.lft_tab{padding-top: 40px; }
+.r-tabs-panel strong {
+	font-size: 109px;
+	top: 18px;
+	left: 0;
+}
+.lft_header{width: 54%; } 
+.rgt_header{width: 46%; }
+.lftnav { padding: 10px 0 0 12px; } 
+.lftnav ul{ float: left; } 
+.lftnav ul li{padding:0 5px; } 
+.rgtnav ul{padding-right: 5px; } 
+.rgtnav ul li {margin: 0 5px 0 5px; } 
+.rgt_header span {margin: 8px 5px 0 0; } 
+#bottom_content {padding: 48px 20px 48px 20px; }
+.lft_bottom_content ul li {padding: 0 10px; }
+.lft_bottom_content ul li:first-child {padding-left: 0px; } 
+}
+
+
+@media screen and (max-width: 1024px) { 
+#banner_text {
+	width: 50%;
+	padding-top: 50px;	
+}
+#banner_text h1 {
+	font-size: 24px;
+	line-height: 36px;
+	padding: 22px 33px 24px 20px;
+	background-size: 100% 100%;
+}
+#banner_text h2 {
+	font-size: 13px;
+	line-height: 20px;
+	padding: 6px 40px 6px 20px;
+	background-size: 100% 100%;
+	letter-spacing: 2px;
+}
+}
+
+
+@media screen and (max-width: 1000px) { 
+.lft_tab{width: 47%; } 
+.rgt_tab {width: 47%; }
+}
+
+
+@media screen and (max-width: 960px) {
+.feature_item { padding:40px 20px 25px 20px; }
+}
+
+
+@media screen and (max-width: 910px) { 
+.hamburger { display: block !important;
+ position: absolute;}
+ .lft_header{
+	width: 100px;
+}
+.rgt_header{
+	width: 340px;
+	padding-right: 40px;
+}
+.rgtnav { display: none; }
+.lft_bottom_content,
+.rgt_bottom_content{
+	float: none;
+	width: 100%;
+	overflow: hidden;
+}
+.rgt_bottom_content { padding-top: 20px;}
+.feature_item  {min-height: 270px; }
+.lftnav { display: none; }
+.rgt_header span {margin: 8px 8px 0 0; }
+}
+
+
+@media screen and (max-width: 860px) { 
+#banner_text {
+	max-width: 480px;
+	width: 100%;
+	float: none;
+	padding-top: 0;	
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+#banner_text h1,
+#banner_text h2 {
+	background: none;
+	text-align: center;	
+}
+#banner_text h1 {
+	padding: 5px 10px 5px 10px;
+	background: #f49736;
+}
+#banner_text h2 {
+	padding: 5px 10px 5px 10px;
+	background: #e2811d;
+}
+.banner {
+	height: 900px;
+	padding: 100px 10px 0 10px;
+}
+#send_money {
+	float: none;
+	margin: 0 auto;
+	padding: 25px 0 30px 0;
+	position:absolute;
+	right: 0;
+	left: 0;
+}
+}
+
+
+@media screen and (max-width: 767px) { 
+.feature_item,
+.feature_item:nth-child(even) {
+	width: 100%;
+	float: none;
+	min-height: inherit;
+}  
+}
+
+
+@media screen and (max-width: 640px) { 
+.lft_tab,  
+.rgt_tab {
+	width: 100%; 
+	float: none;
+}
+.rgt_tab {padding: 0 0 20px 0; } .rgt_tab_pic img {margin: 0 auto;} 
+.r-tabs-accordion-title {margin-bottom: 10px; } 
+.r-tabs .r-tabs-accordion-title .r-tabs-anchor { background: #fafafa; color: #666666; } 
+.r-tabs .r-tabs-accordion-title.r-tabs-state-active .r-tabs-anchor { background: #f38300; } 
+.r-tabs .r-tabs-accordion-title.r-tabs-state-active .r-tabs-anchor { color: #fff; } 
+.r-tabs .r-tabs-state-active a small {display: inline-block; }
+#horizontalTab {
+    border: none;
+    margin-top:0;
+}
+.content h2 {
+	font-size: 28px;
+}
+.r-tabs-panel strong {
+    font-size: 80px;
+    left: 0;
+    top: 18px;
+}
+}
+
+
+@media screen and (max-width: 557px) { 
+#footer p span {
+	background:none;
+	padding:5px 0;
+	display:block;
+}
+.lft_bottom_content ul li {padding: 0 10px 0 0; }
+}
+
+
+@media screen and (max-width: 479px) { 
+.lft_bottom_content ul li {
+	padding: 0 0 10px 0;
+	float: none;
+}
+#banner_text h1 {font-size: 22px; } 
+#send_money {width: 100%; }
+#send_money_form {
+	padding: 26px 10px 26px 10px;
+	border-top: 1px solid #dfdfdf;
+}
+.content h2 {font-size: 24px; } 
+.feature_info h3 {font-size: 18px; } 
+#send_money h2 {font-size: 16px; } 
+}
+
+@media screen and (max-width: 366px) {
+.gray_bg .content {padding: 90px 0 31px 0; }
+#banner_text h1 {
+    font-size: 21px;
+}
+}
+
+@media screen and (max-width: 346px) {
+.gray_bg .content {padding: 120px 0 31px 0; }
+}
+
+/*@media screen and (max-width: 341px) {
+.gray_bg .content {padding: 120px 0 31px 0; }
+}*/

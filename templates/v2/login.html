@@ -1,0 +1,70 @@
+{% extends "v2_base.html" %}
+
+
+{% block wrapperid %}login_form_wrapper{%endblock%}
+
+{% block content %}
+
+
+<div class="container banner_container login_form_wrapper"><!--start container-->
+            <div class="banner">
+                <div class="center_content">
+                    <div id="banner_text">
+                        <h1>Send Money to <strong>Uganda</strong>, <strong>Kenya</strong> or <strong>Rwanda</strong> Straight to <strong>Mobile</strong> Phone</h1>
+                        <h2>fast, convenient, secure, affordable</h2>
+                    </div>
+                    <div  style="margin-left: 300px;">
+                    <!--
+                        <h2>Send money to mobile in minutes</h2>
+                        -->
+                        <form action="{% url 'login'%}"   class="basic-grey" method="POST">
+
+                        
+
+                        {% csrf_token %}
+                            <div class="input_row select_row">
+                            	<label><h2>LOGIN!</h2></label>
+                            </div>
+                            {% include "notifications.html" %}
+                            <div class="input_row input_row2">
+                                <label>Email</label>
+                                <div class="input_box">
+                                    <input type="email" name="identification" value="" placeholder="email" style="width:160px;">
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="input user row">
+                            </div>
+
+                             <div class="input_row input_row2">
+                                <label>Password</label>
+                                <div class="input_box">
+                                    <input type="password"  name="password" value="" placeholder="password">
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class='clearfix' id='start_btn'>
+    <a href="{% url 'recoverpassword' %}">Forgot your password?</a>
+</div>
+
+                            <div class="input_row">
+                                <input type="submit" name="submit" class="button" value="Login" >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                 
+            </div>
+
+     
+      	</div><!--//end .container-->
+       
+
+   
+
+    
+
+
+{% endblock %}

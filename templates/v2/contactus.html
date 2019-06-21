@@ -1,0 +1,80 @@
+{% extends "v2_base.html" %}
+
+{% load validation_tags %}
+
+
+{% block wrapperid %}login_form_wrapper{%endblock%}
+
+{% block content %}
+
+<div style="margin-left: 10px;">
+                        <h2>Any <strong>question?</strong></h2>
+                        <p>You can contact us with anything related to Blink-net. We’ll get in touch with you as soon as possible.</p>
+                        <div id="contact_form_box">
+                            <div id="contact_form">
+                               
+                 <form action='{% url "contact_us" %}'  class="basic-grey" method="POST">
+
+                        
+
+                        {% csrf_token %}
+                            <div class="input_row select_row">
+                                <label><h2>Contact us</h2></label>
+                            </div>
+                            {% include "notifications.html" %}
+
+
+                             {%if request.user.is_authenticated %}
+
+                     <input type="hidden" id="email" name="email" value="{{request.user.email}}">
+                     <input type="hidden" id="phonenumber" name="phonenumber" value="{{user_profile.get_phonenumber}}">
+                     <input type="hidden" id="names" name="names" value="{{user_profile.get_names}}">
+
+              {%else%}
+
+                                    <div class="text_field_row">
+                                        <div class="text_field"><input required id="names" name="names"  type="text" placeholder="Your Full Name"></div>
+                                        <div class="text_field"><input required id="email" name="email" type="email" placeholder="Your Email Address"></div>
+                                        <div class="text_field"><input type="text" id="phonenumber" name="phonenumber" placeholder="Your Mobile Number"></div>
+                                    </div>
+                        {% endif %}
+                                    <div class="text_field">
+                                        <textarea required rows="10" name="msg" id="msg" cols="10" placeholder="Your Message"></textarea>
+                                    </div>
+                                    <div class="submit"><input type="submit" value="Send" class="button"></div>
+                                </form>
+                            </div>
+                            
+                            <div id="our_address">
+                                <h3>Our Address</h3>
+                                <p> Blink <br />
+                3rd Floor, Nsambya <br />
+                Nsambya Road <br />
+                Nsambya, Kampala <br />
+                Uganda <br /></p>
+                            </div>
+                     
+    </div>
+    </div>
+
+<script type='text/javascript' src='{{STATIC_URL}}js/jquery.form-validation.js'></script>
+
+    <script type='text/javascript'>
+//form validation
+  $(document).ready(function(){
+
+$("#send_money_form").validate({
+
+        rules: {% validation_rules form %}
+        ,
+        messages: {% validation_messages form %}
+        ,
+
+    });
+
+    });
+
+</script>
+
+
+{% endblock %}

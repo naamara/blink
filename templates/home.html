@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<div class="home_container container">
+
+<div class="col-sm-7">
+
+
+{% if user_profile.id_verified %}
+
+{% include "sendmoneyform.html" %}
+
+{% else %}
+
+{% include "disablesending.html" %}
+
+{% endif %}
+
+</div>
+
+
+
+ <div class="col-sm-4 sendmoney_sidebar">
+
+{% include "profile.html" %}
+
+{% include "receiptform.html" %}
+        
+</div>
+
+ </div>
+
+
+{% endblock %}

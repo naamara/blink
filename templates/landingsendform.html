@@ -1,0 +1,101 @@
+{% load custom_filters %}
+{% load humanize %}
+
+{% load validation_tags %}
+
+<div class="rate_calculator_wrapper">
+<form action="{% url 'add_landing_form_data' %}" id="landingsendform" method="POST">
+{% csrf_token %}
+<div class="rate_calculator">
+<div class="rate_calculator_head">
+<span class="heading">Send money to mobile in minutes</span>
+</div>
+
+<div class="rate_calculator_body">
+
+ <div class="clearfix">
+            <label for="xlInput">You Send</label>
+            <div class="input">
+
+            <div class="currency_input">
+            <input id="send_currency"   name="send_currency" size="30" type="text" value="100" OnKeyUp=updateLandigRates(this)>
+            </div>
+
+            <div class="currency_select">
+           <select name="currency_select_ext">
+           <option>USD</option>
+           </select>
+            </div>
+
+            </div>
+          </div>
+
+
+        <img class="arrow-down" src="{{STATIC_URL}}images/arrow_transfer.png" alt="transfer">
+
+
+<div class="clearfix" style="margin-top:5px;">
+            <label for="xlInput">To</label>
+            <div class="input">
+
+            <div class="phone_select">
+           <select name="receive_phone_ext">
+            <option>{{rate.country.dailing_code}}</option>
+           </select>
+            </div>
+
+            <div class="phone_input">
+              <input id="receive_phone" name="receive_phone" size="30" type="text" rel="tooltip" title="A phone number without the leading 0 eg. 0782692215 becomes 782692215">
+            </div>
+
+
+
+            </div>
+          </div>
+
+
+<div class="landing_rates">
+<section>
+<div class="span3">Our charge</div>:
+<div class="span4" id="landing_our_charge"></div>
+</section>
+<hr />
+<section>
+<div class="span3">Exchange Rate</div>:
+<div class="span4" id="landing_transfer_fees">1 USD = {{rate.country.currency}} {{rate.to_usd}} </div>
+</section>
+<hr />
+<section>
+<div class="span3">Total to Recipient</div>:
+<div class="span4" id="landing_recipient_total">{{ 100|total_to_recipient_formated:rate }} </div>
+</section>
+<input id="receive_currency" name="receive_currency" size="30" type="hidden">
+<input id="landing_send_form" name="landing_send_form" size="30" type="hidden">
+</div>
+
+ <div class="rate_calculator_footer">
+   <input type="submit" id="rate_call_to_action" class="btn btn-flat btn-orange" value="Send Now">
+ </div>
+
+</div>
+
+</form>
+</div>
+
+<script type='text/javascript' src='{{STATIC_URL}}js/landing.js'></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.form-validation.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#landingsendform").validate({
+
+    rules:{% validation_rules form %} ,
+    messages: {% validation_messages form %} ,
+
+    });
+
+var remit = new RemitLanding({{rate | serialize_rate | safe}});
+
+});
+
+</script>

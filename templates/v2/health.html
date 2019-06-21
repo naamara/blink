@@ -1,0 +1,67 @@
+
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+<div class="photo">
+<a href="#"><img src="{{STATIC_URL}}images/slider_pic1.jpg" alt="Rutaraka Bismark"></a></div>
+<div id="buttons" class="stylelinks" >
+                 
+                        <a href="{% url 'healthcare' %}"><input type="button" value=" Uganda's Health Care System"> </a>
+                        <a href="{% url 'policiesandissues' %}"><input type="button" value="Policies and Issues"> </a>
+                         <a href="{% url 'diseasesandconditions' %}"><input type="button" value="Diseases and Conditions"> </a>
+                         <a href="{% url 'costfinancing' %}"><input type="button" value="Cost and Financing"> </a>
+                         <a href="{% url 'medicaldirectory' %}"> <input type="button" value="Medical Directory"> </a>
+                         <a href="{% url 'Hiv_Aids' %}"> <input type="button" value="HIV/AIDS Care "> </a>
+
+                    </div>
+
+
+<div class="visionhe"> B-LInk’s healthcare initiatives aims to increase demand for and improve accessibility, availability and affordability of essential healthcare services. B-Link works to promote newborn care, reduce malnutrition in children, decrease infant and maternal mortality rates, and protect those affected by or susceptible to HIV/AIDS and TB, especially women and girls. B-Link works with the most vulnerable communities, providing support to address the needs of affected families.<p ><input type="button" value="Donate Now" class="stylelinks"></p></div>
+
+<div class="contented"><h2>Health Care</h2>
+
+<p> <b>It is not sufficient to protect or improve the average health of the population, if - at the same time - inequality worsens or remains high because the gain accrues disproportionately to those already enjoying better health (WHO). </b></p>
+
+<p>According to <a href="www.who.com"><u>World Health Organization (WHO)</u></a>, The health system has the responsibility to try to reduce inequalities by prioritizing actions to improve the health of the worse-off, wherever these inequalities are caused by conditions amenable to intervention. We know that a big number of Ugandans will go their entire life minus seeing a health professional and this is coupled with very low health literacy levels that exist in the country. The doctor to patient ratio in Uganda was estimated at 1:24,725 in 2013, with a nurse to patient ratio of 1: 11,000. The World Health Organization (WHO) recommends one physician per 1,000 people. Each year, millions of people die of preventable deaths. According to estimates made by WHO, about 55 million people died worldwide in 2011, two thirds of this group from non-communicable diseases, including <a href="www.who.com"><u>cancer,</u></a> <a href="www.who.com"><u>diabetes</u></a>, and chronic <a href="www.who.com"><u>cardiovascular</u></a> and <a href="www.who.com"><u>lung diseases.</u></a> Preventive healthcare is especially important given the worldwide rise in prevalence of chronic diseases and deaths from these diseases. Health disparities are inequitable and are directly related to the historical and current unequal distribution of social, political, economic and environmental resources. Health disparities result from multiple factors including inadequate access to health care, educational inequalities, poverty, environmental threats and individual behavioral factors. </p>
+<p>Through availability of health information/education to every citizen irrespective of their geographical location and expansion of the telemedicine strategies, we will help in the reduction of the health disparities that exist in terms of health care and health information accessibility. We shall use mobile Clinics to provide preventive healthcare and health education in the form of educational videos, brochures, and presentations by medical professionals. We will provide information on diseases such as breast cancer, cervical cancer, diabetes, hypertension, cardiac disease (and other relevant diseases) to help our clients understand how to prevent and treat such conditions. </p> 
+Workshops will focus on teaching patients about how to live healthier lives, demonstrating important screening tests, answering questions, and trying to instill a culture of preventative care. Some common disease screenings will include checking for hypertension (high blood pressure), hyperglycemia (high blood sugar, a risk factor for diabetes mellitus), hypercholesterolemia (high blood cholesterol), screening for colon cancer, depression, HIV and other common types of sexually transmitted disease such as chlamydia, syphilis, and gonorrhea, mammography (to screen for breast cancer), colorectal cancer screening, a pap test (to check for cervical cancer), and others. Ensuring that the great majority of Ugandans who are currently not infected with HIV remain uninfected is bedrock of government’s comprehensive approach to halt the spread of HIV and the impact of AIDS. The messages of prevention and of changing lifestyles and behavior are therefore the critically important starting point in managing the spread of HIV and the impact of AIDS. Important in supporting these efforts in the broader context are the social programs of government and wider society that aim to reduce poverty through improving nutrition, job creation and social support, and to improve education and to bring about moral renewal.
+  </p>
+  </div>
+
+
+ 
+  <h2>Doctor's Message</h2>
+<div>
+{% for health_info in health_info %}
+  <div class="panel panel-default" style="width:600px;">
+    <div class="panel-heading">{{health_info.sub}}
+</div>
+    <div class="panel-body">{{health_info.msg}}</div>
+  </div>
+
+
+{% endfor %}
+
+
+
+
+
+      
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/accounting.min.js"></script>
+<script type="text/javascript">
+    
+$(function(){
+
+
+var remit = new Remit({{landingformdata | safe}});
+remit.LandingForm();
+
+});
+
+</script>
+{% endblock %}

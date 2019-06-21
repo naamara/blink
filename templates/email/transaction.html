@@ -1,0 +1,15 @@
+{% extends "email/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+{% if mobile_money_sent %}
+
+<p> Dear {{data.sender_names}} <br /><p>
+<p> Your transfer of {{data.display_amount_received }} was successfully delivered to {{data.recipient_number}} </p>
+<p> Login to <a href='{{BASE_URL}}'>{{APP_NAME}}</a> to see your transaction history. </p>
+
+{% endif %}
+
+{% endblock %}

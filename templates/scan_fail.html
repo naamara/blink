@@ -1,0 +1,17 @@
+{% extends "basic_base.html" %}
+
+{% block content %}
+
+<div class="clearfix">
+
+<div class = "jumbotron" id="id_message">
+  <p>
+    We encountered problems verifying your identification document. Please try again.
+  </p>
+</div>
+<script>
+  $('#scan_proceed').attr('value','Retry');
+</script>
+</div>
+
+{% endblock %}

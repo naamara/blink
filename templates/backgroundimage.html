@@ -1,0 +1,67 @@
+{% load custom_filters %}
+<script src="{{STATIC_URL}}js/jquery.backgroundSize.js"></script>
+
+<style type="text/css">
+
+.background_image{
+background-image: url({{STATIC_URL}}images/background/{% landing_background_image %});
+}
+  @media (max-width: 767px) {
+.background_image {
+
+}
+}
+</style>
+
+<div class="home_content glass background_image">
+<div class="landing_inner_wrapper container" >
+
+<script type="text/javascript">
+//$(function() {
+//$(".background_image").css({backgroundSize: "cover"});
+//});
+
+</script>
+
+<div class="container inner_pages">
+
+
+{% if sendmoneyform %}
+
+{% include "landingsendform.html" %}
+
+
+{% else %}
+
+
+
+{% if PAGE_NAME == 'signup' %}
+{% include "signupform.html" %}
+{% endif %}
+
+
+{% if PAGE_NAME == 'login' %}
+{% include "signinform.html" %}
+{% endif %}
+
+
+{% if PAGE_NAME == 'recoverpassword' %}
+{% include "recoverpasswordform.html" %}
+
+{% else %}
+
+{% if PAGE_NAME == 'recoverpasswordconfirm' %}
+{% include "recoverpasswordform.html" %}
+{% endif %}
+
+{% endif %}
+
+
+{% endif %}
+
+
+
+</div>
+
+</div>
+</div>

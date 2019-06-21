@@ -1,0 +1,12 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+
+{% if admin_user_verified %}
+
+<p> Dear {{user_names}} <br /><p>
+<p> Thank you for verifying your identity. </p>
+<p> You have now been added to our verified users and you can do unlimited transactions on <a href='{{BASE_URL}}'>{{DOMAIN_NAME}}</a>. </p>
+{% endif %}
+
+{% endblock %}

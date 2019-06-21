@@ -1,0 +1,10 @@
+#hdtb.notl * {
+outline-width: 0;
+outline: none;
+}
+
+.home_content {
+margin-top: 0px !important;
+display: block;
+overflow: hidden;
+}

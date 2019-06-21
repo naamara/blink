@@ -1,0 +1,131 @@
+{% extends "v2_base.html" %}
+
+
+{% block wrapperid %}login_form_wrapper{%endblock%}
+
+{% block content %}
+<div class="container"><!--start container-->
+        	<div class="center_content">
+                <div class="content">
+                	<h2>We are <strong>B-Link</strong></h2>
+                    <div id="content_two_box">
+                        <div class="content_right">
+                        	<div class="video">
+                        		 <div id="player" class="about_us_video" style="width:100%"> </div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '300',
+          width: '640',
+          videoId: 'yVwlyDqPo-w'
+        });
+      }
+    </script>
+
+                        	</div>
+                        </div>
+                        <div class="content_left">
+                            <p>
+                              
+<p>
+Welcome to the website of Basic Learning and Information Network.</p>
+<p><strong>Vision and mission</strong></p>
+
+<p>Championing a healthy nation with our people - To live well, live long & with peace of mind.</p>
+
+<p>We are an innovative and people-centred organization, committed to medical excellence, promoting good health and reducing illness, and to ensuring that Singaporeans have access to good and affordable healthcare that is appropriate to their needs. More.. </p>
+
+<p><strong>Delivery and philosophy</strong></p>
+
+<p>Through BLINK, the Government manages the public healthcare system to ensure that good and affordable basic medical services are available to all ugandans. We achieve this through providing subsidised medical services while promoting individual responsibility for the costs of healthcare services. Our population is thus encouraged to adopt a healthy lifestyle, taking responsibility for one’s own health. Safety nets are provided however, to ensure that no Singaporean is denied access into the healthcare system or turned away by public hospitals because of lack of money.</p>
+
+<p><strong>Leadership and management</strong></p>
+
+<p>Through the leadership of Minister for Health and the Permanent Secretary (Health), the work of the Ministry is implemented through its three main groups: Policy and Corporate Group, Operational Groups and the Professional Cluster. BLINK also licenses and regulates all healthcare establishments such as hospitals, nursing homes, clinical laboratories, medical and dental clinics. More.. </p>
+
+<p>The public healthcare delivery system is geographically structured as vertically integrated delivery networks, Alexandra Health System (AHS), Eastern Health Alliance (EH Alliance), Jurong Health Services (JHS), National University Health System (NUHS), National Healthcare Group (NHG) and Singapore Health Services (SHS).  </p>
+
+ 
+ 
+
+Last updated on 16 Jan 2017
+
+
+
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container line_bg"><!--start container-->
+            <div class="center_content">
+                <div class="content">
+                	<div id="feature_area">
+                    	<h2>Our B-Link <strong>Team</strong></h2>
+                    	<!--
+                        <p>Aenean tortor elit, consequat nec odio hendrerit condimentum efficitur quam. Donec accumsan, Justo congue tristique
+consenquat lorem orci<br> sollicitudin odio, sit amet finlbus libero sem ac metus.</p>
+-->
+                        <div id="feature_box">
+                        	
+                            <div class="feature_column">
+                                <div class="feature_photo"><a href="#"><img src="{{STATIC_URL}}images/bridge.png" alt="Niwaha Anxious"></a></div>
+                                <div class="feature_content">
+                                    <h3><a href="http://www.cmugume.com/">Dr. Anxious Niwaha</a></h3>
+                                    <span>Director and Founder</span>
+                                </div>
+                            </div>
+                            <div class="feature_column">
+                            	<div class="feature_photo"><a href="#"><img src="{{STATIC_URL}}images/bridge.png" alt="Hannington Naamara"></a></div>
+                                <div class="feature_content">
+                                	<h3><a href="http://ug.linkedin.com/in/stoneatwine">Hannington Naamara</a></h3>
+                                    <span>Website Administrator</span>
+                                </div>
+                            </div>
+                            <div class="feature_column">
+                            	<div class="feature_photo"><a href="#"><img src="{{STATIC_URL}}images/bridge.png" alt="shaban mandela"></a></div>
+                                <div class="feature_content">
+                                	<h3><a href="http://tmsruge.com/">Shaban Mandela</a></h3>
+                                    <span>Developer</span>
+                                </div>
+                            </div>
+                             
+				 
+                            <div class="feature_column">
+                            	<div class="feature_photo"><a href="#"><img src="{{STATIC_URL}}images/bridge.png" alt="Rutaraka Bismark"></a></div>
+                                <div class="feature_content">
+                                	<h3><a href="http://madradavid.com/">Rutaraka Bismark</a></h3>
+                                    <span>Company Lawyer</span>
+                                </div>
+                            </div>
+                            
+                            <div class="feature_column">
+                            	<div class="feature_photo"><a href="#"><img src="{{STATIC_URL}}images/bridge.png" alt="Muwa Isaac"></a></div>
+                                <div class="feature_content">
+                                	<h3><a href="https://about.me/muwaisaac/">Muhumuza Joshua</a></h3>
+                                    <span>Company Branding</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

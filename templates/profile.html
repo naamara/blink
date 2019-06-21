@@ -1,0 +1,46 @@
+{% load custom_filters %}
+{% load static %}
+<div class="col-sm-12 profile-wrapper">
+
+<!--
+<div class="col-sm-2 pull-left wallet-balance">
+<a href="{% url 'wallet' %}">
+${{wallet_balance}}
+	</a>
+	</div>
+-->
+
+<div class="col-sm-8 pull-right">
+<div class="avatar">
+<div class="profile-head" style="overflow: hidden">
+			<a href="{% url 'account'%}">
+			<img src="{{user_profile.avatar}}" class="avatar img-radius pull-left profile-image">
+			</a>
+			<div style="overflow:hidden">
+				<a href="{% url 'account'%}">
+				<h2 class="profile-name">{{user_profile.get_names}}</h2>
+				</a>
+				{% if user_profile.id_verified %}	
+
+				<div class="profile-brief bold">
+				
+				<img src='{% static "images/verified_icon.png" %}'> Your account is Verified
+				
+				</div>
+				{%else%}
+				<div class="profile-brief bold">
+				<span>
+				Our agents are verifying the details you provided. <br />
+				You will be able to start sending money once your account has been verified	
+				</span>
+				<img src='{% static "images/unverified.png" %}'> Your account is not verified
+				</div>
+
+				{% endif %}
+			</div>
+		</div>
+</div>
+	</div>
+
+
+	</div>

@@ -1,0 +1,28 @@
+.home_content_wrapper {
+margin-top: 8px !important;
+padding: 0 30px 0 30px;
+}
+
+
+body{
+	padding-top: 0 !important;
+	background: #fff;
+}
+
+.f04 {
+margin-right: auto;
+margin-left: auto;
+width: 50%;
+display: block;
+overflow: hidden;
+min-height: 500px;
+}
+
+
+	.teddy_navbar {
+		display: none !important;
+	}
+
+.pull-left a{
+		display: none !important;
+	}

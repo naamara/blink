@@ -1,0 +1,260 @@
+{% load custom_filters %}
+
+
+      {% if account_verification_in_progress %}
+      <div class="passport_upload_form" style="display:none">
+      {%else%}
+      <div class="passport_upload_form">
+      {%endif%}
+
+
+      <div class="modal-backdrop fade in"></div>
+      <div id="passport_upload_form" class="passport_upload_form_wrapper modal hide fade in" style="display: block; ">
+     <form id="passport_form" action='{% url "uploadpassport_jumio" %}' method="POST" enctype="multipart/form-data">
+            <div class="modal-header">
+
+
+          {% if user_profile.id_scanned%}
+          <a href="#" class="close" onclick="$('.passport_upload_form').toggle();">×</a>
+          {% endif %}
+
+
+
+        <h3 style="color:green !important;">
+        ID Verification
+        </h3>
+
+
+        </div>
+
+
+
+<div class="modal-body add_passport_form">
+
+
+<!--
+<h5>Upload a Copy of your I.D showing the following details <br />
+ <small>You can also adjust the details below to reflect what is on your ID </small>  </h5>
+ -->
+
+
+<!--
+<div class='blocked_passport_details' >
+
+
+        <div class="clearfix"><label>Firstname : </label><input class="large" id="firstname" name="firstname" size="16" type="text" value="{{user_profile.firstname}}" placeholder="First Name"> </div>
+
+        <div class="clearfix"><label>Lastname : </label><input class="large" id="signup_lname" name="lastname" size="16" type="text" value="{{user_profile.lastname}}"  placeholder="Last Name"> </div>
+        <div class="clearfix"><label>DOB :</label>
+
+
+<select  class="mini" name="dob_day">
+<option value="{{user_profile.dob | date:'j'}}">{{user_profile.dob| date:'j'}}</option>
+{% for i in "1,32"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+<select  class="mini" name="dob_month">
+<option value="{{user_profile.dob | date:'n'}}">{{user_profile.dob| date:'n'}}</option>
+{% for i in "1,13"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+<select  class="mini" name="dob_year">
+<option value="{{user_profile.dob | date:'Y'}}">{{user_profile.dob| date:'Y'}}</option>
+{% for i in "1920,2000"|get_range %}
+<option value="{{i}}">{{ i }}</option>
+{% endfor %}
+</select>
+
+        </div>
+
+
+
+        <div class="clearfix"><label>I.D Number :</label><input class="large" id="signup_passportno" value="{{user_profile.id_number}}" name="id_number" size="16" type="text" placeholder="ID Number">
+</div>
+</div>
+-->
+
+
+
+
+
+
+{% if user_profile.id_scanned %}
+<h4>Your Account is being verified<br /></h4>
+<!--
+We shall send you an email and / sms once this is done
+-->
+Once verification is done, you will be able to send money.
+
+{% elif user_profile.verification_attempts > 0 and user_profile.verification_status == "DENIED_FRAUD"%}
+<p>
+  Your ID verification was unsuccessful. Our team is looking into it.
+</p>
+<p>
+  <a href='{% url "contact_us" %}'>Contact us</a> for more information.
+</p>
+</div>
+{% else %}
+
+
+<!--
+<div class="clearfix">
+<b>Your account will only be verified if you upload a copy of a government issued I.D.</b>
+</div>
+-->
+
+
+
+<!--
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Identification Document</span>
+ <input class="passport_image_upload" id="passport" name="passport" size="8" type="file" multiple accept='image/*'>
+</div>
+</div>
+-->
+
+
+
+
+
+
+
+            <div style="width:80%;margin-left:9%;">
+              {% if user_profile.verification_attempts > 0 and user_profile.verificationStatus != "APPROVED_VERIFIED" %}
+              <br/>
+              <p>
+                Unfortunately, your ID verification was unsuccessful. Please try again using a valid ID
+              </p>
+              <br/>
+              {%endif%}
+              {% if user_profile.verification_status == "DENIED_UNSUPPORTED_ID_TYPE" %}
+              The ID type you used is not supported.
+              Supported ID types include a Drivers Linces or Passport. Try again using either of those.
+
+              {% elif user_profile.verification_status == "ERROR_NOT_READABLE_ID" %}
+              The ID used was not readable. Please try again.
+
+              {% elif user_profile.verification_status == "NO_ID_UPLOADED" %}
+              Your ID was not uploaded. Please try again.
+              </p>
+              <p>
+              Feel free to <a href='{% url "contact_us" %}'>Contact us</a> for more information.
+              </p>
+              <br/>
+
+              {%endif%}
+            </div>
+
+            {% if user_profile.verification_attempts == 0 %}
+            <script>
+            $(function(){
+              /*<![CDATA[*/
+              JumioClient.setVars({
+              authorizationToken: "{{ response.auth_token }}"
+              }).initVerify("JUMIOIFRAME");
+                /*]]>*/
+            });
+            </script>
+
+            {% elif user_profile.verification_attempts > 0 %}
+              <script>
+              $(function(){
+                /*<![CDATA[*/
+                JumioClient.setVars({
+                authorizationToken: "{{ jumio_auth_token }}"
+                }).initVerify("JUMIOIFRAME");
+                  /*]]>*/
+              });
+              </script>
+
+            {%endif%}
+
+            <div class="clearfix">
+
+              <div id="JUMIOIFRAME" class="jumio">
+
+                <img src="{{STATIC_URL}}images/loader2.gif"
+                />
+
+              </div>
+            </div>
+
+
+</div>
+<div class="modal-footer">
+
+  <input type="submit" class="btn primary" name="check_passport" id="scan_proceed" value="{% if user_profile.id_scanned%}Update Your Details{%elif user_profile.verification_attempts > 0%}Retry{%else%}Proceed{%endif%}">
+
+            </div>
+{% csrf_token %}
+
+{% endif %}
+
+
+
+
+
+          </form>
+
+          </div>
+          </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#passport_form").validate({
+    rules:{
+
+          /*
+          passport:
+            {
+            required:{% if user_profile.id_pic%}false{%else%}false{%endif%}
+            ,
+            accept: "png|jpeg|jpg"
+          },
+          firstname:
+            {
+            required:false,
+            minlength:2,
+            },
+          lastname:
+            {
+            required:false,
+            minlength:2,
+            },
+          id_number:
+            {
+            required:false,
+            minlength:2,
+            },
+          */
+          verified:
+          {
+            required:{% if user_profile.id_verified%}false{%else%}true{%endif%}
+          }
+
+    		},
+    		messages: {
+    			passport: {
+    			required: "Please Provide the a valid image"
+      	},
+    },
+    });
+
+    if($('#scan_proceed').attr("value")=="Retry"){
+      $('#scan_proceed').click(function(){
+        location.reload(true);
+      });
+    }
+});
+
+
+
+</script>
+
+<script type="text/javascript" src="https://netverify.com/widget/jumio-
+verify/2.0/iframe-script.js"> </script>

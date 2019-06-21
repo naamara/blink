@@ -1,0 +1,83 @@
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+<style>
+.list a:link, .list a:visited {
+    background-color: #333;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+.list a:hover, .list a:active {
+    background-color: #333;
+}
+
+.table a
+{
+    display:block;
+    text-decoration:none;
+     color: rgb(0,0,255);
+ }
+
+</style>
+
+
+
+
+<div id="conte">
+ <div id="center">
+<div class="report">HIV/AIDS CARE DIRECTORY</div>
+<div class="report-content">In Uganda, community structures include Village health teams (VHTs), networks of People Living with HIV (PLHIV), faith-based organizations, Civil Society Organizations (CSOs). Each of these structures independently offers unique value in connecting people to health services. To ensure effective continuum of response to HIV/AIDS, strong links must exist between service providers and communities to increase the ease and consistence with which people access prevention, care, treatment and support services. There are many community-based services in most places, but often groups don’t know about each other or make formal plans to work together. Community health workers need to find out what services are available and help encourage cooperation between service providers. They should use the existing service directory of CBOs and NGOs in the catchment area to refer clients accordingly.
+The HIV/AIDS care directory will enable CHWs assess the patient’s needs for community-based services and provide referrals appropriately. The directory will create a networked health service providers web at the community and facility level, able to collaborate more effectively and consistently provide HIV/AIDS care, support and treatment to individuals and families. </div>
+<div class="report">Latest Publications</div>
+<p>The TASO</p>
+<p>JANUARY 2017 VOL. 43 NO. 1</p>
+<p>Publications12 Jan 2017</p>
+<p>Epidemiological News Bulletin</p>
+<p>Publications12 Jan 2017</p>
+
+<p>Publications2 Dec 2016</p>
+<p>ElderShield Fast Facts Brochure (2016)</p>
+<p>Publications16 Nov 2016</p>
+<p>Home and Centre-based Care Service Requirements</p>
+
+<p>Publications14 Nov 2016
+<p>Communicable Diseases Surveillance in Singapore 2015
+<p>Publications14 Nov 2016
+
+<p>Publications28 Oct 2016</p>
+<p>OCTOBER 2016 VOL. 42 NO. 4</p>
+<p>Publications20 Jul 2016</p>
+<p>JULY 2016 VOL.42 NO. 3</p>
+<p>Publications14 Jul 2016</p>
+<p>Pioneer Generation Booklet (2016)</p>
+
+
+</div>
+ <div id="lef">
+         <div  id="list-group"  style="height:600px; overflow:auto">
+         <ul class="table">
+        <li class="special">Search by Specialist</li>        
+        <li class="list-group-item"><a  href="#">Ancuputure</a><li>
+        <li class="list-group-item"><a  href="#">Andrology</a><li>
+        <li class="list-group-item"><a  href="#">BioChemistry</a><li>
+        <li class="list-group-item"><a  href="#">Anethesiology</a><li>
+        <li class="list-group-item"><a  href="#">Cardiac Surgery</a><li>
+        <li class="list-group-item"><a  href="#">Oral Health Therapists</a><li>
+        <li class="list-group-item"><a  href="#">TCM Practitioners</a><li>
+        <li class="list-group-item"><a  href="#">ALlied Health Professionals</a><li>
+        </ul>
+           
+        </div>
+        </div>
+    </div>
+    </div>
+{% endblock%}

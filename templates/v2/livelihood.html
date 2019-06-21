@@ -1,0 +1,28 @@
+
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+<div class="visionhe"> B-Link focuses on improving access to and control of the marginalised communities over natural resources, enhancing productive returns on resources and financial inclusion. B-Link works towards creating an enabling environment, which supports the needs and aspirations of the people. B-Link emphasizes on building capability, developing multiple assets, developing value chains and engaging with all stakeholders to promote secure and resilient livelohood opportunities to the marginalized popualtion, especially women.<p><input type="button" value="Donate Now"></p></div>
+
+<div class="contented"><h2>Livelihood Programmes</h2>
+
+<p> B-Link believes in helping individuals live a life of dignity. To achieve this, our livelihood programmes focuses on generating sustainable livelihoods. This is done through capacity building, fostering community links and promoting small businesses. B-Link India puts special focus on entrepreneurial ventures, which are owned by women. B-Link through its livelihood programmes promotes microfinance, Self Help Groups, capacity building and small businesses. It also fosters linkages between community collectives and financial institutions. B-Link also focuses on improving the literacy, numeracy and critical thinking skills to promote sustainable livelihoods.   </p></div>
+      
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/accounting.min.js"></script>
+<script type="text/javascript">
+    
+$(function(){
+
+
+var remit = new Remit({{landingformdata | safe}});
+remit.LandingForm();
+
+});
+
+</script>
+{% endblock %}

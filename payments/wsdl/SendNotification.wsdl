@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 1.0: Initial Version -->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ib_head_xsd="http://soapheader.pe.sdp.huawei.com" xmlns:tns="http://xmlns.esf.mtn.com/wsdl/SendNotification" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://xmlns.esf.mtn.com/xsd/SendNotification" xmlns:ns1="http://xmlns.esf.mtn.com/xsd/Common" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="SendNotification" targetNamespace="http://xmlns.esf.mtn.com/wsdl/SendNotification">
+	<types>
+		<xsd:schema targetNamespace="http://xmlns.esf.mtn.com/wsdl/SendNotification">
+			<xsd:import namespace="http://xmlns.esf.mtn.com/xsd/SendNotification" schemaLocation="SendNotification.xsd"/>
+			<xsd:element name="SendNotification" type="ns:processType"/>
+			<xsd:element name="SendNotificationResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="result" type="ns:Result"/>
+						<xsd:element name="extensionInfo" type="ns:NamedParameterList" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+		<schema targetNamespace="http://soapheader.pe.sdp.huawei.com" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+			<xsd:element name="IBSoapHeader" type="ib_head_xsd:IBSoapHeader"/>
+			<complexType name="IBSoapHeader">
+				<sequence>
+					<xsd:element name="version" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sourceDeviceType" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="sourceDeviceCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="destDeviceType" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="destDeviceCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="authenticatorSource" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="timeStamp" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="traceUniqueID" type="xsd:string" minOccurs="0"/>
+				</sequence>
+			</complexType>		
+		</schema>
+		
+	</types>
+	<message name="SendNotification">
+		<part name="SendNotification" element="tns:SendNotification"/>
+	</message>
+	<message name="SendNotificationResponse">
+		<part name="SendNotificationResponse" element="tns:SendNotificationResponse"/>
+	</message>
+	<wsdl:message name="IBSoapHeader">
+		<wsdl:part name="IBSoapHeader" element="ib_head_xsd:IBSoapHeader"/>
+	</wsdl:message>
+	
+	<portType name="SendNotificationPortType">
+		<operation name="SendNotification">
+			<input name="SendNotification" message="tns:SendNotification"/>
+			<output name="SendNotificationResponse" message="tns:SendNotificationResponse"/>
+		</operation>
+	</portType>
+	<binding name="SendNotificationBinding" type="tns:SendNotificationPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="SendNotification">
+			<soap:operation soapAction=""/>
+			<input name="SendNotification">
+				<soap:body use="literal"/>
+				<soap:header message="tns:IBSoapHeader" part="IBSoapHeader" use="literal"/>				
+			</input>
+			<output name="SendNotificationResponse">
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="SendNotificationService">
+		<port name="SendNotificationPortType" binding="tns:SendNotificationBinding">
+			<soap:address location="http://localhost:8080/SendNotification"/>
+		</port>
+	</service>
+</definitions>

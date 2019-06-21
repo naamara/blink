@@ -1,0 +1,89 @@
+body {
+font-family: helvetica, arial, verdana, sans-serif;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: #EDF3FE url(../images/checked.png) repeat -15px -25px !important;
+z-index: 1;
+font-size: 13px;
+color: #222;
+}
+
+#header_out {
+display:none !important;
+}
+
+#call_to_action_sub {
+margin-left: 15px;
+padding-top: 10px;
+padding-bottom: 10px;
+float: left;
+font-size: 17px;
+font-weight: bold;
+text-align: center;
+width: 90%;
+}
+
+#call_to_action_at {
+margin-left: 15px;
+float: left;
+font-size: 17px;
+font-weight: bold;
+text-align: center;
+width: 10%;
+height:30px;
+}
+
+#call_to_action_txt {
+padding-top: 10px;
+padding-bottom: 10px;
+float: left;
+font-size: 17px;
+font-weight: bold;
+text-align: center;
+width: 75%;
+}
+
+.logo a
+{
+float: left;
+display: block;
+padding: 8px 20px 12px;
+margin-left: -20px;
+color: white !important;
+font-size:25px;
+font-weight: 200;
+line-height: 1;
+}
+
+.error_msg
+{
+width:auto;
+display:block;
+overflow:hidden;
+}
+
+.home_content_wrapper
+{
+margin-top:0  !important;
+padding:0 !important;
+}
+
+.home_content_form
+{
+margin-top:0px;
+width:40% !important;
+}
+
+.home_content_features
+{
+float:left;
+width:60% !important;
+}
+
+#home_container {
+width:980px !important;
+}
+

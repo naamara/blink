@@ -1,0 +1,15 @@
+{% extends "email/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+
+{% if code == 'user_verified' %}
+<p> Dear {{data.user.display_name}} <br /><p>
+<p> Thank you for verifying your identity. </p>
+<p> You have now been added to our verified users and you can do unlimited transactions on <a href='{{BASE_URL}}'>{{DOMAIN_NAME}}</a>. </p>
+{% endif %}
+
+
+{% endblock %}

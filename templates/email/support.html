@@ -1,0 +1,15 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+
+
+<p> Dear {{user_names}} <br /><p>
+<p> {{msg}}</p>
+
+
+<p>
+Regards
+{{support_staff_names}}
+</p>
+
+{% endblock %}

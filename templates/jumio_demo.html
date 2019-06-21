@@ -1,0 +1,25 @@
+{% extends "faq_base.html" %}
+
+{% block content %}
+<script type="text/javascript" src="https://netverify.com/widget/jumio-
+verify/2.0/iframe-script.js"> </script>
+<h3>Jumio Demo</h3>
+<br/>
+<!--{{ response.auth_token }}-->
+
+<script>
+$(function(){
+  console.log('jquery loaded');
+
+  /*<![CDATA[*/
+  JumioClient.setVars({
+  authorizationToken: "{{ response.auth_token }}"
+  }).initVerify("JUMIOIFRAME");
+    /*]]>*/
+
+});
+</script>
+
+
+<div id="JUMIOIFRAME"></div>
+{% endblock %}

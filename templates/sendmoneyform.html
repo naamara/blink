@@ -1,0 +1,255 @@
+{% load custom_filters %}
+
+<div id="introhome_container" class="send_money_header">
+
+{% if user_profile.send_country_code == '256' %}
+<div>
+  <ul class="nav nav-tabs">
+  <li class="active"><a href="#send_money" data-toggle="pill">Send Money</a></li>
+  <li><a href="{% url 'paybill' %}" >Pay Bill</a></li>
+</ul>
+</div>
+<h4>Send Money To Uganda</h4>  <img src="{{STATIC_URL}}images/landing/uganda_small.png" alt="Uganda">
+
+{% elif user_profile.send_country_code == '250' %}
+<h4>Send Money To Rwanda</h4>  <img src="{{STATIC_URL}}images/landing/rwanda_small.png" alt="Rwanda">
+
+{% else %}
+
+<h4>Send Money To Kenya</h4> <img src="{{STATIC_URL}}images/landing/kenya_small.png" alt="Kenya">
+{%endif%}
+
+</div>
+<br />
+
+
+
+<div class="send_money_form_wrapper">
+
+
+{% if user_profile.send_country_code == '250' %}
+
+<div class="alert alert-warning notification" style="margin-top: 28px;">
+Money transfers to Rwanda are pending regulatory clearance.<br />
+You will receive an email and sms once the issue has been resolved. 
+</div>
+
+
+
+{% else %}
+
+
+<form id="send_money_form" class="form-stacked" action='{% url "home" %}' method="POST">
+{% csrf_token %}
+
+<div id="phonenumber_div" class="clearfix">
+  <label for="xlInput">The phone number receiving the funds <br>
+<small style="
+    font-size: 80%;
+    font-weight: bold;
+">A phone number without the country code eg. <i>0782692215</i> becomes <i>2692215</i></small>
+</label>
+<input type="hidden" id="phonenumber_ctry_ext" name="phonenumber_ctry_ext" value="{{user_profile.send_country_code}}">
+<div class="input-group">
+            <div class="input-group-btn">
+{% if phonebook %}
+
+
+<select id="phonebook_number" name="phonebook_number" class="span2">
+<option value="0">Pick a contact from your phonebook</option>
+
+
+{% for p in phonebook %}
+<option data-number="{{p.number}}" data-ext="{{p.ext}}" data-lname="{{p.lastname}}" data-fname="{{p.firstname}}" value="{{p.phonenumber}}">{{p.firstname}} {{p.lastname}}</option>
+{% endfor %}
+</select>
+
+{% endif %}
+
+</div>
+
+          </div>
+
+
+<div class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+
+<div class="input-prepend">
+<span class="add-on">{{user_profile.send_country_code}}</span>
+<input type="hidden" value="{{user_profile.send_country_code}}" id="phonenumber_ctry" name="phonenumber_ctry">
+</div>
+
+<select class="right_select" id="phonenumber_ext" name="phonenumber_ext">
+{% if extradata.ext%}<option value="{{extradata.ext}}">0{{extradata.ext}}</option>{%endif%}
+
+{% for phonextension,charge in phonextensions.items %}
+
+<option value="{{phonextension}}">0{{phonextension}}</option>
+
+{%endfor%}
+
+</select>
+</div>
+<input {% if extradata.number%}value="{{extradata.number}}"{%endif%} type="text" placeholder="phonenumber" size="7" maxlength="7" name="receiver_number" id="receiver_number" value="" class="form-control">
+
+          </div>
+</div>
+
+
+
+
+</div>
+
+
+<div id="verify_phonenumber_div" class="clearfix">
+<label for="xlInput">Please confirm that the phone number you are sending to is correct.<br>
+<small>*We are not responsible for funds remitted to a wrong number.</small></label>
+
+
+<div class="input-group">
+<div class="input-group-btn">
+<div class="input-prepend">
+<span class="add-on">{{user_profile.send_country_code}}</span>
+<input type="hidden" value="{{user_profile.send_country_code}}" id="phonenumber_ctry" name="phonenumber_ctry">
+</div>
+
+<select class="right_select"  id="phonenumber_ext_verify" name="phonenumber_ext_verify">
+{% if extradata.ext%}<option value="{{extradata.ext}}">0{{extradata.ext}}</option>{%endif%}
+{% for phonextension,charge in phonextensions.items %}
+<option value="{{phonextension}}">0{{phonextension}}</option>
+{%endfor%}
+</select>
+</div>
+<input type="text" {% if extradata.number%}value="{{extradata.number}}"{%endif%} placeholder="phonenumber" size="7" maxlength="7" name="verify_receiver_number" id="verify_receiver_number" class="form-control">
+          </div>
+
+</div>
+
+
+<div class="name_fields">
+<label for="xlInput">The names of the person receiving the funds </label>
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">First Name</span>
+<input type="text" placeholder="First Name" size="16" name="receiver_fname" id="receiver_fname" class="span3">
+</div>
+</div>
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Last Name</span>
+<input type="text" placeholder="Last Name" size="16" name="receiver_lname" id="receiver_lname" class="span3">
+</div>
+</div>
+
+
+</div>
+
+
+<div style="display:none;float:left;width:100%;overflow:hidden;margin-top:5px;margin-bottom:20px;" id="sending_add_to_phonebook">
+<a onclick="#" class="btn primary">Save this recipient to my phonebook<input type="checkbox"  id="save_to_phonebook" name="save_to_phonebook"></a>
+</div>
+
+
+
+<div style="margin-top:30px;" class="clearfix">
+  <label for="xlInput">Amount you are sending</label>
+<div class="input-group">
+            <div class="input-group-btn">
+           <select id="sendmoney_currency" name="sendmoney_currency" class="right_select">
+                <option value="$">USD</option>
+            </select><input type="hidden" size="16" name="total" id="total">
+
+</div>
+<input type="text" {% if extradata.usdamount%}value="{{extradata.usdamount}}"{%endif%} placeholder="Amount" size="16" max="500" min="1" name="amount_sent" id="amount_sent" class="form-control">
+          </div>
+</div>
+<div style="margin-bottom:15px;" class="clearfix">
+<div class="input-group">
+            <div class="input-group-btn">
+         <select id="recievemoney_currency" name="recievemoney_currency" class="right_select">
+                <option value="{{rate.country.currency}}">{{ rate.country.currency }}</option>
+
+              </select>
+</div>
+<input type="text" readonly="readonly" placeholder="Amount" size="16" name="amount_received" id="amount_received" class="form-control">
+          </div>
+</div>
+
+<div class="clearfix">
+<label for="xlInput">Reason (<small>optional</small>)</label>
+<div style="float:left;width: 79%;" class="input-prepend">
+<textarea placeholder="A short message to the person receiving the funds" id="mobile_reason" name="mobile_reason"></textarea>
+</div>
+</div>
+
+
+<div id="your_charge" class="alert-info block-message info">
+    </div>
+
+<div  class="clearfix">
+      <div class="clearfix">
+      <input type="hidden" value="{{request.user.pk}}" name="uid">
+      <button type="submit" class="stripe-button-el" style="visibility: visible; "><span style="display: block; min-height: 30px; ">Transfer Money</span></button><span>* We <i><b>don't</b></i> store your credit or debit card details</span>
+      <!--
+      <a title="Payments made Easy" target="_blank" href="http://www.ipayafrica.com/"><img border="0" align="" src="{{STATIC_URL}}images/ipay_logo.jpg"></a>
+      -->
+      </div>
+
+</div>
+
+<!--{% csrf_token %} -->
+</form>
+{%endif%}
+</div>
+
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/remit.js"></script>
+<script type="text/javascript">
+
+//form validation
+$(document).ready(function(){
+
+var rate = new Remit({{rate | serialize_rate | safe}}, {{phonenumbers | safe}}, '{% url "ajax_check_phonebook" %}');
+
+//handle phone numbers
+rate.Phonenumber();
+
+//handle amount sent
+rate.SendAmount();
+
+//form validation
+rate.ValidateForm();
+
+});
+
+
+</script>
+
+<div class="modal hide" id="loading_modal" data-keyboard="false">
+        <div class="modal-header">
+            <h3>Checking if the recipient's phone number is registered</h3>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+
+<style type="text/css">
+  .send_money_header h4{
+float: left;
+margin-right: 10px;
+  }
+
+.send_money_header img{
+width: 50px;
+margin-bottom: 10px;
+}
+
+
+</style>

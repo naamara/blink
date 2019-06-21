@@ -1,0 +1,17 @@
+User-agent: Yandex
+Disallow: /static
+Disallow: /media
+Host: https://useremit.com/
+
+User-agent: Goolebot
+Disallow: /static
+Disallow: /media
+
+User-agent: Bingbot
+Disallow: /static
+Disallow: /media
+
+User-agent: *
+Crawl-delay: 30
+Disallow: /static
+Disallow: /media

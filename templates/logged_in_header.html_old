@@ -1,0 +1,128 @@
+
+{% if activate_sms_form%}
+
+{% include "verifyphoneform.html" %}
+
+{% else %}
+
+{% if USERDETAILS_PROVIDED == False %}
+{% include "userdetailsform.html" %}
+{% endif %}
+
+
+{% endif %}
+
+<div class="home_inner_wrapper" id="top">
+<div class="navbar header">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h1 id="branding" class="pull-left">
+            <a href="{{BASE_URL}}"><img src="{{STATIC_URL}}images/remit_out_ug.png" style="height: 40px;"></a>
+          </h1>
+          <div class="nav-collapse collapse pull-right">
+            
+
+            <ul class="nav"> 
+            {% for o in logged_in_LINKS %}
+            <li class="{%if o == PAGE_NAME %} active {% endif %}">
+            <a href="{{BASE_URL}}{{ o }}">{{ o|capfirst }}</a>
+            </li>
+            {% endfor %}
+
+            </ul>
+
+
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>  
+      </div>
+
+
+<div class="container inner_pages">
+{% if EMAIL_VERIFIED == False %}
+<div class="alert alert alert-error notification"  style="display:block;overflow:hidden;">
+<div class="resendemail_message"></div>
+<div class="col-sm-6">
+We sent a verification email to <u>{{request.user.email}}</u>.<br />
+Please click the link in the email to finish setting up your {{DOMAIN_NAME}} account.
+</div>
+<div class="col-sm-3">
+<a  class="btn primary" onclick="resendEmailVerification()">Click here to resend the verification email</a>
+</div>
+
+<script type="text/javascript">
+  
+  function resendEmailVerification(){
+    $.ajax({
+      //this is the php file that processes the data and send mail
+      url: '{% url "resend_verification_email" %}',
+
+      //GET method is used
+      type: "GET",
+
+      //pass the data
+      //data: '&logout=true&',
+      //Do not cache the page
+      cache: false,
+
+             beforeSend: function(){
+             $('#loading').show();
+            },
+             complete: function(){
+              $('#loading').hide();
+            },
+
+
+      //success
+      success: function (html) {
+        $('.resendemail_message').html(html)
+      },
+
+    });
+}
+
+</script>
+
+</div>
+
+{% else  %}
+
+
+{% if ID_VERIFIED == False %}
+
+{% if user_profile.id_pic == 'False' %}
+
+<div class="alert alert alert-error notification">
+Your have only {{transactions_left}} transactions left , <br />
+<a href="#" OnClick=$(".passport_upload_form").toggle(); >
+Click here to verify your identity</a> and remove this limit
+</div>
+
+{% include "uploadidform.html" %}
+
+{% else %}
+
+<div class="alert alert-success notification">
+<h4>Your Account is being verified </h4>
+<h6>We shall send you an email and / sms once this is done</h6>
+</div>
+
+{% endif %}
+
+
+{% endif %}
+
+
+
+
+{% endif %}
+
+
+<!-- Notifications-->
+{% include "notifications.html" %}

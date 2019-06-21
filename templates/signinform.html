@@ -1,0 +1,105 @@
+<div class="login_signup_wrapper newlogin_signup_wrapper col-sm-5">
+
+<div class="home_content_header"> 
+<div id="introhome">
+<span> Send Money </span> Directly From Your <span>Credit Card</span> To Uganda Via <span>Mobile Money</span> 
+</div>
+
+<script type="text/javascript">
+
+            $(function () {
+              $("span[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+</script>
+
+    </div>
+
+
+<div class="signupheader" style="margin-bottom: 10px;">
+<div id="login_error_section" style="float:left;width:100%;display:block;padding-bottom:5px;"></div>
+
+
+<div id='signup_form_response'>
+{% include "notifications.html" %}
+</div>
+
+
+Don't Have An Account ? <a href="{{BASE_URL}}signup" >Sign up Here</a></span>
+</div>
+
+
+
+
+
+<form id="plainloginform_form"  method="POST"  action="{% url 'login' %}">
+{% csrf_token %}
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">Email</span>
+<input class="span4" id="login_email" name="identification" size="16" type="text" placeholder="Email Address">
+</div>
+</div>
+
+
+
+<div class="clearfix">
+<div class="input-prepend">
+<span class="add-on">
+Password  
+</span>
+<input class="span4" id="login_passwd" name="password" size="16" type="password" placeholder="Password">
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="clearfix" id="call_to_action_wrapper">
+<input type="submit" id="new_call_to_action" class="btn btn-flat btn-orange" value="Login">
+</div>
+
+
+</form>
+
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.form-validation.js"></script>
+<script type='text/javascript'>
+
+
+
+$(document).ready(function(){
+/*
+    jQuery.validator.addMethod("alphanumeric", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+})
+*/
+
+    $("#plainloginform_form").validate({
+
+    rules:{"password": {"required": true,minlength:6}, "identification": {"required": true, "email": true}} ,
+    messages: {"password": {"required": "Please provide your password"}, "identification": {"required": "Please provide your email", "email": "Please provide a valid email address"}} ,
+
+});
+    });
+</script>
+
+
+<div class='clearfix'  id='start_btn'>
+<a href="{% url 'recoverpassword' %}" >forgot your password ?</a>
+</div>
+
+</div>
+</div>
+
+</div>
+

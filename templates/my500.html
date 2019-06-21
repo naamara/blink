@@ -1,0 +1,27 @@
+{% extends "base_404.html" %}
+
+
+{% block content %}
+
+<link href="{{STATIC_URL}}css/404.css" media="screen" rel="stylesheet" type="text/css" /> 
+
+
+<div class="container">
+<section class="f04">
+	
+
+<div class="page-content" role="main">
+                <h2>We're Sorry but an error occured processing your last request.
+A system administrator has been notified. Please check back later.</h2>
+                <p>You can check out our <a href="https://twitter.com/RemitUg">twitter feed</a> for updates</p>
+            </div>
+            <div style='width:100%;margin-top:5%;margin-left:10%;overflow:hidden;border:0 none;float:left;'>
+			<img src='{{STATIC_URL}}images/503.png'>
+			</div>
+</section>
+</div>
+
+<style type="text/css">
+</style>
+
+{% endblock %}

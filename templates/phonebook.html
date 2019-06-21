@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<script type="text/javascript" language="javascript" src="{{STATIC_URL}}js/jquery.jeditable.mini.js"></script>
+<div class="col-md-9">
+
+<div id="introhome_container">
+<h4>Phonebook <small>click on a field to edit</small></h4>
+</div>
+
+{% include "addtophonebookform.html" %}
+
+
+
+<style type="text/css">
+
+table .btn
+{
+
+
+}
+
+table tr input
+{
+height:20px !important;
+border:none !important;
+}
+
+.phonebook_section
+{
+height:50px;
+}
+
+
+table{
+  margin-top: 10px;
+  width: 80% !important;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+table .header{
+  background: none !important;
+}
+
+</style>
+<div id="phonebook_notice_section"></div>
+
+{% if phonebook %}
+
+<table class="table-striped tablesorter table" id="sortTableExample">
+        <thead>
+          <tr>
+            <th name="item_name" class="header">Phonenumber</th>
+            <th name="item_name" class="header">Firstname</th>
+            <th name="item_price" class="header">Lastname</th>       
+            <th style="width:30px:" class="header"></th>     
+            </tr>
+        </thead>
+        <tbody>
+
+              {% for p in phonebook %}
+                  <tr class="phonebook_section" id='phonebook_section_{{p.pk}}' data-number='{{p.phonenumber_with_countrycode}}'>
+                  <td>{{p.phonenumber_with_countrycode}}</td>
+                  <td class="edit_firstname" id="{{p.pk}}">{{p.firstname}}</td>
+                  <td class="edit_lastname" id="{{p.pk}}">{{p.lastname}}</td>
+                  <td style="width:50px"> <a href="#" onclick="deletePhonebookNumber({{p.pk}})" id="phonebook_section_delete" style="display:none;">Delete</a> </td>
+                </tr>
+              {% endfor %}
+
+
+        </tbody>
+    </table>
+
+{% endif %}
+    <section style="margin-top:20px;">
+<a class="btn primary" onclick=toggleAddToPhoneBookForm()>Add Number To Phonebook</a>
+
+
+{% if phonebook %}
+<div class="pagination">
+<ul>
+  {% if phonebook.has_previous %}
+    <li><a href="?page={{ phonebook.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+    <li class="disabled"><a href="#">&laquo;</a></li>
+  {% endif %}
+
+  {% for num in phonebook.paginator.page_range %}
+    {% ifequal num phonebook.number %}
+      <li class="active"><a href="#">{{ num }}</a></li>
+    {% else %}
+      <li><a href="?page={{ num }}">{{ num }}</a></li>
+    {% endifequal %}
+  {% endfor %}
+
+  {% if phonebook.has_next %}
+    <li><a href="?page={{ phonebook.next_page_number }}">&raquo;</a></li>
+  {% else %}
+    <li class="disabled"><a href="#">&raquo;</a></li>
+  {% endif %}
+</ul>
+
+</div>
+{%endif%}
+
+</section>
+<script>
+
+
+$(document).ready(function() {
+
+
+
+
+
+     $('.edit_lastname').editable("{% url 'edit_phonebook' %}", {
+         id   : 'elementid',
+         submitdata : {option : 'lastname',update_phonebook:'true'},
+     });
+
+      $('.edit_firstname').editable("{% url 'edit_phonebook' %}", {
+         id   : 'elementid',
+         submitdata : {option : 'firstname',update_phonebook:'true'},
+     });
+
+
+
+$('.phonebook_section').each(function(index) {  
+
+//show    
+$(this).mouseover(function() {
+            //alert('hovering');
+            $(this).find('#phonebook_section_delete').show();
+});
+
+//hide
+$(this).mouseout(function() {
+            //alert('hovering');
+            $(this).find('#phonebook_section_delete').hide();
+});
+
+});
+
+
+
+ });
+
+function deletePhonebookNumber(val)
+{
+var msg = "Are you sure you want to delete The Phonenumber "+$('#phonebook_section_'+val).attr('data-number');  
+if (confirm(msg))
+  {  
+
+//do the search
+//start the ajax
+    $.ajax({
+      //this is the php file that processes the data and send mail
+      url: "{% url 'delete_from_phonebook' %}",
+
+      //GET method is used
+      type: "POST",
+
+      //pass the data
+      data: 'uid='+val+'&csrfmiddlewaretoken={{ csrf_token }}',
+
+      //Do not cache the page
+      cache: false,
+
+             beforeSend: function(){
+            $('#loading').show();
+            },
+             complete: function(){
+             $('#loading').hide();
+            },
+
+
+      //success
+      success: function (html) {
+        $('#phonebook_notice_section').html(html)
+        },
+
+            error : function ()
+            {
+
+            }
+
+
+    });
+
+}
+}
+
+</script>        
+</div>
+
+
+{% endblock %}

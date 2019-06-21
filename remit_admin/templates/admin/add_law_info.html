@@ -1,0 +1,250 @@
+{% extends "admin/base_site_lawyer.html" %}
+{% load i18n admin_static bootstrapped_goodies_tags %}
+{% load custom_filters %}
+
+{% load url from future %}
+
+{% load validation_tags %}
+
+{% load crispy_forms_tags %}
+
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+<li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+<span class="divider"><i class="icon-angle-right"></i></span>
+</li>
+<li>{{ page_title |capfirst }}</li>
+</ul>
+{% endblock %}
+
+
+{% block pretitle %}
+{{pretitle |capfirst  }}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="module">
+      <div class="module-head">
+        <b>Create A Staff User</b> <small><i>With great power comes great responsibility , don't give up!! </i></small>
+      </div><!--/.module-head-->
+      <div class="module-body">
+
+      <div id='signup_form_response'>
+{% include "form-error.html" %}
+</div>
+
+          </div>
+
+
+        <form class="form-horizontal" method="POST" action="" id="createadminuserform">
+          {% csrf_token %}
+
+
+          <section class="docs">
+          <h4>Auth Details</h4>
+          <hr />
+          </section>
+
+
+
+
+
+
+
+
+            <div class="control-group">
+           <label class="control-label">Subject</label>
+            <div class="controls">
+              <input type="text" class="input-block-lev" placeholder="Subject" name="sub">
+            </div>
+          </div>
+
+          
+
+          <div class="control-group">
+            <label class="control-label">Message</label>
+            <div class="controls">
+              {{form.msg}}
+
+            </div>
+          </div>
+
+
+          
+           <div class="control-group">
+            <div class="controls">
+          <button class="btn btn-primary">Add  User</button>
+          <input class="btn" type="reset" value="Reset">
+          </div>
+          </div>
+
+
+          
+
+            </div>
+          </div>
+
+
+
+
+         
+
+
+          
+
+
+          <!--
+
+          <div class="control-group">
+            <label class="control-label">Username</label>
+            <div class="controls">
+              <input type="text" class="input-block-level" placeholder="username" name="username">
+            </div>
+          </div>
+
+
+
+          <div class="control-group">
+            <label class="control-label">Relative sizing</label>
+            <div class="controls">
+              <p><input class="input-mini" type="text" placeholder=".input-mini"></p>
+              <p><input class="input-small" type="text" placeholder=".input-small"></p>
+              <p><input class="input-medium" type="text" placeholder=".input-medium"></p>
+              <p><input class="input-large" type="text" placeholder=".input-large"></p>
+              <p><input class="input-xlarge" type="text" placeholder=".input-xlarge"></p>
+              <input class="input-xxlarge" type="text" placeholder=".input-xxlarge">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Grid sizing</label>
+            <div class="controls">
+              <p><input class="span1" type="text" placeholder=".span1"></p>
+              <p><input class="span2" type="text" placeholder=".span2"></p>
+              <p><input class="span3" type="text" placeholder=".span3"></p>
+              <p>
+                <select class="span1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </p>
+              <p>
+                <select class="span2">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </p>
+              <select class="span3">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+              For multiple grid inputs per line, <strong>use the <code>.controls-row</code> modifier class for proper spacing</strong>. It floats the inputs to collapse white-space, sets the proper margins, and clears the float.
+            </div>
+          </div>
+          <div class="control-group">
+            <p class="controls">
+              <input class="span5" type="text" placeholder=".span5">
+            </p>
+            <p class="controls controls-row">
+              <input class="span4" type="text" placeholder=".span4">
+              <input class="span1" type="text" placeholder=".span1">
+            </p>
+            <p class="controls controls-row">
+              <input class="span3" type="text" placeholder=".span3">
+              <input class="span2" type="text" placeholder=".span2">
+            </p>
+            <p class="controls controls-row">
+              <input class="span2" type="text" placeholder=".span2">
+              <input class="span3" type="text" placeholder=".span3">
+            </p>
+            <div class="controls controls-row">
+              <input class="span1" type="text" placeholder=".span1">
+              <input class="span4" type="text" placeholder=".span4">
+            </div>
+          </div>
+
+          <div class="control-group error">
+            <label class="control-label">Error state</label>
+            <div class="controls">
+            <input type="text" class="error">
+            <span class="help-inline"><code>class="error"</code></span>
+            </div>
+          </div>
+
+          <div class="control-group warning">
+            <label class="control-label">Warning state</label>
+            <div class="controls">
+            <input type="text" class="warning">
+            <span class="help-inline"><code>class="warning"</code></span>
+            </div>
+          </div>
+          <div class="control-group success">
+            <label class="control-label">Success state</label>
+            <div class="controls">
+            <input type="text" class="success">
+            <span class="help-inline"><code>class="success"</code></span>
+            </div>
+          </div>
+          <div class="control-group info">
+            <label class="control-label">Info state</label>
+            <div class="controls">
+            <input type="text" class="info">
+            <span class="help-inline"><code>class="info"</code></span>
+            </div>
+          </div>
+          <div class="control-group disabled">
+            <label class="control-label">Disabled state</label>
+            <div class="controls">
+            <input type="text" disabled="disabled">
+            <span class="help-inline"><code>input disabled="disabled"</code></span>
+            </div>
+          </div>
+          -->
+
+
+
+
+
+        </form>
+      </div><!--/.module-body-->
+    </section>
+
+
+
+
+ <script src="{% static "admin/dashboard/scripts/forum.js" %}" rel="script"></script>
+
+
+<!-- Form Validation -->
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.form-validation.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#createadminuserform").validate({
+
+    rules:{% validation_rules  form %} ,
+    messages: {% validation_messages form %} ,
+
+    });
+    });
+
+</script>
+
+{% endblock %}
+
+

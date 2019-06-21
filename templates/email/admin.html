@@ -1,0 +1,99 @@
+{% extends "email/base.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+{% if code == 'complete_transaction' %}
+
+The amount {{ data.display_amount_received}} was sent to {{ data.recipient_number }} ({{data.recipient_names}}) 
+
+<p>
+The amount was processed by {% if not data.process_by.display_name %} Admin {%else%} {{ data.process_by.display_name}} {%endif%} on {{ data.processed_on | date:'F j, o H:m:s' }} 
+</p>
+
+<p>
+The transaction for {{data.amount_sent | exchange }} was initiated by {{data.sender_names}} on {{data.started_on | date:'F j, o H:m:s' }}
+</p>
+
+Many thanks <br />
+
+{% endif %}
+
+
+{% if code == 'pending_transaction' %}
+
+The Amount {{ data.display_amount_received}} to {{ data.recipient_number }} is pending 
+
+<p>
+The StatusCode is {{ data.mobile_response_code }}  and the error message is {{ data.mobile_response_metadata }}
+</p>
+
+Please log into your account and process this transaction. <br />
+
+{% endif %}
+
+
+{% if code == 'user_verification' %}
+The User {{ data.get_names }} is awaiting verification <br />
+The User Submitted their details on {% now "F j, o H:m:s" %} <br />
+Please  log into your account and verify this user. <br />
+{% endif %}
+
+
+{% if code == 'user_verification_update' %}
+The User {{ data.get_names }} updated thier verification details <br />
+The User Submitted their details on {% now "F j, o H:m:s" %} <br />
+Please  log into your account and verify this user. <br />
+{% endif %}
+
+
+
+{% if code == 'transaction_updated' %}
+The Transaction <a href="{% url 'admin:admin_transaction' transaction.get_invoice %}">#{{transaction.get_invoice}}</a> was updated by {{transaction.updated_by}}<br />
+The Transaction was updated on {% now "F j, o H:m:s" %} <br />
+{% endif %}
+
+
+{% if code == 'rates_error' %}
+There was an error fetching the rates <br />
+There error message is <br />
+<pre>
+{{data.error_message}}
+</pre>
+{% include 'email/crying_panda.html' %}
+{% endif %}
+
+
+{% if code == 'server_error' %}
+When : {% now "F j, o" %} <br/>
+Error message :
+<pre>
+{{data.error_message}}
+</pre>
+<br />
+Exception :
+<pre>
+{{data.e}}
+</pre>
+{% include 'email/crying_panda.html' %}
+{% endif %}
+
+{% if code == 'contact_us' %}
+
+
+A user  {{data.names}} submitted the contact message:
+
+<p>
+Message: {{data.msg}} <br /> 
+</p>
+
+Email: {{data.email}} <br />
+Phonenumber: {{data.phonenumber}} <br />
+
+{% endif %}
+
+
+
+
+{% endblock %}

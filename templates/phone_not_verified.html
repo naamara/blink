@@ -1,0 +1,53 @@
+{% include "verifyphoneform.html" %}
+<div class="alert alert alert-error notification"  style="display:block;overflow:hidden;">
+<div class="col-sm-6">
+<b> <u> You have not yet verified your Phonenumber </u> </b> <br />
+We sent a verification code to <u> <b> +{{user_profile.country_code}}{{user_profile.phonenumber}} </b></u> <br />
+We shall send important sms alerts to you only after you have verified your Phonenumber <br />
+<br />
+</div>
+
+<div class="col-sm-4">
+
+ {% if user_profile.phone_activation_key%}
+
+<a  class="btn primary" onclick=$('.verifyphoneformwrapper').show();>Click here to verify your Phonenumber </a>
+
+ {%else%}
+<a  class="btn primary" onclick=sendVerificationSmS();>Click here to verify your Phonenumber </a>
+{%endif%}
+</div>
+
+<script type="text/javascript">
+  
+  function sendVerificationSmS(){
+    $.ajax({
+      //this is the php file that processes the data and send mail
+      url: '{% url "send_verification_sms" %}',
+
+      //GET method is used
+      type: "GET",
+
+      //pass the data
+      //data: '&logout=true&',
+      //Do not cache the page
+      cache: false,
+
+             beforeSend: function(){
+             $('#loading').show();
+            },
+             complete: function(){
+              $('#loading').hide();
+            },
+
+      //success
+      success: function (html) {
+        $('.verifyphoneformwrapper').show();
+      },
+
+    });
+}
+
+</script>
+
+</div>

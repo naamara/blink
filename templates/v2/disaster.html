@@ -1,0 +1,27 @@
+
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+
+<div class="contented"><h2>Disaster Preparedness Programmes</h2>
+
+<p> B-Link works towards providing immediate relief and assists in the rehabilitation process of the affected communities in the aftermath of any calamity. We help communities build their capacity to better cope with and recover from disasters. Our foremost goal is to build resilience among the community and various stakeholders in case of any disaster. We work closely with communities, who have been affected by disasters, so that long term development of the communities with sustainable livelihood opportunities may be secured and they are better equipped in future. Key Objectives • Addressing the immediate needs of the most marginalized populations affected by disasters, while recognizing people’s fundamental right to a life with dignity • Understanding the underlying causes of vulnerability • Enhancing capacities to cope with disasters and adapt to climate change • Integration of disaster risk reduction into the ongoing programmes  </p></div>
+      
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/accounting.min.js"></script>
+<script type="text/javascript">
+    
+$(function(){
+
+
+var remit = new Remit({{landingformdata | safe}});
+remit.LandingForm();
+
+});
+
+</script>
+{% endblock %}

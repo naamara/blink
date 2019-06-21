@@ -1,0 +1,44 @@
+<div class="alert alert alert-error notification"  style="display:block;overflow:hidden;">
+<div class="resendemail_message"></div>
+<div class="col-sm-6">
+We sent a verification email to <u>{{request.user.email}}</u>.<br />
+Please click the link in the email to finish verifying your email .
+</div>
+<div class="col-sm-3">
+<a  class="btn primary" onclick="resendEmailVerification()">Click here to resend the verification email</a>
+</div>
+
+<script type="text/javascript">
+  
+  function resendEmailVerification(){
+    $.ajax({
+      //this is the php file that processes the data and send mail
+      url: '{% url "resend_verification_email" %}',
+
+      //GET method is used
+      type: "GET",
+
+      //pass the data
+      //data: '&logout=true&',
+      //Do not cache the page
+      cache: false,
+
+             beforeSend: function(){
+             $('#loading').show();
+            },
+             complete: function(){
+              $('#loading').hide();
+            },
+
+
+      //success
+      success: function (html) {
+        $('.resendemail_message').html(html)
+      },
+
+    });
+}
+
+</script>
+
+</div>

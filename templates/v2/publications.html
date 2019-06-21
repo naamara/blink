@@ -1,0 +1,46 @@
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+Latest
+<p>Publications12 Jan 2017</p>
+<p>JANUARY 2017 VOL. 43 NO. 1</p>
+<p>Publications12 Jan 2017</p>
+<p>Epidemiological News Bulletin</p>
+<p>Publications12 Jan 2017</p>
+
+<p>Publications2 Dec 2016</p>
+<p>ElderShield Fast Facts Brochure (2016)</p>
+<p>Publications16 Nov 2016</p>
+<p>Home and Centre-based Care Service Requirements</p>
+
+<p>Publications14 Nov 2016
+<p>Communicable Diseases Surveillance in Singapore 2015
+<p>Publications14 Nov 2016
+
+<p>Publications28 Oct 2016</p>
+<p>OCTOBER 2016 VOL. 42 NO. 4</p>
+<p>Publications20 Jul 2016</p>
+<p>JULY 2016 VOL.42 NO. 3</p>
+<p>Publications14 Jul 2016</p>
+<p>Pioneer Generation Booklet (2016)</p>
+
+
+  <h2>News Message</h2>
+<div>
+{% for pub_info in pub_info %}
+  <div class="panel panel-default" style="width:600px;">
+    <div class="panel-heading">{{pub_info.sub}}
+</div>
+    <div class="panel-body">{{pub_info.msg}}</div>
+  </div>
+
+
+{% endfor %}
+
+
+
+{% endblock%}

@@ -1,0 +1,142 @@
+{% extends "v2_base.html" %}
+{% load custom_filters %}
+{% load humanize %}
+
+
+{% block content %}
+
+
+
+    <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+    <div id="wowslider-container1" style="height:400px; margin-top:14px;">
+    <div class="ws_images" style="height:700px;width:660;margin-right: 20px;margin-left: 20px; " ><ul style="height:700px;width:500;">
+        
+        <li><img src="{{STATIC_URL}}data1/images/image5.jpg" alt="HIGHWAY MARKET" title="HIGHWAY MARKET" style="height:1000px;" id="wows1_1"/></li>
+        <li><img src="{{STATIC_URL}}data1/images/ourwork_wherewework_africa_tanzania_hero.jpg" alt="UGANDANS IN A TEA PLANTATION" style="height:1000px;width:500; "  title="UGANDANS IN A TEA PLANTATION" id="wows1_2"/></li>
+        <li><img src="{{STATIC_URL}}data1/images/image5.jpg" alt="http://wowslider.com/"  style="height:1000px;width:500; " title="DOCTORS IN A SURGICAL WARD" id="wows1_2"/></li>
+        <li><img src="{{STATIC_URL}}data1/images/img20170603wa0039.jpg" alt="DOCTORS CHECKING   A  PERSONS TEMPERATURE" title="DOCTORS CHECKING   A  PERSONS TEMPERATURE"  style="height:1000px;width:500;" id="wows1_4"/></li>
+    </ul>
+    
+    </div></div><div class="ws_script" style="position:absolute;left:-99%"></div>
+    <div class="ws_shadow"></div>
+
+       <div id="banner_text"  style="z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  background: rgb(68, 64, 64) none repeat scroll 0% 0%;
+   width:300; 
+   padding: 5px;
+   border-radius: 25px; 
+   right:240px;
+   opacity: 0.8;
+  left: 200px;
+  top: 0px; margin-top: 170px;">
+                        <strong  style="color: rgb(255, 126, 0);font-size: 30px;text-align: center;padding-left: 13%;">Message from B-LINK Chairperson </strong>
+                        <h2 style="width:500;" >I welcome you all to this B-Link Website. B-Link stands for Basic Learning and Information Network and its a platform for providing information to Ugandans concerning health, Entrepreneurial, Civics and Livelihood.</a>
+</h2>
+
+
+
+<table>
+<tr>
+<td id="button" style="width: 40px; height: 40px; padding-left: 112%;"><a href="{% url 'join' %}"><input type="button" value="Join Us"></a></td>
+ 
+
+<td></td>
+<td></td>  &nbsp;  &nbsp;  &nbsp; 
+<td>
+ <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <!-- Identify your business so that you can collect the payments. -->
+    <input type="hidden" name="business"
+        value="donations@kcparkfriends.org">
+
+    <!-- Specify a Donate button. -->
+    <input type="hidden" name="cmd" value="_donations">
+
+    <!-- Specify details about the contribution -->
+    <input type="hidden" name="item_name" value="Friends of the Park">
+    <input type="hidden" name="item_number" value="Fall Cleanup Campaign">
+    <input type="hidden" name="currency_code" value="USD">
+
+    <!-- Display the payment button. -->
+    <input type="image" name="submit"
+    src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png"
+   value="Donate">
+    <img alt="" width="1" height="1"
+    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+</form>
+</td>
+</tr>
+</table>
+    </div>  
+    <script type="text/javascript" src="{{STATIC_URL}}engine1/wowslider.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}engine1/script.js"></script>
+    <!-- End WOWSlider.com BODY section -->
+
+
+
+<div align="center" style=" 
+   position:absolute;
+left:1%;
+top:800px;
+border-left:0px solid gray;
+height:105px; 
+margin:0px auto;"> 
+
+
+ <div  id="conten">
+ <div  id="leftconten">
+ <div id="vision"><h2>B-LINK VISION</h2></div>
+ <div id="visioninfo">We envision a better connected well informed Ugandan citizenry so as to facilitate discovery, participation and co-creation between people, government and private sector. </div>
+
+<div id="vision"><h2>B-LINK MISSION</h2> </div>
+<div id="visioninfo"><p> At BLINK we partner to reduce disparities in information accessibility and to build a resilient and active citizenry of people who are informed to fight poverty, diseases, hunger; promote civics education and democracy in the country.The BLINK will partner with public, private, school, college and universities/institutions and Non-governmental organizations (NGOs) in the country and other international organizations of working in cooperation with the education, university, training, business and medical communities. This initiative seeks to serve Uganda citizens with the assistance of all levels of government. The goal of the BLINK is to assist information users in seeking, navigating and using electronic information through the effective management and delivery of electronic resources to Ugandans. The services provided are geared towards assisting Ugandans at all ages to learn about, find and locate the information they need.</p></div>
+
+
+<div class="other">
+At B-LINK, we believe that we can only achieve the 17 sustainable development goals by bridging the gaps between populations; especially in terms of education and information accessibility. 
+Ugandan citizens need current, accurate and high-quality information to support them throughout their lives - as they learn to read, move through the education system, develop professional and job-related skills and look for consumer, leisure and health care information. While technology via internet has opened a vast world of information and data, much of the most valuable information, which comes at a high cost, remains available to only a few.
+A high performing government relies on an engaged, well-prepared and well-trained citizenry; whether defending our homeland, restoring confidence in our financial system, providing healthcare to our people, conducting diplomacy abroad, providing relief to victims of disasters, or even coming with life-changing innovations like cures of the most vexing disease.
+
+</div>
+</div>
+<div id="rightconten">
+<div  class="lefter">
+  Latest Highlights
+  </div>
+  <div id="righter">
+  <a  href="#">Public Consultation on Proposed Amendments to the Tobacco (Control of Advertisements and Sale) Act</a>
+  </div>
+
+  <div  class="lefter">
+Top  Pages  </div>
+  <div id="righter">
+  <a  href="#">Public Consultation on Proposed Amendments to the Tobacco (Control of Advertisements and Sale) Act</a>
+  </div>
+</div>
+</div>
+
+
+
+
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/accounting.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+ 
+$(function(){
+
+
+var remit = new Remit({{landingformdata | safe}});
+remit.LandingForm();
+
+});
+
+</script>
+{% endblock %}

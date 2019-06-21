@@ -1,0 +1,25 @@
+<div class="alert alert alert-info notification" style="display:block;overflow:hidden;">
+<div class="col-sm-6">
+<h3>
+
+<a href="{% url 'pending_transactions' %}">
+ <u> You have ( {{pending_transactions.count}} ) Pending Transaction{% if pending_transactions.count > 1 %}s{%endif%} </u> 
+
+</a>
+ </h3>
+
+<b>
+We will notify you as soon as the transaction{% if pending_transactions.count > 1 %}s{%endif%} {% if pending_transactions.count > 1 %}are{%else%}is{%endif%} delivered
+</b>
+
+</div>
+
+<div class="col-sm-4">
+
+ 
+
+<a class="btn primary" href="{% url 'pending_transactions' %}">View all your Pending transactions </a>
+
+ 
+</div>
+</div>
