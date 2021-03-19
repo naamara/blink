@@ -28,7 +28,7 @@ django-tinymce==2.7.0
 django-twilio==0.9.3
 django-user-accounts==2.1.0
 django-webtest==1.9.4
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 djutils==0.3.2
 ez-setup==0.9
 fake-useragent==0.1.11
