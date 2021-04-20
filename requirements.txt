@@ -41,7 +41,7 @@ oauthlib==2.1.0
 Pillow==5.3.0
 pluggy==0.8.0
 psycopg2==2.7.6.1
-py==1.7.0
+py==1.10.0
 PyJWT==1.6.4
 pyPdf==1.13
 PyPDF2==1.26.0
