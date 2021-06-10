@@ -5,7 +5,7 @@ certifi==2018.10.15
 chardet==3.0.4
 coverage==4.5.2
 CryptoCoinChartsApi==0.0.1
-Django==1.7
+Django==2.2.24
 django-admin-bootstrapped==2.5.7
 django-appconf==1.0.2
 django-bitcoin==0.2
