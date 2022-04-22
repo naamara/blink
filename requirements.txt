@@ -44,7 +44,7 @@ psycopg2==2.7.6.1
 py==1.7.0
 PyJWT==1.6.4
 pyPdf==1.13
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 python-magic==0.4.15
 python-memcached==1.59
 python-openid==2.2.5
