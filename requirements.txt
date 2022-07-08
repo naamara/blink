@@ -58,7 +58,7 @@ requests-oauthlib==1.0.0
 simplejson==3.16.0
 six==1.11.0
 social-auth-core==2.0.0
-suds==0.4
+suds==1.0.0
 toml==0.10.0
 tox==3.6.1
 twilio==6.22.0
